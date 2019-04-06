@@ -46,12 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entités\Animal.cs" />
+    <Compile Include="Entités\Concierge.cs" />
+    <Compile Include="Entités\Entite.cs" />
+    <Compile Include="Entités\Heros.cs" />
+    <Compile Include="Entités\Visiteur.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entités\Humain.cs" />
+    <Compile Include="LeReste\Enclos.cs" />
+    <Compile Include="LeReste\InformationAnimal.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LeReste\TuileZoo.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LeReste\Zoo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
