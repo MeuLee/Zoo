@@ -1,6 +1,6 @@
 ﻿namespace TP2
 {
-    partial class Form1
+    partial class FrmZoo
     {
         /// <summary>
         /// Required designer variable.

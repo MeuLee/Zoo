@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TP2.Entités;
 
 namespace TP2
 {
-    public partial class Form1 : Form
+    public partial class FrmZoo : Form
     {
-        public Form1()
+        public FrmZoo()
         {
             InitializeComponent();
         }

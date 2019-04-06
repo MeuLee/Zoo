@@ -7,7 +7,7 @@ using TP2.Entités;
 
 namespace TP2.LeReste
 {
-    public class Zoo
+    public class Zoo //: Control?
     {
         public TuileZoo[][] Terrain { get; set; }
         public List<Entite> EntitesPresentes { get; set; }

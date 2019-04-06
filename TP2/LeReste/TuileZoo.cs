@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace TP2.LeReste
 {
-    public class TuileZoo  : Control
+    public class TuileZoo
     {
         public bool ContientDechet { get; set; }
         public bool ContientAnimal { get; set; }
@@ -17,12 +16,20 @@ namespace TP2.LeReste
 
         public enum TypeTuile
         {
-
+            Allee,
+            Enclos,
             Buisson,
             Roche,
-            Cloture/*,
-            ...*/
+            Cloture
         }
 
+        public TuileZoo(TypeTuile tuile, bool estSortie)
+        {
+            ContientAnimal = false;
+            ContientDechet = false;
+            ContientVisiteur = false;
+            EstSortie = estSortie;
+            Tuile = tuile;
+        } 
     }
 }

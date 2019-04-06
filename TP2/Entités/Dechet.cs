@@ -8,15 +8,12 @@ using TP2.LeReste;
 
 namespace TP2.Entités
 {
-    public class Heros : Humain
+    public class Dechet : Entite
     {
-        public int Argent { get; set; }
-
-        public Heros(TuileZoo position, Bitmap image)
+        public Dechet(TuileZoo position, Bitmap image)
         {
             Position = position;
             Image = image;
-            Argent = 100;
         }
     }
 }

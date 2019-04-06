@@ -10,5 +10,11 @@ namespace TP2.LeReste
     public class Enclos
     {
         public List<Animal> AnimauxPresents { get; set; }
+        public Animal.TypeAnimal Espece { get; set; }
+
+        public Enclos()
+        {
+
+        }
     }
 }

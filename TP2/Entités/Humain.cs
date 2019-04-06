@@ -8,6 +8,5 @@ namespace TP2.Entités
 {
     public abstract class Humain : Entite
     {
-        public string Nom { get; set; }
     }
 }

@@ -10,7 +10,6 @@ namespace TP2.Entités
 {
     public abstract class Entite
     {
-        public Sexe SexeEntite { get; set; }
         public TuileZoo Position { get; set; }
         public Bitmap Image { get; set; }
 
