@@ -10,7 +10,7 @@ namespace TP2.Entités
 {
     public class Visiteur : Humain
     {
-        private static Random _r = new Random();
+        private static Random r = new Random();
 
         public DateTime QuandEntreZoo { get; set; }
         public Sexe SexeVisiteur { get; set; }
@@ -18,7 +18,7 @@ namespace TP2.Entités
 
         public Visiteur(TuileZoo position, Bitmap image)
         {
-            SexeVisiteur = (Sexe)_r.Next(0, 2);
+            SexeVisiteur = (Sexe)r.Next(0, 2);
             QuandEntreZoo = DateTime.Now;
             Position = position;
             //Image = random entre les 4

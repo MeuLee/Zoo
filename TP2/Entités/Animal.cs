@@ -10,8 +10,7 @@ namespace TP2.Entités
 {
     public class Animal : Entite
     {
-        private static Random _r = new Random();
-
+        private static Random r = new Random();
         public TypeAnimal Type { get; set; }
         public int JoursGestation { get; set; }
         public int JoursJusquaAdulte { get; set; }
@@ -60,12 +59,13 @@ namespace TP2.Entités
                     //Image = 
                     break;
             }
+
             derniereFoisNourrri = DateTime.Now;
             AFaim = false;
             Age = age;
             Enceinte = false;
             Enclos = enclos;
-            SexeAnimal = (Sexe)_r.Next(0, 2);
+            SexeAnimal = (Sexe)r.Next(0, 2);
             //Position = quelque part dans l'enclos ou ils ont un spawn point precis
 
         }
