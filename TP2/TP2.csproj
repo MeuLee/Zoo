@@ -63,10 +63,19 @@
     <Compile Include="LeReste\InformationAnimal.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="LeReste\TileSetGenerator.cs" />
     <Compile Include="LeReste\TuileZoo.cs" />
-    <Compile Include="LeReste\Zoo.cs" />
+    <Compile Include="LeReste\Zoo.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmZoo.resx">
+      <DependentUpon>FrmZoo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LeReste\Zoo.resx">
+      <DependentUpon>Zoo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,6 +84,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -88,6 +98,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zoo_tileset.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
