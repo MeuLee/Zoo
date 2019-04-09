@@ -31,7 +31,7 @@ namespace TP2.LeReste
         public static int BL_ENCLOS = 15;
         public static int B_ENCLOS = 16;
         public static int BR_ENCLOS = 17;
-        public static int BORDURE_ENCLOS = 18;
+        public static int CLOTURE_ENCLOS = 18;
 
         private static List<TileCoord> listeCoord = new List<TileCoord>();
         private static List<Bitmap> listeBitmap = new List<Bitmap>();
@@ -79,7 +79,7 @@ namespace TP2.LeReste
             listeBitmap.Add(LoadTile(BL_ENCLOS));
             listeBitmap.Add(LoadTile(B_ENCLOS));
             listeBitmap.Add(LoadTile(BR_ENCLOS));
-            listeBitmap.Add(LoadTile(BORDURE_ENCLOS));
+            listeBitmap.Add(LoadTile(CLOTURE_ENCLOS));
         }
 
         private static Bitmap LoadTile(int posListe)
