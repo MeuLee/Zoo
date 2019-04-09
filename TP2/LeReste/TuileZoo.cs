@@ -17,10 +17,8 @@ namespace TP2.LeReste
         public enum TypeTuile
         {
             Allee,
-            Enclos,
-            Buisson,
-            Roche,
-            Cloture
+            Cloture,
+            Enclos
         }
 
         public TuileZoo(TypeTuile tuile, bool estSortie)

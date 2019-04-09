@@ -11,7 +11,7 @@ namespace TP2.LeReste
 {
     public class Zoo : Control
     {
-        #region Locked size
+        #region Taille fixe
         private Size DesiredSize = new Size(1025, 769);
         public override Size MinimumSize
         {
@@ -25,7 +25,19 @@ namespace TP2.LeReste
         }
         #endregion
 
-        public TuileZoo[][] Terrain { get; set; }
+        private TuileZoo[,] Terrain = new TuileZoo[32, 24];
+        public TuileZoo[,] TerrainZoo
+        {
+            get
+            {
+                return TerrainZoo;
+            }
+            private set
+            {
+                Terrain = value;
+            }
+        }
+
         public List<Entite> EntitesPresentes { get; set; }
 
         #region OnPaint
@@ -38,20 +50,26 @@ namespace TP2.LeReste
             DessinerEnclos(g);
         }
 
+        private void DessinerUneImageEtInitialiserTerrain(Graphics g, Bitmap image, int x, int y, TuileZoo.TypeTuile typeTuile)
+        {
+            g.DrawImage(image, x * 32, y * 32);
+            Terrain[x, y] = new TuileZoo(typeTuile, (x == 15 || x == 16) && y == 0);//crash, Terrain == null même si j'ai fait un new avant
+        }
+
         private void DessinerCoins(Graphics g)
         {
-            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.TL_ALLEE), 0, 0);
-            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.TR_ALLEE), 31 * 32, 0);
-            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.BL_ALLEE), 0, 23 * 32);
-            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.BR_ALLEE), 31 * 32, 23 * 32);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TL_ALLEE), 0, 0, TuileZoo.TypeTuile.Allee);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TR_ALLEE), 31, 0, TuileZoo.TypeTuile.Allee);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BL_ALLEE), 0, 23, TuileZoo.TypeTuile.Allee);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BR_ALLEE), 31, 23, TuileZoo.TypeTuile.Allee);
         }
 
         private void DessinerBordures(Graphics g)
         {
             for (int i = 1; i < 23; i++)
             {
-                g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.CL_ALLEE), 0, i * 32);
-                g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.CR_ALLEE), 31 * 32, i * 32);
+                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CL_ALLEE), 0, i, TuileZoo.TypeTuile.Allee);
+                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CR_ALLEE), 31, i, TuileZoo.TypeTuile.Allee);
             }
 
             for (int i = 1; i < 31; i++)
@@ -225,15 +243,19 @@ namespace TP2.LeReste
         }
         #endregion
 
-        private void InitializeComponent()
+        public void InitializeComponent()
         {
             SuspendLayout();
             // 
             // Zoo
             // 
-            Size = new System.Drawing.Size(1024, 512);
+            Size = new Size(1024, 512);
             ResumeLayout(false);
+        }
 
+        public Zoo()
+        {
+            InitializeComponent();
         }
     }
 }

@@ -40,7 +40,6 @@
             this.zoo1.Name = "zoo1";
             this.zoo1.Size = new System.Drawing.Size(1025, 769);
             this.zoo1.TabIndex = 0;
-            this.zoo1.Terrain = null;
             this.zoo1.Text = "zoo1";
             // 
             // FrmZoo
