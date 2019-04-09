@@ -35,10 +35,10 @@
             // 
             this.zoo1.EntitesPresentes = null;
             this.zoo1.Location = new System.Drawing.Point(0, 0);
-            this.zoo1.MaximumSize = new System.Drawing.Size(1025, 513);
-            this.zoo1.MinimumSize = new System.Drawing.Size(1025, 513);
+            this.zoo1.MaximumSize = new System.Drawing.Size(1025, 769);
+            this.zoo1.MinimumSize = new System.Drawing.Size(1025, 769);
             this.zoo1.Name = "zoo1";
-            this.zoo1.Size = new System.Drawing.Size(1025, 513);
+            this.zoo1.Size = new System.Drawing.Size(1025, 769);
             this.zoo1.TabIndex = 0;
             this.zoo1.Terrain = null;
             this.zoo1.Text = "zoo1";
@@ -47,7 +47,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1024, 513);
+            this.ClientSize = new System.Drawing.Size(1024, 768);
             this.Controls.Add(this.zoo1);
             this.Name = "FrmZoo";
             this.Text = "Form1";
