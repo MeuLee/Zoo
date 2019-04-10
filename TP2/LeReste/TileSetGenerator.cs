@@ -9,9 +9,7 @@ namespace TP2.LeReste
 {
     class TileSetGenerator
     {
-        // Différentes tailles concernant les images dans le fichier de tuiles de jeu
         private const int IMAGE_WIDTH = 32, IMAGE_HEIGHT = 32;
-
         //T = top, C = center, B = bottom, L = left, R = right
         public static int TL_ALLEE = 0;
         public static int T_ALLEE = 1;
@@ -32,6 +30,7 @@ namespace TP2.LeReste
         public static int B_ENCLOS = 16;
         public static int BR_ENCLOS = 17;
         public static int CLOTURE_ENCLOS = 18;
+        public static int ENTREE = 19;
 
         private static List<TileCoord> listeCoord = new List<TileCoord>();
         private static List<Bitmap> listeBitmap = new List<Bitmap>();
@@ -60,33 +59,35 @@ namespace TP2.LeReste
             listeCoord.Add(new TileCoord() { Ligne = 3, Colonne = 10 });
             listeCoord.Add(new TileCoord() { Ligne = 3, Colonne = 11 });
             listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 9 });
+            listeCoord.Add(new TileCoord() { Ligne = 4, Colonne = 12 });
 
-            listeBitmap.Add(LoadTile(TL_ALLEE));
-            listeBitmap.Add(LoadTile(T_ALLEE));
-            listeBitmap.Add(LoadTile(TR_ALLEE));
-            listeBitmap.Add(LoadTile(CL_ALLEE));
-            listeBitmap.Add(LoadTile(C_ALLEE));
-            listeBitmap.Add(LoadTile(CR_ALLEE));
-            listeBitmap.Add(LoadTile(BL_ALLEE));
-            listeBitmap.Add(LoadTile(B_ALLEE));
-            listeBitmap.Add(LoadTile(BR_ALLEE));
-            listeBitmap.Add(LoadTile(TL_ENCLOS));
-            listeBitmap.Add(LoadTile(T_ENCLOS));
-            listeBitmap.Add(LoadTile(TR_ENCLOS));
-            listeBitmap.Add(LoadTile(CL_ENCLOS));
-            listeBitmap.Add(LoadTile(C_ENCLOS));
-            listeBitmap.Add(LoadTile(CR_ENCLOS));
-            listeBitmap.Add(LoadTile(BL_ENCLOS));
-            listeBitmap.Add(LoadTile(B_ENCLOS));
-            listeBitmap.Add(LoadTile(BR_ENCLOS));
-            listeBitmap.Add(LoadTile(CLOTURE_ENCLOS));
+            listeBitmap.Add(LoadTile(TL_ALLEE, 32, 32));
+            listeBitmap.Add(LoadTile(T_ALLEE, 32, 32));
+            listeBitmap.Add(LoadTile(TR_ALLEE, 32, 32));
+            listeBitmap.Add(LoadTile(CL_ALLEE, 32, 32));
+            listeBitmap.Add(LoadTile(C_ALLEE, 32, 32));
+            listeBitmap.Add(LoadTile(CR_ALLEE, 32, 32));
+            listeBitmap.Add(LoadTile(BL_ALLEE, 32, 32));
+            listeBitmap.Add(LoadTile(B_ALLEE, 32, 32));
+            listeBitmap.Add(LoadTile(BR_ALLEE, 32, 32));
+            listeBitmap.Add(LoadTile(TL_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(T_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(TR_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(CL_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(C_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(CR_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(BL_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(B_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(BR_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(CLOTURE_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(ENTREE, 128, 160));
         }
 
-        private static Bitmap LoadTile(int posListe)
+        private static Bitmap LoadTile(int posListe, int width, int height)
         {
-            Image source = TP2.Properties.Resources.zoo_tileset;
+            Image source = Properties.Resources.zoo_tileset;
             TileCoord coord = listeCoord[posListe];
-            Rectangle crop = new Rectangle(coord.Colonne * IMAGE_WIDTH, coord.Ligne * IMAGE_HEIGHT, IMAGE_WIDTH, IMAGE_HEIGHT);
+            Rectangle crop = new Rectangle(coord.Colonne * IMAGE_WIDTH, coord.Ligne * IMAGE_HEIGHT, width, height);
 
             var bmp = new Bitmap(crop.Width, crop.Height);
             using (var gr = Graphics.FromImage(bmp))

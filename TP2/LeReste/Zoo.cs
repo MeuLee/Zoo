@@ -12,7 +12,7 @@ namespace TP2.LeReste
     public class Zoo : Control
     {
         #region Taille fixe
-        private Size DesiredSize = new Size(1025, 769);
+        private Size DesiredSize = new Size(1025, 929);
         public override Size MinimumSize
         {
             get { return DesiredSize; }
@@ -37,12 +37,18 @@ namespace TP2.LeReste
             DessinerBordures(g);
             DessinerCentre(g);
             DessinerEnclos(g);
+            DessinerEntree(g);
+        }
+
+        private void DessinerEntree(Graphics g)
+        {
+            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.ENTREE), 14*32, 0);
         }
 
         private void DessinerUneImageEtInitialiserTerrain(Graphics g, Bitmap image, int x, int y, TuileZoo.TypeTuile typeTuile)
         {
-            g.DrawImage(image, x * 32, y * 32);
-            Terrain[x, y] = new TuileZoo(typeTuile, (x == 15 || x == 16) && y == 0);
+            g.DrawImage(image, x * 32, y * 32 + 160);//160 pour décaler de 5 cases vers le bas, soit ça ou on déplace chaque Y où cette méthode est appelée
+            Terrain[x, y] = new TuileZoo(typeTuile, x == 16 && y == 0);
         }
 
         private void DessinerCoins(Graphics g)
