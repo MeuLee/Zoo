@@ -70,7 +70,7 @@ namespace TP2.LeReste
             listeCoord.Add(new TileCoord() { Ligne = 20, Colonne = 8 });
             listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 0 });
 
-            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, TL_ALLEE, 32, 32, ));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, TL_ALLEE, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, T_ALLEE, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, TR_ALLEE, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, CL_ALLEE, 32, 32));
