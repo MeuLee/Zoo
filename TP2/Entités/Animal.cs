@@ -67,7 +67,7 @@ namespace TP2.Entités
             Enclos = enclos;
             Sexe = (SexeEntite)_r.Next(0, 2);
             //Position = soit quelque part dans l'enclos ou ils ont un spawn point precis
-
+            Zoo.EntitesPresentes.Add(this);
         }
 
 

@@ -14,6 +14,7 @@ namespace TP2.Entités
         {
             Position = position;
             //Image = ;
+            Zoo.EntitesPresentes.Add(this);
         }
     }
 }

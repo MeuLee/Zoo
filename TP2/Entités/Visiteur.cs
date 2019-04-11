@@ -22,6 +22,7 @@ namespace TP2.Entités
             QuandEntreZoo = DateTime.Now;
             Position = position;
             //Image = random entre les 4
+            Zoo.EntitesPresentes.Add(this);
         }
     }
 

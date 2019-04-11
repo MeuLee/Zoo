@@ -27,7 +27,7 @@ namespace TP2.LeReste
 
         public static TuileZoo[,] Terrain { get; private set; }
 
-        public List<Entite> EntitesPresentes { get; set; }
+        public static List<Entite>  EntitesPresentes { get; set; }
 
         public Enclos[] ListeEnclos { get; set; }
 
@@ -256,6 +256,9 @@ namespace TP2.LeReste
             InitializeComponent();
             Terrain = new TuileZoo[32, 24];
             ListeEnclos = new Enclos[4];
+
+            for (int i = 0; i < ListeEnclos.Length; i++)
+                ListeEnclos[i] = new Enclos();
         }
     }
 }

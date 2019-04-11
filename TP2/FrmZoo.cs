@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TP2.Entités;
+using TP2.LeReste;
 
 namespace TP2
 {
@@ -16,8 +17,7 @@ namespace TP2
         public FrmZoo()
         {
             InitializeComponent();
-
-
+            
         }
     }
 }
