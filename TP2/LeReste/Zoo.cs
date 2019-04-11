@@ -27,9 +27,11 @@ namespace TP2.LeReste
 
         public static TuileZoo[,] Terrain { get; private set; }
 
-        public List<Entite>  EntitesPresentes { get; set; }
+        public static List<Entite>  ListeEntites { get; set; }
 
-        public Enclos[] ListeEnclos { get; set; }
+        public static Enclos[] ListeEnclos { get; set; }
+
+        public static Heros Heros { get; set; }
 
         #region OnPaint
         protected override void OnPaint(PaintEventArgs pe)
@@ -266,6 +268,9 @@ namespace TP2.LeReste
 
             for (int i = 0; i < ListeEnclos.Length; i++)
                 ListeEnclos[i] = new Enclos();
+
+            Heros = new Heros(this);
+
         }
     }
 }

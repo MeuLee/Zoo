@@ -19,5 +19,13 @@ namespace TP2
             InitializeComponent();
             
         }
+
+        private void FrmZoo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Up || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
+            {
+                Zoo.Heros.Deplacer(e.KeyCode);
+            }
+        }
     }
 }

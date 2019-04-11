@@ -18,7 +18,9 @@ namespace TP2.LeReste
         {
             Allee,
             Cloture,
-            Enclos
+            Enclos,
+            Entree,
+            Sortie
         }
 
         public TuileZoo(TypeTuile tuile, bool estSortie)
