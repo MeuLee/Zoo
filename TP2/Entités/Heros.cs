@@ -17,7 +17,6 @@ namespace TP2.Entités
             Position = position;
             Image = TileSetGenerator.GetTile(TileSetGenerator.HEROS);//pas testé si ça marche
             Argent = 100;
-            Zoo.EntitesPresentes.Add(this);
         }
     }
 }

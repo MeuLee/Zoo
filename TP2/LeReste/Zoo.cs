@@ -27,7 +27,7 @@ namespace TP2.LeReste
 
         public static TuileZoo[,] Terrain { get; private set; }
 
-        public static List<Entite>  EntitesPresentes { get; set; }
+        public List<Entite>  EntitesPresentes { get; set; }
 
         public Enclos[] ListeEnclos { get; set; }
 
@@ -39,7 +39,14 @@ namespace TP2.LeReste
             DessinerBordures(g);
             DessinerCentre(g);
             DessinerEnclos(g);
+            DessinerCiel(g);
             DessinerEntree(g);
+        }
+
+        private void DessinerCiel(Graphics g)
+        {
+            SolidBrush brush = new SolidBrush(Color.FromArgb(153, 204, 255));
+            g.FillRectangle(brush, 0, 0, 32, 32);
         }
 
         private void DessinerEntree(Graphics g)
