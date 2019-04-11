@@ -13,7 +13,7 @@ namespace TP2.Entités
         public TuileZoo Position { get; set; }
         public Bitmap Image { get; set; }
 
-        public enum Sexe
+        public enum SexeEntite
         {
             M,
             F

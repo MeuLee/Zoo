@@ -12,10 +12,10 @@ namespace TP2.Entités
     {
         public int Argent { get; set; }
 
-        public Heros(TuileZoo position, Bitmap image)
+        public Heros(TuileZoo position)
         {
             Position = position;
-            Image = image;
+            //Image = ;
             Argent = 100;
         }
     }

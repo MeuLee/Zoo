@@ -10,10 +10,10 @@ namespace TP2.Entités
 {
     public class Concierge : Humain
     {
-        public Concierge(TuileZoo position, Bitmap image)
+        public Concierge(TuileZoo position)
         {
             Position = position;
-            Image = image;
+            //Image = ;
         }
     }
 }

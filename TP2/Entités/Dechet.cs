@@ -10,10 +10,10 @@ namespace TP2.Entités
 {
     public class Dechet : Entite
     {
-        public Dechet(TuileZoo position, Bitmap image)
+        public Dechet(TuileZoo position)
         {
             Position = position;
-            Image = image;
+            //Image = ;
         }
     }
 }
