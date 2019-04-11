@@ -35,7 +35,8 @@ namespace TP2.LeReste
         public static int GRIZZLI = 20;
         public static int LICORNE = 21;
         public static int MOUTON = 22;
-        public static int HEROS = 23;
+        public static int GAZON = 23;
+        public static int HEROS = 24;
 
         private static List<TileCoord> listeCoord = new List<TileCoord>();
         private static List<Bitmap> listeBitmap = new List<Bitmap>();
@@ -68,6 +69,7 @@ namespace TP2.LeReste
             listeCoord.Add(new TileCoord() { Ligne = 20, Colonne = 16 });
             listeCoord.Add(new TileCoord() { Ligne = 16, Colonne = 16 });
             listeCoord.Add(new TileCoord() { Ligne = 20, Colonne = 8 });
+            listeCoord.Add(new TileCoord() { Ligne = 8, Colonne = 0 });
             listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 0 });
 
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, TL_ALLEE, 32, 32));
@@ -93,6 +95,7 @@ namespace TP2.LeReste
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, GRIZZLI, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, LICORNE, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, MOUTON, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, GAZON, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS, 32, 32));
         }
 

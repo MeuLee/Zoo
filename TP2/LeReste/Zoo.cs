@@ -39,14 +39,13 @@ namespace TP2.LeReste
             DessinerBordures(g);
             DessinerCentre(g);
             DessinerEnclos(g);
-            DessinerCiel(g);
+            DessinerGazon(g);
             DessinerEntree(g);
         }
 
-        private void DessinerCiel(Graphics g)
+        private void DessinerGazon(Graphics g)
         {
-            SolidBrush brush = new SolidBrush(Color.FromArgb(153, 204, 255));
-            g.FillRectangle(brush, 0, 0, 32, 32);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.GAZON), 0, 0, TuileZoo.TypeTuile.Gazon);
         }
 
         private void DessinerEntree(Graphics g)
