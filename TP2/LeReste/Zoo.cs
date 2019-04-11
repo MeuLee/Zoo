@@ -46,7 +46,7 @@ namespace TP2.LeReste
         private void DessinerCiel(Graphics g)
         {
             SolidBrush brush = new SolidBrush(Color.FromArgb(153, 204, 255));
-            g.FillRectangle(brush, 0, 0, 32, 32);
+            g.FillRectangle(brush, 0, 0, 32*32, 5*32);
         }
 
         private void DessinerEntree(Graphics g)
