@@ -35,6 +35,7 @@ namespace TP2.LeReste
         public static int GRIZZLI = 20;
         public static int LICORNE = 21;
         public static int MOUTON = 22;
+        public static int HEROS = 23;
 
         private static List<TileCoord> listeCoord = new List<TileCoord>();
         private static List<Bitmap> listeBitmap = new List<Bitmap>();
@@ -67,35 +68,36 @@ namespace TP2.LeReste
             listeCoord.Add(new TileCoord() { Ligne = 20, Colonne = 16 });
             listeCoord.Add(new TileCoord() { Ligne = 16, Colonne = 16 });
             listeCoord.Add(new TileCoord() { Ligne = 20, Colonne = 8 });
+            listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 0 });
 
-            listeBitmap.Add(LoadTile(TL_ALLEE, 32, 32));
-            listeBitmap.Add(LoadTile(T_ALLEE, 32, 32));
-            listeBitmap.Add(LoadTile(TR_ALLEE, 32, 32));
-            listeBitmap.Add(LoadTile(CL_ALLEE, 32, 32));
-            listeBitmap.Add(LoadTile(C_ALLEE, 32, 32));
-            listeBitmap.Add(LoadTile(CR_ALLEE, 32, 32));
-            listeBitmap.Add(LoadTile(BL_ALLEE, 32, 32));
-            listeBitmap.Add(LoadTile(B_ALLEE, 32, 32));
-            listeBitmap.Add(LoadTile(BR_ALLEE, 32, 32));
-            listeBitmap.Add(LoadTile(TL_ENCLOS, 32, 32));
-            listeBitmap.Add(LoadTile(T_ENCLOS, 32, 32));
-            listeBitmap.Add(LoadTile(TR_ENCLOS, 32, 32));
-            listeBitmap.Add(LoadTile(CL_ENCLOS, 32, 32));
-            listeBitmap.Add(LoadTile(C_ENCLOS, 32, 32));
-            listeBitmap.Add(LoadTile(CR_ENCLOS, 32, 32));
-            listeBitmap.Add(LoadTile(BL_ENCLOS, 32, 32));
-            listeBitmap.Add(LoadTile(B_ENCLOS, 32, 32));
-            listeBitmap.Add(LoadTile(BR_ENCLOS, 32, 32));
-            listeBitmap.Add(LoadTile(CLOTURE_ENCLOS, 32, 32));
-            listeBitmap.Add(LoadTile(ENTREE, 128, 160));
-            listeBitmap.Add(LoadTile(GRIZZLI, 32, 32));
-            listeBitmap.Add(LoadTile(LICORNE, 32, 32));
-            listeBitmap.Add(LoadTile(MOUTON, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, TL_ALLEE, 32, 32, ));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, T_ALLEE, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, TR_ALLEE, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, CL_ALLEE, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, C_ALLEE, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, CR_ALLEE, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, BL_ALLEE, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, B_ALLEE, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, BR_ALLEE, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, TL_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, T_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, TR_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, CL_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, C_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, CR_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, BL_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, B_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, BR_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, CLOTURE_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, ENTREE, 128, 160));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, GRIZZLI, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, LICORNE, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, MOUTON, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS, 32, 32));
         }
 
-        private static Bitmap LoadTile(int posListe, int width, int height)
+        private static Bitmap LoadTile(Image source, int posListe, int width, int height)
         {
-            Image source = Properties.Resources.zoo_tileset;
             TileCoord coord = listeCoord[posListe];
             Rectangle crop = new Rectangle(coord.Colonne * IMAGE_WIDTH, coord.Ligne * IMAGE_HEIGHT, width, height);
 

@@ -15,7 +15,7 @@ namespace TP2.Entités
         public Heros(TuileZoo position)
         {
             Position = position;
-            //Image = ;
+            Image = TileSetGenerator.GetTile(TileSetGenerator.HEROS);//pas testé si ça marche
             Argent = 100;
         }
     }

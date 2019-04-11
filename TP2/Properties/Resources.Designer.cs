@@ -63,6 +63,16 @@ namespace TP2.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap personnages {
+            get {
+                object obj = ResourceManager.GetObject("personnages", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap zoo_tileset {
             get {
                 object obj = ResourceManager.GetObject("zoo_tileset", resourceCulture);

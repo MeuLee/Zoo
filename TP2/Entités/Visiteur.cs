@@ -10,7 +10,7 @@ namespace TP2.Entités
 {
     public class Visiteur : Humain
     {
-        private static Random r = new Random();
+        private static Random _r = new Random();
 
         public DateTime QuandEntreZoo { get; set; }
         public SexeEntite SexeVisiteur { get; set; }

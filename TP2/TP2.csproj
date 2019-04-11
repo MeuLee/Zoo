@@ -102,5 +102,8 @@
   <ItemGroup>
     <None Include="Resources\zoo_tileset.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\personnages.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
