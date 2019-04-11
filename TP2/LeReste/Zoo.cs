@@ -139,7 +139,7 @@ namespace TP2.LeReste
                 for (int j = 15; j < 19; j++)
                     DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.C_ENCLOS), i, j, TuileZoo.TypeTuile.Enclos);
             }
-                
+
 
             for (int i = 20; i < 27; i++)
             {
@@ -148,7 +148,7 @@ namespace TP2.LeReste
                 for (int j = 15; j < 19; j++)
                     DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.C_ENCLOS), i, j, TuileZoo.TypeTuile.Enclos);
             }
-                
+
         }
 
         private void DessinerContoursEnclos(Graphics g)
@@ -158,7 +158,7 @@ namespace TP2.LeReste
             DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TL_ENCLOS), 19, 4, TuileZoo.TypeTuile.Enclos);
             DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TL_ENCLOS), 4, 14, TuileZoo.TypeTuile.Enclos);
             DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TL_ENCLOS), 19, 14, TuileZoo.TypeTuile.Enclos);
-            
+
             DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TR_ENCLOS), 12, 4, TuileZoo.TypeTuile.Enclos);
             DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TR_ENCLOS), 27, 4, TuileZoo.TypeTuile.Enclos);
             DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TR_ENCLOS), 12, 14, TuileZoo.TypeTuile.Enclos);
@@ -244,9 +244,9 @@ namespace TP2.LeReste
         public void InitializeComponent()
         {
             SuspendLayout();
-            // 
+            //
             // Zoo
-            // 
+            //
             Size = new Size(1024, 512);
             ResumeLayout(false);
         }

@@ -16,9 +16,9 @@ namespace TP2.Entités
         public SexeEntite SexeVisiteur { get; set; }
         public string Nom { get; set; }
 
-        public Visiteur(TuileZoo position, Bitmap image)
+        public Visiteur(TuileZoo position)
         {
-            SexeVisiteur = (SexeEntite)r.Next(0, 2);
+            SexeVisiteur = (SexeEntite)_r.Next(0, 2);
             QuandEntreZoo = DateTime.Now;
             Position = position;
             //Image = random entre les 4
