@@ -13,12 +13,12 @@ namespace TP2.Entités
         private static Random _r = new Random();
 
         public DateTime QuandEntreZoo { get; set; }
-        public Sexe SexeVisiteur { get; set; }
+        public SexeEntite SexeVisiteur { get; set; }
         public string Nom { get; set; }
 
-        public Visiteur(TuileZoo position, Bitmap image)
+        public Visiteur(TuileZoo position)
         {
-            SexeVisiteur = (Sexe)_r.Next(0, 2);
+            SexeVisiteur = (SexeEntite)_r.Next(0, 2);
             QuandEntreZoo = DateTime.Now;
             Position = position;
             //Image = random entre les 4

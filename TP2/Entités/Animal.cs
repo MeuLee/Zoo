@@ -21,7 +21,7 @@ namespace TP2.Entités
         public bool Enceinte { get; set; }
         public Enclos Enclos { get; set; }
         public bool AFaim { get; set; }
-        public Sexe SexeAnimal { get; set; }
+        public SexeEntite SexeAnimal { get; set; }
 
         public enum TypeAnimal
         {
@@ -45,19 +45,19 @@ namespace TP2.Entités
                     JoursGestation = 220;
                     JoursJusquaAdulte = 220;
                     MoisPourNourrir = 1;
-                    //Image = 
+                    Image = TileSetGenerator.GetTile(TileSetGenerator.GRIZZLI);//pas testé si c'est la bonne image
                     break;
                 case TypeAnimal.Licorne:
                     JoursGestation = 360;
                     JoursJusquaAdulte = 360;
                     MoisPourNourrir = 2;
-                    //Image = 
+                    Image = TileSetGenerator.GetTile(TileSetGenerator.LICORNE);//pas testé si c'est la bonne image
                     break;
                 case TypeAnimal.Mouton:
                     JoursGestation = 150;
                     JoursJusquaAdulte = 150;
                     MoisPourNourrir = 1;
-                    //Image = 
+                    Image = TileSetGenerator.GetTile(TileSetGenerator.MOUTON);//pas testé si c'est la bonne image
                     break;
             }
             derniereFoisNourrri = DateTime.Now;
@@ -65,8 +65,8 @@ namespace TP2.Entités
             Age = age;
             Enceinte = false;
             Enclos = enclos;
-            SexeAnimal = (Sexe)_r.Next(0, 2);
-            //Position = quelque part dans l'enclos ou ils ont un spawn point precis
+            SexeAnimal = (SexeEntite)_r.Next(0, 2);
+            //Position = soit quelque part dans l'enclos ou ils ont un spawn point precis
 
         }
 

@@ -10,6 +10,7 @@ namespace TP2.LeReste
     class TileSetGenerator
     {
         private const int IMAGE_WIDTH = 32, IMAGE_HEIGHT = 32;
+
         //T = top, C = center, B = bottom, L = left, R = right
         public static int TL_ALLEE = 0;
         public static int T_ALLEE = 1;
@@ -31,6 +32,9 @@ namespace TP2.LeReste
         public static int BR_ENCLOS = 17;
         public static int CLOTURE_ENCLOS = 18;
         public static int ENTREE = 19;
+        public static int GRIZZLI = 20;
+        public static int LICORNE = 21;
+        public static int MOUTON = 22;
 
         private static List<TileCoord> listeCoord = new List<TileCoord>();
         private static List<Bitmap> listeBitmap = new List<Bitmap>();
@@ -60,6 +64,9 @@ namespace TP2.LeReste
             listeCoord.Add(new TileCoord() { Ligne = 3, Colonne = 11 });
             listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 9 });
             listeCoord.Add(new TileCoord() { Ligne = 4, Colonne = 12 });
+            listeCoord.Add(new TileCoord() { Ligne = 20, Colonne = 16 });
+            listeCoord.Add(new TileCoord() { Ligne = 16, Colonne = 16 });
+            listeCoord.Add(new TileCoord() { Ligne = 20, Colonne = 8 });
 
             listeBitmap.Add(LoadTile(TL_ALLEE, 32, 32));
             listeBitmap.Add(LoadTile(T_ALLEE, 32, 32));
@@ -81,6 +88,9 @@ namespace TP2.LeReste
             listeBitmap.Add(LoadTile(BR_ENCLOS, 32, 32));
             listeBitmap.Add(LoadTile(CLOTURE_ENCLOS, 32, 32));
             listeBitmap.Add(LoadTile(ENTREE, 128, 160));
+            listeBitmap.Add(LoadTile(GRIZZLI, 32, 32));
+            listeBitmap.Add(LoadTile(LICORNE, 32, 32));
+            listeBitmap.Add(LoadTile(MOUTON, 32, 32));
         }
 
         private static Bitmap LoadTile(int posListe, int width, int height)
@@ -101,7 +111,6 @@ namespace TP2.LeReste
         {
             return listeBitmap[posListe];
         }
-
     }
 
     public class TileCoord
