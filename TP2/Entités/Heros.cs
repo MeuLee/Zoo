@@ -25,13 +25,28 @@ namespace TP2.Entités
             switch (keyCode)
             {
                 case Keys.Left:
-                    Position = Zoo.Terrain
+                    if (Position.X != 0)
+                    {
+
+                    }
                     break;
                 case Keys.Up:
+                    if (Position.Y != 0)
+                    {
+
+                    }
                     break;
                 case Keys.Right:
+                    if (Position.X != 31)
+                    {
+
+                    }
                     break;
                 case Keys.Down:
+                    if (Position.Y != 25)
+                    {
+
+                    }
                     break;
             }
         }

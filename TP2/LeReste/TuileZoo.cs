@@ -13,6 +13,8 @@ namespace TP2.LeReste
         public bool ContientVisiteur { get; set; }
         public bool EstSortie { get; set; }
         public TypeTuile Tuile { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
 
         public enum TypeTuile
         {

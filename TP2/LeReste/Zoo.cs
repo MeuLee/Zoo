@@ -27,7 +27,19 @@ namespace TP2.LeReste
 
         public static TuileZoo[,] Terrain { get; private set; }
 
-        public static List<Entite>  ListeEntites { get; set; }
+        private static List<Entite> _listeEntites = new List<Entite>();
+
+        public static List<Entite> ListeEntites
+        {
+            get
+            {
+                return _listeEntites;
+            }
+            set
+            {
+                _listeEntites = value;
+            }
+        }
 
         public static Enclos[] ListeEnclos { get; set; }
 
@@ -43,6 +55,13 @@ namespace TP2.LeReste
             DessinerEnclos(g);
             DessinerCiel(g);
             DessinerEntree(g);
+            DessinerEntites(g);
+        }
+
+        private void DessinerEntites(Graphics g)
+        {
+            foreach (Entite e in ListeEntites)
+                g.DrawImage(e.Image, e.Position.X, e.Position.Y);
         }
 
         private void DessinerCiel(Graphics g)
@@ -270,7 +289,8 @@ namespace TP2.LeReste
                 ListeEnclos[i] = new Enclos();
 
             Heros = new Heros(this);
-
+            ListeEntites.Add(Heros);
         }
+
     }
 }
