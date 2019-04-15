@@ -27,7 +27,7 @@ namespace TP2.LeReste
 
         public static TuileZoo[,] Terrain { get; private set; }
 
-        public List<Entite>  EntitesPresentes { get; set; }
+        public List<Entite> EntitesPresentes { get; set; }
 
         public Enclos[] ListeEnclos { get; set; }
 
@@ -40,17 +40,30 @@ namespace TP2.LeReste
             DessinerCentre(g);
             DessinerEnclos(g);
             DessinerGazon(g);
-            DessinerEntree(g);
+            DessinerEntreeSortie(g);
         }
 
         private void DessinerGazon(Graphics g)
         {
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.GAZON), 0, 0, TuileZoo.TypeTuile.Gazon);
+            for (int i = 0; i < 32; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.GAZON), i * 32, j * 32);
+                }
+            }
+
+
+
         }
 
-        private void DessinerEntree(Graphics g)
+        private void DessinerEntreeSortie(Graphics g)
         {
-            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.ENTREE), 14*32, 0);
+            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.ENTREE), 7 * 32, 0 * 32);
+            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.SORTIE), 21 * 32, 0 * 32);
+
+            
+            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.PLANTE), 13 * 32, 0 * 32);
         }
 
         private void DessinerUneImageEtInitialiserTerrain(Graphics g, Bitmap image, int x, int y, TuileZoo.TypeTuile typeTuile)
