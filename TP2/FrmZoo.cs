@@ -17,15 +17,16 @@ namespace TP2
         public FrmZoo()
         {
             InitializeComponent();
-            
+            DoubleBuffered = true;
         }
 
         private void FrmZoo_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Up || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
+            if (e.KeyCode == Keys.W || e.KeyCode == Keys.A || e.KeyCode == Keys.S || e.KeyCode == Keys.D)
             {
-                Zoo.Heros.Deplacer(e.KeyCode);
+                Zoo.Heros.Deplacer(e.KeyCode, zoo1);
             }
+            zoo1.Refresh();
         }
     }
 }

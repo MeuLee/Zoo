@@ -25,13 +25,15 @@ namespace TP2.LeReste
             Sortie
         }
 
-        public TuileZoo(TypeTuile tuile, bool estSortie)
+        public TuileZoo(TypeTuile tuile, bool estSortie, int x, int y)
         {
             ContientAnimal = false;
             ContientDechet = false;
             ContientVisiteur = false;
             EstSortie = estSortie;
             Tuile = tuile;
+            X = x;
+            Y = y;
         } 
     }
 }

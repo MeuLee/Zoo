@@ -27,19 +27,7 @@ namespace TP2.LeReste
 
         public static TuileZoo[,] Terrain { get; private set; }
 
-        private static List<Entite> _listeEntites = new List<Entite>();
-
-        public static List<Entite> ListeEntites
-        {
-            get
-            {
-                return _listeEntites;
-            }
-            set
-            {
-                _listeEntites = value;
-            }
-        }
+        public static List<Entite> ListeEntites { get; set; } = new List<Entite>();
 
         public static Enclos[] ListeEnclos { get; set; }
 
@@ -60,8 +48,10 @@ namespace TP2.LeReste
 
         private void DessinerEntites(Graphics g)
         {
+            if (Heros.Position == null)
+                Heros.Position = Terrain[16, 0];
             foreach (Entite e in ListeEntites)
-                g.DrawImage(e.Image, e.Position.X, e.Position.Y);
+                g.DrawImage(e.Image, e.Position.X * 32, e.Position.Y * 32 + 160);
         }
 
         private void DessinerCiel(Graphics g)
@@ -78,7 +68,7 @@ namespace TP2.LeReste
         private void DessinerUneImageEtInitialiserTerrain(Graphics g, Bitmap image, int x, int y, TuileZoo.TypeTuile typeTuile)
         {
             g.DrawImage(image, x * 32, y * 32 + 160);//160 pour décaler de 5 cases vers le bas, soit ça ou on déplace chaque Y où cette méthode est appelée
-            Terrain[x, y] = new TuileZoo(typeTuile, x == 16 && y == 0);
+            Terrain[x, y] = new TuileZoo(typeTuile, x == 16 && y == 0, x, y);
         }
 
         private void DessinerCoins(Graphics g)
@@ -271,17 +261,17 @@ namespace TP2.LeReste
 
         public void InitializeComponent()
         {
-            SuspendLayout();
-            //
+            this.SuspendLayout();
+            // 
             // Zoo
-            //
-            Size = new Size(1024, 512);
-            ResumeLayout(false);
+            // 
+            this.Size = new System.Drawing.Size(1024, 512);
+            this.ResumeLayout(false);
+
         }
 
         public Zoo()
         {
-            InitializeComponent();
             Terrain = new TuileZoo[32, 24];
             ListeEnclos = new Enclos[4];
 
@@ -290,7 +280,8 @@ namespace TP2.LeReste
 
             Heros = new Heros(this);
             ListeEntites.Add(Heros);
+            InitializeComponent();
+            DoubleBuffered = true;
         }
-
     }
 }
