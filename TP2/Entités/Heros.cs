@@ -16,44 +16,47 @@ namespace TP2.Entités
 
         public Heros(Zoo zoo)
         {
-            Zoo = zoo;
-            Position = Zoo.Terrain[15, 0];
-            Image = TileSetGenerator.GetTile(TileSetGenerator.HEROS);
+            Image = TileSetGenerator.GetTile(TileSetGenerator.HEROS_DOWN);
             Argent = 100;
         }
 
-        internal void Deplacer(Keys keyCode)
+        internal void Deplacer(Keys keyCode, Zoo zoo)
         {
             switch (keyCode)
             {
-                case Keys.Left:
-                    if (PeutSeDeplacer(Position.X - 1, Position.Y))
-                        Position = Zoo.Terrain[Position.X - 1, Position.Y];
+                case Keys.A:
+                    if (Position.X != 0)
+                        Deplacer(Position.X - 1, Position.Y);
+                    Image = TileSetGenerator.GetTile(TileSetGenerator.HEROS_LEFT);
                     break;
-                case Keys.Up:
-                    if (PeutSeDeplacer(Position.X, Position.Y - 1))
-                        Position = Zoo.Terrain[Position.X, Position.Y - 1];
+                case Keys.W:
+                    if (Position.Y != 0)
+                        Deplacer(Position.X, Position.Y - 1);
+                    Image = TileSetGenerator.GetTile(TileSetGenerator.HEROS_UP);
                     break;
-                case Keys.Right:
-                    if (PeutSeDeplacer(Position.X + 1, Position.Y))
-                        Position = Zoo.Terrain[Position.X + 1, Position.Y];
+                case Keys.D:
+                    if (Position.X != Zoo.Terrain.GetLength(0) - 1)
+                        Deplacer(Position.X + 1, Position.Y);
+                    Image = TileSetGenerator.GetTile(TileSetGenerator.HEROS_RIGHT);
                     break;
-                case Keys.Down:
-                    if (PeutSeDeplacer(Position.X, Position.Y + 1))
-                        Position = Zoo.Terrain[Position.X, Position.Y + 1];
+                case Keys.S:
+                    if (Position.Y != Zoo.Terrain.GetLength(1) - 1)
+                        Deplacer(Position.X, Position.Y + 1);
+                    Image = TileSetGenerator.GetTile(TileSetGenerator.HEROS_DOWN);
                     break;
             }
-            Zoo.Refresh();
             
         }
 
-        private bool PeutSeDeplacer(int nouveauX, int nouveauY)
+        private void Deplacer (int nouveauX, int nouveauY)
         {
-            return nouveauX != -1 && 
-                   nouveauX != 32 && 
-                   nouveauY != -1 && 
-                   nouveauY != 26 && 
-                   Zoo.Terrain[nouveauX, nouveauY].Tuile != TuileZoo.TypeTuile.Cloture;
+            var typeNouvelleCase = Zoo.Terrain[nouveauX, nouveauY].Tuile;
+            if (typeNouvelleCase == TuileZoo.TypeTuile.Allee || typeNouvelleCase == TuileZoo.TypeTuile.Enclos)
+            {
+                Position.X = nouveauX;
+                Position.Y = nouveauY;
+
+            }
         }
     }
 }
