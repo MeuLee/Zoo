@@ -35,10 +35,16 @@ namespace TP2.LeReste
         public static int GRIZZLI = 20;
         public static int LICORNE = 21;
         public static int MOUTON = 22;
-        public static int HEROS_DOWN = 23;
-        public static int HEROS_UP = 24;
-        public static int HEROS_LEFT = 25;
-        public static int HEROS_RIGHT = 26;
+        public static int HEROS_UP_IDLE = 23;
+        public static int HEROS_UP_WALK = 24;
+        public static int HEROS_DOWN_IDLE = 25;
+        public static int HEROS_DOWN_WALK = 26;
+        public static int HEROS_LEFT_IDLE = 27;
+        public static int HEROS_LEFT_WALK_1= 28;
+        public static int HEROS_LEFT_WALK_2 = 29;
+        public static int HEROS_RIGHT_IDLE = 30;
+        public static int HEROS_RIGHT_WALK_1 = 31;
+        public static int HEROS_RIGHT_WALK_2 = 32;
 
         private static List<TileCoord> listeCoord = new List<TileCoord>();
         private static List<Bitmap> listeBitmap = new List<Bitmap>();
@@ -48,33 +54,39 @@ namespace TP2.LeReste
         /// </summary>
         static TileSetGenerator()
         {
-            listeCoord.Add(new TileCoord() { Ligne = 9, Colonne = 6 });
-            listeCoord.Add(new TileCoord() { Ligne = 9, Colonne = 7 });
-            listeCoord.Add(new TileCoord() { Ligne = 9, Colonne = 8 });
-            listeCoord.Add(new TileCoord() { Ligne = 10, Colonne = 6 });
-            listeCoord.Add(new TileCoord() { Ligne = 10, Colonne = 7 });
-            listeCoord.Add(new TileCoord() { Ligne = 10, Colonne = 8 });
-            listeCoord.Add(new TileCoord() { Ligne = 11, Colonne = 6 });
-            listeCoord.Add(new TileCoord() { Ligne = 11, Colonne = 7 });
-            listeCoord.Add(new TileCoord() { Ligne = 11, Colonne = 8 });
-            listeCoord.Add(new TileCoord() { Ligne = 1, Colonne = 9 });
-            listeCoord.Add(new TileCoord() { Ligne = 1, Colonne = 10 });
-            listeCoord.Add(new TileCoord() { Ligne = 1, Colonne = 11 });
-            listeCoord.Add(new TileCoord() { Ligne = 2, Colonne = 9 });
-            listeCoord.Add(new TileCoord() { Ligne = 2, Colonne = 10 });
-            listeCoord.Add(new TileCoord() { Ligne = 2, Colonne = 11 });
-            listeCoord.Add(new TileCoord() { Ligne = 3, Colonne = 9 });
-            listeCoord.Add(new TileCoord() { Ligne = 3, Colonne = 10 });
-            listeCoord.Add(new TileCoord() { Ligne = 3, Colonne = 11 });
-            listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 9 });
-            listeCoord.Add(new TileCoord() { Ligne = 4, Colonne = 12 });
-            listeCoord.Add(new TileCoord() { Ligne = 20, Colonne = 16 });
-            listeCoord.Add(new TileCoord() { Ligne = 16, Colonne = 16 });
-            listeCoord.Add(new TileCoord() { Ligne = 20, Colonne = 8 });
-            listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 0 });
-            listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 1 });
-            listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 2 });
-            listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 9 });
+            listeCoord.Add(new TileCoord() { Ligne = 9, Colonne = 6 });//TL_ALLEE
+            listeCoord.Add(new TileCoord() { Ligne = 9, Colonne = 7 });//T_ALLEE
+            listeCoord.Add(new TileCoord() { Ligne = 9, Colonne = 8 });//TR_ALLEE
+            listeCoord.Add(new TileCoord() { Ligne = 10, Colonne = 6 });//CL_ALLEE
+            listeCoord.Add(new TileCoord() { Ligne = 10, Colonne = 7 });//C_ALLEE
+            listeCoord.Add(new TileCoord() { Ligne = 10, Colonne = 8 });//CR_ALLEE
+            listeCoord.Add(new TileCoord() { Ligne = 11, Colonne = 6 });//BL_ALLEE
+            listeCoord.Add(new TileCoord() { Ligne = 11, Colonne = 7 });//B_ALLEE
+            listeCoord.Add(new TileCoord() { Ligne = 11, Colonne = 8 });//BR_ALLEE
+            listeCoord.Add(new TileCoord() { Ligne = 1, Colonne = 9 });//TL_ENCLOS
+            listeCoord.Add(new TileCoord() { Ligne = 1, Colonne = 10 });//T_ENCLOS
+            listeCoord.Add(new TileCoord() { Ligne = 1, Colonne = 11 });//TR_ENCLOS
+            listeCoord.Add(new TileCoord() { Ligne = 2, Colonne = 9 });//CL_ENCLOS
+            listeCoord.Add(new TileCoord() { Ligne = 2, Colonne = 10 });//C_ENCLOS
+            listeCoord.Add(new TileCoord() { Ligne = 2, Colonne = 11 });//CR_ENCLOS
+            listeCoord.Add(new TileCoord() { Ligne = 3, Colonne = 9 });//BL_ENCLOS
+            listeCoord.Add(new TileCoord() { Ligne = 3, Colonne = 10 });//B_ENCLOS
+            listeCoord.Add(new TileCoord() { Ligne = 3, Colonne = 11 });//BR_ENCLOS
+            listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 9 });//CLOTURE_ENCLOS
+            listeCoord.Add(new TileCoord() { Ligne = 4, Colonne = 12 });//ENTREE
+            listeCoord.Add(new TileCoord() { Ligne = 20, Colonne = 16 });//GRIZZLI
+            listeCoord.Add(new TileCoord() { Ligne = 16, Colonne = 16 });//LICORNE
+            listeCoord.Add(new TileCoord() { Ligne = 20, Colonne = 8 });//MOUTON
+            listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 1 });//HEROS_UP_IDLE
+            listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 4 });//HEROS_UP_WALK
+            listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 0 });//HEROS_DOWN_IDLE
+            listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 3 });//HEROS_DOWN_WALK
+            listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 2 });//HEROS_LEFT_IDLE
+            listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 5 });//HEROS_LEFT_WALK_1
+            listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 6 });//HEROS_LEFT_WALK_2
+            listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 9 });//HEROS_RIGHT_IDLE
+            listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 7 });//HEROS_RIGHT_WALK_1
+            listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 8 });//HEROS_RIGHT_WALK_2
 
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, TL_ALLEE, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, T_ALLEE, 32, 32));
@@ -99,10 +111,16 @@ namespace TP2.LeReste
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, GRIZZLI, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, LICORNE, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, MOUTON, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_DOWN, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_UP, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_LEFT, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_RIGHT, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_UP_IDLE, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_UP_WALK, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_DOWN_IDLE, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_DOWN_WALK, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_LEFT_IDLE, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_LEFT_WALK_1, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_LEFT_WALK_2, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_RIGHT_IDLE, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_RIGHT_WALK_1, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_RIGHT_WALK_2, 32, 32));
         }
 
         private static Bitmap LoadTile(Image source, int posListe, int width, int height)

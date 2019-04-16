@@ -279,7 +279,7 @@ namespace TP2.LeReste
             for (int i = 0; i < ListeEnclos.Length; i++)
                 ListeEnclos[i] = new Enclos();
 
-            Heros = new Heros(this);
+            Heros = new Heros();
             ListeEntites.Add(Heros);
             InitializeComponent();
             DoubleBuffered = true;

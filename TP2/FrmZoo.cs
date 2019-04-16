@@ -23,9 +23,8 @@ namespace TP2
         private void FrmZoo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.W || e.KeyCode == Keys.A || e.KeyCode == Keys.S || e.KeyCode == Keys.D)
-            {
-                Zoo.Heros.Deplacer(e.KeyCode, zoo1);
-            }
+                Zoo.Heros.DeplacerEtModifierImage(e.KeyCode);
+
             zoo1.Refresh();
         }
     }
