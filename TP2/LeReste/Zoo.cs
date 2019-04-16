@@ -43,6 +43,15 @@ namespace TP2.LeReste
             DessinerEnclos(g);
             DessinerCiel(g);
             DessinerEntree(g);
+            DessinerEntites(g);
+        }
+
+        private void DessinerEntites(Graphics g)
+        {
+            foreach (Entite e in ListeEntites)
+            {
+                g.DrawImage(e.Image, e.Position.X, e.Position.Y + 160);
+            }
         }
 
         private void DessinerCiel(Graphics g)
@@ -59,7 +68,7 @@ namespace TP2.LeReste
         private void DessinerUneImageEtInitialiserTerrain(Graphics g, Bitmap image, int x, int y, TuileZoo.TypeTuile typeTuile)
         {
             g.DrawImage(image, x * 32, y * 32 + 160);//160 pour décaler de 5 cases vers le bas, soit ça ou on déplace chaque Y où cette méthode est appelée
-            Terrain[x, y] = new TuileZoo(typeTuile, x == 16 && y == 0);
+            Terrain[x, y] = new TuileZoo(typeTuile, x == 16 && y == 0, x, y);
         }
 
         private void DessinerCoins(Graphics g)
@@ -265,11 +274,13 @@ namespace TP2.LeReste
             InitializeComponent();
             Terrain = new TuileZoo[32, 24];
             ListeEnclos = new Enclos[4];
+            ListeEntites = new List<Entite>();
 
             for (int i = 0; i < ListeEnclos.Length; i++)
                 ListeEnclos[i] = new Enclos();
 
             Heros = new Heros(this);
+            ListeEntites.Add(Heros);
 
         }
     }

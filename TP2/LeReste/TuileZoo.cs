@@ -13,6 +13,8 @@ namespace TP2.LeReste
         public bool ContientVisiteur { get; set; }
         public bool EstSortie { get; set; }
         public TypeTuile Tuile { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
 
         public enum TypeTuile
         {
@@ -23,13 +25,15 @@ namespace TP2.LeReste
             Sortie
         }
 
-        public TuileZoo(TypeTuile tuile, bool estSortie)
+        public TuileZoo(TypeTuile tuile, bool estSortie, int x, int y)
         {
             ContientAnimal = false;
             ContientDechet = false;
             ContientVisiteur = false;
             EstSortie = estSortie;
             Tuile = tuile;
+            X = x;
+            Y = y;
         } 
     }
 }
