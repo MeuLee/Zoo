@@ -59,9 +59,7 @@ namespace TP2.Entités
             var typeNouvelleCase = Zoo.Terrain[nouveauX, nouveauY].Tuile;
             if (typeNouvelleCase == TuileZoo.TypeTuile.Allee || typeNouvelleCase == TuileZoo.TypeTuile.Enclos)// || contient animal/visiteur
             {
-                Position.X = nouveauX;
-                Position.Y = nouveauY;
-
+                Position = Zoo.Terrain[nouveauX, nouveauY];
             }
         }
 
