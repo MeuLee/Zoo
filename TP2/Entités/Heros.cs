@@ -17,6 +17,8 @@ namespace TP2.Entités
         {
             Image = TileSetGenerator.GetTile(TileSetGenerator.HEROS_DOWN_IDLE);
             Argent = 100;
+            Position.X = 16;
+            Position.Y = 0;
         }
 
         /// <summary>
@@ -29,22 +31,22 @@ namespace TP2.Entités
                 case Keys.A:
                     if (Position.X != 0)
                         Deplacer(Position.X - 1, Position.Y);
-                    ModifierImageCote(27);
+                    ModifierImageCote(TileSetGenerator.HEROS_LEFT_IDLE);
                     break;
                 case Keys.W:
                     if (Position.Y != 0)
                         Deplacer(Position.X, Position.Y - 1);
-                    ModifierImageHautBas(23);
+                    ModifierImageHautBas(TileSetGenerator.HEROS_UP_IDLE);
                     break;
                 case Keys.D:
                     if (Position.X != Zoo.Terrain.GetLength(0) - 1)//largeur
                         Deplacer(Position.X + 1, Position.Y);
-                    ModifierImageCote(30);
+                    ModifierImageCote(TileSetGenerator.HEROS_RIGHT_IDLE);
                     break;
                 case Keys.S:
                     if (Position.Y != Zoo.Terrain.GetLength(1) - 1)//hauteur
                         Deplacer(Position.X, Position.Y + 1);
-                    ModifierImageHautBas(25);
+                    ModifierImageHautBas(TileSetGenerator.HEROS_DOWN_IDLE);
                     break;
             }
         }
@@ -57,10 +59,9 @@ namespace TP2.Entités
         private void Deplacer(int nouveauX, int nouveauY)
         {
             var typeNouvelleCase = Zoo.Terrain[nouveauX, nouveauY].Tuile;
-            if (typeNouvelleCase == TuileZoo.TypeTuile.Allee || typeNouvelleCase == TuileZoo.TypeTuile.Enclos)// || contient animal/visiteur
-            {
+
+            if (typeNouvelleCase == TuileZoo.TypeTuile.Allee || typeNouvelleCase == TuileZoo.TypeTuile.Enclos)// || contient animal/visiteur=
                 Position = Zoo.Terrain[nouveauX, nouveauY];
-            }
         }
 
         /// <summary>
