@@ -12,9 +12,10 @@ namespace TP2.Entités
     {
         private static Random _r = new Random();
 
-        public DateTime QuandEntreZoo { get; set; }
-        public SexeEntite SexeVisiteur { get; set; }
-        public string Nom { get; set; }
+        public DateTime QuandEntreZoo { get; private set; }
+        public SexeEntite SexeVisiteur { get; private set; }
+        public string Nom { get; private set; }
+
         private List<string> _prenoms = new List<string>
         {
             "Camille", "Louise", "Ambre", "Agathe", "Jade", "Julia", "Mila", "Alice", "Emma", "Anna", "Lucie", "Eden", "Romane", "Lola", "Emy",
@@ -32,15 +33,24 @@ namespace TP2.Entités
             QuandEntreZoo = DateTime.Now;
             Position = position;
             //Image = random entre les 4
-            Nom = DeterminerNomComplet(SexeVisiteur);
+            Nom = CreerNomComplet(SexeVisiteur);
         }
 
-        private string DeterminerNomComplet(SexeEntite sexeVisiteur)
+        /// <summary>
+        /// </summary>
+        /// <param name="sexeVisiteur">Le sexe du visiteur, M ou F (enum)</param>
+        /// <returns>Le nom complet</returns>
+        private string CreerNomComplet(SexeEntite sexeVisiteur)
         {
-            return DeterminerPrenom(sexeVisiteur) + " " + DeterminerNom();
+            return CreerPrenom(sexeVisiteur) + " " + CreerNom();
         }
 
-        private string DeterminerPrenom(SexeEntite sexeVisiteur)
+        /// <summary>
+        /// Crée un prénom selon le sexe
+        /// </summary>
+        /// <param name="sexeVisiteur">Le sexe du visiteur, M ou F (enum)</param>
+        /// <returns>Le prénom</returns>
+        private string CreerPrenom(SexeEntite sexeVisiteur)
         {
             switch (sexeVisiteur)
             {
@@ -52,7 +62,10 @@ namespace TP2.Entités
             return "";
         }
         
-        private string DeterminerNom()
+        /// <summary>
+        /// </summary>
+        /// <returns>Le nom de famille</returns>
+        private string CreerNom()
         {
             return _noms[_r.Next(0, 15)];
         }
