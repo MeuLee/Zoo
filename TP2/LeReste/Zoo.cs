@@ -35,12 +35,101 @@ namespace TP2.LeReste
         protected override void OnPaint(PaintEventArgs pe)
         {
             Graphics g = pe.Graphics;
-            DessinerCoins(g);
-            DessinerBordures(g);
-            DessinerCentre(g);
-            DessinerEnclos(g);
             DessinerGazon(g);
             DessinerEntreeSortie(g);
+            DessinerAllee(g);
+            DessinerClotureZoo(g);
+            DessinerClotureEnclos(g);
+            DessinerInterieurEnclos(g);
+
+        }
+
+        private void DessinerClotureEnclos(Graphics g)
+        {
+
+        }
+
+        private void DessinerInterieurEnclos(Graphics g)
+        {
+
+        }
+
+        private void DessinerAllee(Graphics g)
+        {
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ALLEE), 5, 3, TuileZoo.TypeTuile.Allee);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ALLEE), 26, 3, TuileZoo.TypeTuile.Allee);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ALLEE), 7, 13, TuileZoo.TypeTuile.Allee);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ALLEE), 8, 13, TuileZoo.TypeTuile.Allee);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ALLEE), 9, 13, TuileZoo.TypeTuile.Allee);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ALLEE), 22, 13, TuileZoo.TypeTuile.Allee);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ALLEE), 23, 13, TuileZoo.TypeTuile.Allee);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ALLEE), 24, 13, TuileZoo.TypeTuile.Allee);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ALLEE), 7, 16, TuileZoo.TypeTuile.Allee);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ALLEE), 8, 16, TuileZoo.TypeTuile.Allee);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ALLEE), 9, 16, TuileZoo.TypeTuile.Allee);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ALLEE), 22, 16, TuileZoo.TypeTuile.Allee);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ALLEE), 23, 16, TuileZoo.TypeTuile.Allee);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ALLEE), 24, 16, TuileZoo.TypeTuile.Allee);
+
+
+            for (int i = 1; i < 31; i++)
+            {
+                for (int j = 4; j < 25; j++)
+                {
+                    if (!((i < 14 && i > 2 && j > 5 && j < 14) || (i < 29 && i > 17 && j > 5 && j < 14) || (i < 14 && i > 2 && j > 15 && j < 24) || (i < 29 && i > 17 && j > 15 && j < 24)))
+                    {
+                        DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ALLEE), i, j, TuileZoo.TypeTuile.Allee);
+                    }
+                }
+            }
+        }
+
+        private void DessinerClotureZoo(Graphics g)
+        {
+            //Les coins
+            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.TL_CLOTURE_ZOO), 1 * 32, 3 * 32);
+            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.BL_CLOTURE_ZOO), 1 * 32, 25 * 32);
+            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.TR_CLOTURE_ZOO), 30 * 32, 3 * 32);
+            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.BR_CLOTURE_ZOO), 30 * 32, 25 * 32);
+            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.BR_CLOTURE_ZOO), 8 * 32, 3 * 32);
+            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.BL_CLOTURE_ZOO), 23 * 32, 3 * 32);
+
+            //Le haut
+            for (int i = 2; i < 30; i++)
+            {
+                if (!(i == 5 || i == 26 || (i < 24 && i > 7)))
+                {
+                    g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.T_CLOTURE_ZOO), i * 32, 3 * 32);
+                }
+            }
+
+            //La gauche
+            for (int j = 4; j < 25; j++)
+            {
+                g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.L_CLOTURE_ZOO), 1 * 32, j * 32);
+            }
+
+            for (int j = 0; j < 3; j++)
+            {
+                g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.L_CLOTURE_ZOO), 23 * 32, j * 32);
+            }
+
+            //Le bas
+            for (int i = 2; i < 30; i++)
+            {
+                g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.B_CLOTURE_ZOO), i * 32, 25 * 32);
+            }
+
+            //La droite
+            for (int j = 4; j < 25; j++)
+            {
+                g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.R_CLOTURE_ZOO), 30 * 32, j * 32);
+            }
+
+            for (int j = 0; j < 3; j++)
+            {
+                g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.R_CLOTURE_ZOO), 8 * 32, j * 32);
+            }
         }
 
         private void DessinerGazon(Graphics g)
@@ -53,221 +142,62 @@ namespace TP2.LeReste
                 }
             }
 
+            for (int i = 0; i < 32; i++)
+            {
+                g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.GAZON), i * 32, 3 * 32);
+            }
 
+            for (int i = 0; i < 32; i++)
+            {
+                g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.GAZON), i * 32, 26 * 32);
+            }
 
+            for (int j = 3; j < 26; j++)
+            {
+                g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.GAZON), 0 * 32, j * 32);
+            }
+
+            for (int j = 3; j < 26; j++)
+            {
+                g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.GAZON), 31 * 32, j * 32);
+            }
         }
 
         private void DessinerEntreeSortie(Graphics g)
         {
-            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.ENTREE), 7 * 32, 0 * 32);
-            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.SORTIE), 21 * 32, 0 * 32);
+            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.ENTREE), 3 * 32, 0 * 32);
+            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.SORTIE), 24 * 32, 0 * 32);
 
-            
-            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.PLANTE), 13 * 32, 0 * 32);
+            //Mot Zoo écrit avec les plantes
+            for (int i = 9; i < 23; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (!(i == 9 && j == 1 || i == 9 && j == 2 || i == 10 && j == 1 || i == 11 && j == 2 || i == 12 && j == 1 || i == 12 && j == 2
+                        || i == 15 && j == 1 || i == 15 && j == 2 || i == 16 && j == 1 || i == 16 && j == 2 || i == 20 && j == 1 || i == 20 && j == 2
+                        || i == 21 && j == 1 || i == 21 && j == 2 || i == 13 || i == 18))
+                    {
+                        g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.PLANTE), i * 32, j * 32);
+                    }
+                }
+            }
         }
 
         private void DessinerUneImageEtInitialiserTerrain(Graphics g, Bitmap image, int x, int y, TuileZoo.TypeTuile typeTuile)
         {
-            g.DrawImage(image, x * 32, y * 32 + 160);//160 pour décaler de 5 cases vers le bas, soit ça ou on déplace chaque Y où cette méthode est appelée
-            Terrain[x, y] = new TuileZoo(typeTuile, x == 16 && y == 0);
+            g.DrawImage(image, x * 32, y * 32);
+            //Terrain[x, y] = new TuileZoo(typeTuile, x == 16 && y == 0);
         }
-
-        private void DessinerCoins(Graphics g)
-        {
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TL_ALLEE), 0, 0, TuileZoo.TypeTuile.Allee);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TR_ALLEE), 31, 0, TuileZoo.TypeTuile.Allee);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BL_ALLEE), 0, 23, TuileZoo.TypeTuile.Allee);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BR_ALLEE), 31, 23, TuileZoo.TypeTuile.Allee);
-        }
-
-        private void DessinerBordures(Graphics g)
-        {
-            for (int i = 1; i < 23; i++)
-            {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CL_ALLEE), 0, i, TuileZoo.TypeTuile.Allee);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CR_ALLEE), 31, i, TuileZoo.TypeTuile.Allee);
-            }
-
-            for (int i = 1; i < 31; i++)
-            {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.T_ALLEE), i, 0, TuileZoo.TypeTuile.Allee);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.B_ALLEE), i, 23, TuileZoo.TypeTuile.Allee);
-            }
-        }
-
-        private void DessinerCentre(Graphics g)
-        {
-            for (int i = 1; i < 31; i++)
-                for (int j = 1; j < 23; j++)
-                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.C_ALLEE), i, j, TuileZoo.TypeTuile.Allee);
-        }
-
-        private void DessinerEnclos(Graphics g)
-        {
-            DessinerCloturesEnclos(g);
-            DessinerCentreEnclos(g);
-            DessinerContoursEnclos(g);
-            DessinerEntreesEnclos(g);
-        }
-
-        private void DessinerCloturesEnclos(Graphics g)
-        {
-            #region Haut/bas
-            for (int i = 3; i < 14; i++)
-            {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CLOTURE_ENCLOS), i, 3, TuileZoo.TypeTuile.Cloture);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CLOTURE_ENCLOS), i, 10, TuileZoo.TypeTuile.Cloture);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CLOTURE_ENCLOS), i, 13, TuileZoo.TypeTuile.Cloture);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CLOTURE_ENCLOS), i, 20, TuileZoo.TypeTuile.Cloture);
-            }
-
-            for (int i = 18; i < 29; i++)
-            {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CLOTURE_ENCLOS), i, 3, TuileZoo.TypeTuile.Cloture);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CLOTURE_ENCLOS), i, 10, TuileZoo.TypeTuile.Cloture);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CLOTURE_ENCLOS), i, 13, TuileZoo.TypeTuile.Cloture);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CLOTURE_ENCLOS), i, 20, TuileZoo.TypeTuile.Cloture);
-            }
-            #endregion
-
-            #region Cote
-            for (int i = 4; i < 10; i++)
-            {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CLOTURE_ENCLOS), 3, i, TuileZoo.TypeTuile.Cloture);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CLOTURE_ENCLOS), 13, i, TuileZoo.TypeTuile.Cloture);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CLOTURE_ENCLOS), 18, i, TuileZoo.TypeTuile.Cloture);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CLOTURE_ENCLOS), 28, i, TuileZoo.TypeTuile.Cloture);
-            }
-
-            for (int i = 14; i < 20; i++)
-            {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CLOTURE_ENCLOS), 3, i, TuileZoo.TypeTuile.Cloture);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CLOTURE_ENCLOS), 13, i, TuileZoo.TypeTuile.Cloture);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CLOTURE_ENCLOS), 18, i, TuileZoo.TypeTuile.Cloture);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CLOTURE_ENCLOS), 28, i, TuileZoo.TypeTuile.Cloture);
-            }
-            #endregion
-        }
-
-        private void DessinerCentreEnclos(Graphics g)
-        {
-            for (int i = 5; i < 12; i++)
-            {
-                for (int j = 5; j < 9; j++)
-                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.C_ENCLOS), i, j, TuileZoo.TypeTuile.Enclos);
-                for (int j = 15; j < 19; j++)
-                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.C_ENCLOS), i, j, TuileZoo.TypeTuile.Enclos);
-            }
-
-
-            for (int i = 20; i < 27; i++)
-            {
-                for (int j = 5; j < 9; j++)
-                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.C_ENCLOS), i, j, TuileZoo.TypeTuile.Enclos);
-                for (int j = 15; j < 19; j++)
-                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.C_ENCLOS), i, j, TuileZoo.TypeTuile.Enclos);
-            }
-
-        }
-
-        private void DessinerContoursEnclos(Graphics g)
-        {
-            #region Coins
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TL_ENCLOS), 4, 4, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TL_ENCLOS), 19, 4, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TL_ENCLOS), 4, 14, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TL_ENCLOS), 19, 14, TuileZoo.TypeTuile.Enclos);
-
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TR_ENCLOS), 12, 4, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TR_ENCLOS), 27, 4, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TR_ENCLOS), 12, 14, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TR_ENCLOS), 27, 14, TuileZoo.TypeTuile.Enclos);
-
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BL_ENCLOS), 4, 9, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BL_ENCLOS), 19, 9, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BL_ENCLOS), 4, 19, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BL_ENCLOS), 19, 19, TuileZoo.TypeTuile.Enclos);
-
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BR_ENCLOS), 12, 9, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BR_ENCLOS), 27, 9, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BR_ENCLOS), 12, 19, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BR_ENCLOS), 27, 19, TuileZoo.TypeTuile.Enclos);
-            #endregion
-
-            #region Bordures
-            for (int i = 5; i < 12; i++)
-            {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.T_ENCLOS), i, 4, TuileZoo.TypeTuile.Enclos);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.T_ENCLOS), i, 14, TuileZoo.TypeTuile.Enclos);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.B_ENCLOS), i, 9, TuileZoo.TypeTuile.Enclos);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.B_ENCLOS), i, 19, TuileZoo.TypeTuile.Enclos);
-            }
-
-            for (int i = 20; i < 27; i++)
-            {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.T_ENCLOS), i, 4, TuileZoo.TypeTuile.Enclos);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.T_ENCLOS), i, 14, TuileZoo.TypeTuile.Enclos);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.B_ENCLOS), i, 9, TuileZoo.TypeTuile.Enclos);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.B_ENCLOS), i, 19, TuileZoo.TypeTuile.Enclos);
-            }
-
-            for (int i = 5; i < 9; i++)
-            {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CL_ENCLOS), 4, i, TuileZoo.TypeTuile.Enclos);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CL_ENCLOS), 19, i, TuileZoo.TypeTuile.Enclos);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CR_ENCLOS), 12, i, TuileZoo.TypeTuile.Enclos);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CR_ENCLOS), 27, i, TuileZoo.TypeTuile.Enclos);
-            }
-
-            for (int i = 15; i < 19; i++)
-            {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CL_ENCLOS), 4, i, TuileZoo.TypeTuile.Enclos);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CL_ENCLOS), 19, i, TuileZoo.TypeTuile.Enclos);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CR_ENCLOS), 12, i, TuileZoo.TypeTuile.Enclos);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.CR_ENCLOS), 27, i, TuileZoo.TypeTuile.Enclos);
-            }
-            #endregion
-        }
-
-        private void DessinerEntreesEnclos(Graphics g)
-        {
-            for (int i = 7; i < 10; i++)
-            {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.C_ENCLOS), i, 9, TuileZoo.TypeTuile.Enclos);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.C_ENCLOS), i, 19, TuileZoo.TypeTuile.Enclos);
-            }
-
-            for (int i = 22; i < 25; i++)
-            {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.C_ENCLOS), i, 9, TuileZoo.TypeTuile.Enclos);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.C_ENCLOS), i, 19, TuileZoo.TypeTuile.Enclos);
-            }
-
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BL_ENCLOS), 7, 10, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BL_ENCLOS), 22, 10, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BL_ENCLOS), 7, 20, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BL_ENCLOS), 22, 20, TuileZoo.TypeTuile.Enclos);
-
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.B_ENCLOS), 8, 10, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.B_ENCLOS), 23, 10, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.B_ENCLOS), 8, 20, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.B_ENCLOS), 23, 20, TuileZoo.TypeTuile.Enclos);
-
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BR_ENCLOS), 9, 10, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BR_ENCLOS), 24, 10, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BR_ENCLOS), 9, 20, TuileZoo.TypeTuile.Enclos);
-            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BR_ENCLOS), 24, 20, TuileZoo.TypeTuile.Enclos);
-        }
-        #endregion
 
         public void InitializeComponent()
         {
-            SuspendLayout();
-            //
+            this.SuspendLayout();
+            // 
             // Zoo
-            //
-            Size = new Size(1024, 512);
-            ResumeLayout(false);
+            // 
+            this.Size = new System.Drawing.Size(1024, 832);
+            this.ResumeLayout(false);
+
         }
 
         public Zoo()
@@ -281,3 +211,4 @@ namespace TP2.LeReste
         }
     }
 }
+#endregion
