@@ -48,7 +48,9 @@ namespace TP2.LeReste
 
         private void DessinerEntites(Graphics g)
         {
-            
+            if (Heros.Position == null)
+                Heros.Position = Terrain[16, 0];
+                
             foreach (Entite e in ListeEntites)
                 g.DrawImage(e.Image, e.Position.X * 32, e.Position.Y * 32 + 160);
         }

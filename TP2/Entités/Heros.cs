@@ -17,8 +17,6 @@ namespace TP2.Entités
         {
             Image = TileSetGenerator.GetTile(TileSetGenerator.HEROS_DOWN_IDLE);
             Argent = 100;
-            Position.X = 16;
-            Position.Y = 0;
         }
 
         /// <summary>
