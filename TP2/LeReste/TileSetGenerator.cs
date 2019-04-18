@@ -31,7 +31,12 @@ namespace TP2.LeReste
         public static int R_CLOTURE_ZOO = 15;
 
         public static int ALLEE = 16;
+        public static int WATER = 17;
+        public static int ROCK = 18;
+        public static int TB_CLOTURE_ENCLOS = 19;
+        public static int RL_CLOTURE_ENCLOS = 20;
 
+         
 
         private static List<TileCoord> listeCoord = new List<TileCoord>();
         private static List<Bitmap> listeBitmap = new List<Bitmap>();
@@ -51,7 +56,6 @@ namespace TP2.LeReste
             listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 0 });
             listeCoord.Add(new TileCoord() { Ligne = 11, Colonne = 19 });
 
-
             listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 30 });
             listeCoord.Add(new TileCoord() { Ligne = 4, Colonne = 30 });
             listeCoord.Add(new TileCoord() { Ligne = 9, Colonne = 23 });
@@ -62,6 +66,10 @@ namespace TP2.LeReste
             listeCoord.Add(new TileCoord() { Ligne = 12, Colonne = 23 });
 
             listeCoord.Add(new TileCoord() { Ligne = 10, Colonne = 17 });
+            listeCoord.Add(new TileCoord() { Ligne = 3, Colonne = 2 });
+            listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 29 });
+            listeCoord.Add(new TileCoord() { Ligne = 14, Colonne = 22 });
+            listeCoord.Add(new TileCoord() { Ligne = 14, Colonne = 21 });
 
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, ENTREE, 160, 96));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, SORTIE, 160, 96));
@@ -81,6 +89,11 @@ namespace TP2.LeReste
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, B_CLOTURE_ZOO, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, R_CLOTURE_ZOO, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, ALLEE, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, WATER, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, ROCK, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, TB_CLOTURE_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, RL_CLOTURE_ENCLOS, 32, 32));
+
         }
 
         private static Bitmap LoadTile(Image source, int posListe, int width, int height)

@@ -46,7 +46,10 @@ namespace TP2.LeReste
 
         private void DessinerClotureEnclos(Graphics g)
         {
-
+            for(int i=3; i<30; i++)
+            {
+                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TB_CLOTURE_ENCLOS), i, 5, TuileZoo.TypeTuile.Cloture);
+            }
         }
 
         private void DessinerInterieurEnclos(Graphics g)
@@ -177,7 +180,7 @@ namespace TP2.LeReste
                         || i == 15 && j == 1 || i == 15 && j == 2 || i == 16 && j == 1 || i == 16 && j == 2 || i == 20 && j == 1 || i == 20 && j == 2
                         || i == 21 && j == 1 || i == 21 && j == 2 || i == 13 || i == 18))
                     {
-                        g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.PLANTE), i * 32, j * 32);
+                        g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.ROCK), i * 32, j * 32);
                     }
                 }
             }
