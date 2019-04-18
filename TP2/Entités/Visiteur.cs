@@ -17,7 +17,7 @@ namespace TP2.Entités
         public string Nom { get; private set; }
 
         /// <summary>
-        /// 0-14 prénoms féminins, 15-29 
+        /// 0-14 prénoms féminins, 15-29 prénoms masculins
         /// </summary>
         private List<string> _prenoms = new List<string>
         {

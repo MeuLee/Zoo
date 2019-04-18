@@ -17,7 +17,6 @@ namespace TP2
         public FrmZoo()
         {
             InitializeComponent();
-            DoubleBuffered = true;
         }
 
         private void FrmZoo_KeyDown(object sender, KeyEventArgs e)
@@ -26,6 +25,11 @@ namespace TP2
                 Zoo.Heros.DeplacerEtModifierImage(e.KeyCode);
 
             zoo1.Refresh();
+        }
+
+        private void nouvellePartieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Partie(zoo1);
         }
     }
 }

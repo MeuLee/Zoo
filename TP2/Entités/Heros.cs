@@ -56,10 +56,16 @@ namespace TP2.Entités
         /// <param name="nouveauY">Le nouveau Y de la case</param>
         private void Deplacer(int nouveauX, int nouveauY)
         {
-            var typeNouvelleCase = Zoo.Terrain[nouveauX, nouveauY].Tuile;
+            var possibilite = Zoo.Terrain[nouveauX, nouveauY];
 
-            if (typeNouvelleCase == TuileZoo.TypeTuile.Allee || typeNouvelleCase == TuileZoo.TypeTuile.Enclos)// || contient animal/visiteur=
+            if (possibilite.Tuile == TuileZoo.TypeTuile.Allee || 
+                possibilite.Tuile == TuileZoo.TypeTuile.Enclos && 
+                !possibilite.ContientHumain &&
+                !possibilite.ContientAnimal)
+            {
                 Position = Zoo.Terrain[nouveauX, nouveauY];
+                Zoo.Terrain[nouveauX, nouveauY].ContientHumain = true;
+            }
         }
 
         /// <summary>

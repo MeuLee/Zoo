@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TP2.Entités;
@@ -268,22 +269,59 @@ namespace TP2.LeReste
             // 
             this.Size = new System.Drawing.Size(1024, 512);
             this.ResumeLayout(false);
-
         }
 
         public Zoo()
         {
             Terrain = new TuileZoo[32, 24];
-            ListeEnclos = new Enclos[4];
+            
             ListeEntites = new List<Entite>();
 
-            for (int i = 0; i < ListeEnclos.Length; i++)
-                ListeEnclos[i] = new Enclos();
+            CreerEnclos();
 
             Heros = new Heros();
             ListeEntites.Add(Heros);
             InitializeComponent();
             DoubleBuffered = true;
+
+        }
+
+        private void CreerEnclos()
+        {
+            ListeEnclos = new Enclos[4];
+            ListeEnclos[0] = new Enclos(4, 4);
+            ListeEnclos[1] = new Enclos(17, 4);
+            ListeEnclos[2] = new Enclos(4, 14);
+            ListeEnclos[3] = new Enclos(17, 14);
+        }
+
+        public void CreerEtLancerThreadAnimaux()
+        {
+            Thread thread = new Thread(new ThreadStart(this.BoucleDeJeu));
+            thread.IsBackground = true;
+            thread.Name = "Boucle de jeu";
+            thread.Start();
+        }
+
+        private void BoucleDeJeu()
+        {
+            while (true)
+            {
+                
+                BeginInvoke((MethodInvoker)delegate ()
+                {
+                    foreach (Entite e in ListeEntites.OfType<Animal>())
+                    {
+                        if (e != null)
+                        {
+                            Animal a = e as Animal;
+                            a.DeplacerEtModifierImage();
+                        }
+                    }
+                    Refresh();
+                });
+                Thread.Sleep(1000);
+            }
         }
     }
 }

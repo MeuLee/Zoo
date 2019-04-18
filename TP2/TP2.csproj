@@ -63,6 +63,7 @@
     <Compile Include="LeReste\InformationAnimal.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="LeReste\Partie.cs" />
     <Compile Include="LeReste\TileSetGenerator.cs" />
     <Compile Include="LeReste\TuileZoo.cs" />
     <Compile Include="LeReste\Zoo.cs">

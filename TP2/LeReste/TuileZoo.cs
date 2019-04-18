@@ -9,12 +9,12 @@ namespace TP2.LeReste
     public class TuileZoo
     {
         public bool ContientDechet { get; set; }
-        public bool ContientAnimal { get; set; }
-        public bool ContientVisiteur { get; set; }
         public bool EstSortie { get; set; }
         public TypeTuile Tuile { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
+        public bool ContientHumain { get; set; }
+        public bool ContientAnimal { get; set; }
 
         public enum TypeTuile
         {
@@ -22,14 +22,15 @@ namespace TP2.LeReste
             Cloture,
             Enclos,
             Entree,
-            Sortie
+            Sortie,
+            Eau, 
+            Decoration
         }
 
         public TuileZoo(TypeTuile tuile, bool estSortie, int x, int y)
         {
-            ContientAnimal = false;
             ContientDechet = false;
-            ContientVisiteur = false;
+            ContientHumain = false;
             EstSortie = estSortie;
             Tuile = tuile;
             X = x;
