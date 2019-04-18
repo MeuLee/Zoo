@@ -16,6 +16,9 @@ namespace TP2.Entités
         public SexeEntite SexeVisiteur { get; private set; }
         public string Nom { get; private set; }
 
+        /// <summary>
+        /// 0-14 prénoms féminins, 15-29 
+        /// </summary>
         private List<string> _prenoms = new List<string>
         {
             "Camille", "Louise", "Ambre", "Agathe", "Jade", "Julia", "Mila", "Alice", "Emma", "Anna", "Lucie", "Eden", "Romane", "Lola", "Emy",
