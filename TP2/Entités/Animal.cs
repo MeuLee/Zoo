@@ -79,6 +79,7 @@ namespace TP2.Entités
             Enceinte = false;
             Sexe = (SexeEntite)_r.Next(0, 2);
             Position = DeterminerPositionDepart();
+            Zoo.Terrain[Position.X, Position.Y].ContientAnimal = true;
             Zoo.ListeEntites.Add(this);
         }
 

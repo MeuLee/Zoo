@@ -301,15 +301,14 @@ namespace TP2.LeReste
             Thread thread = new Thread(new ThreadStart(this.BoucleDeJeu));
             thread.IsBackground = true;
             thread.Name = "Boucle de jeu";
-            thread.Start();
+            //thread.Start();
         }
 
         private void BoucleDeJeu()
         {
             while (true)
             {
-                
-                BeginInvoke((MethodInvoker)delegate ()
+                Invoke((MethodInvoker)delegate ()
                 {
                     foreach (Entite e in ListeEntites.OfType<Animal>())
                     {
