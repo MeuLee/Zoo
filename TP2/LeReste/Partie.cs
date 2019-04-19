@@ -13,8 +13,10 @@ namespace TP2.LeReste
     {
         public Partie(Zoo zoo)
         {
-            Animal a = new Animal(Animal.TypeAnimal.Grizzly, Zoo.ListeEnclos[3]);
-            Animal b = new Animal(Animal.TypeAnimal.Grizzly, Zoo.ListeEnclos[3]);
+            for (int i = 0; i < 7; i++)
+            {
+                Animal a = new Animal(Animal.TypeAnimal.Grizzly, Zoo.ListeEnclos[3]);
+            }
             zoo.CreerEtLancerThreadAnimaux();
         }
 

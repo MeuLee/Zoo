@@ -31,10 +31,10 @@ namespace TP2
         private void InitializeComponent()
         {
             this.zoo1 = new TP2.LeReste.Zoo();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nouvellePartieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.MnuStrip = new System.Windows.Forms.MenuStrip();
+            this.MnuFichier = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuNouvellePartie = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // zoo1
@@ -47,30 +47,30 @@ namespace TP2
             this.zoo1.TabIndex = 0;
             this.zoo1.Text = "zoo1";
             // 
-            // menuStrip1
+            // MnuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fichierToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1024, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            this.MnuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MnuFichier});
+            this.MnuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MnuStrip.Name = "MnuStrip";
+            this.MnuStrip.Size = new System.Drawing.Size(1024, 24);
+            this.MnuStrip.TabIndex = 1;
+            this.MnuStrip.Text = "menuStrip1";
             // 
-            // fichierToolStripMenuItem
+            // MnuFichier
             // 
-            this.fichierToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nouvellePartieToolStripMenuItem});
-            this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
-            this.fichierToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.fichierToolStripMenuItem.Text = "&Fichier";
+            this.MnuFichier.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MnuNouvellePartie});
+            this.MnuFichier.Name = "MnuFichier";
+            this.MnuFichier.Size = new System.Drawing.Size(54, 20);
+            this.MnuFichier.Text = "&Fichier";
             // 
-            // nouvellePartieToolStripMenuItem
+            // MnuNouvellePartie
             // 
-            this.nouvellePartieToolStripMenuItem.Name = "nouvellePartieToolStripMenuItem";
-            this.nouvellePartieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.nouvellePartieToolStripMenuItem.Text = "&Nouvelle partie";
-            this.nouvellePartieToolStripMenuItem.Click += new System.EventHandler(this.nouvellePartieToolStripMenuItem_Click);
+            this.MnuNouvellePartie.Name = "MnuNouvellePartie";
+            this.MnuNouvellePartie.Size = new System.Drawing.Size(180, 22);
+            this.MnuNouvellePartie.Text = "&Nouvelle partie";
+            this.MnuNouvellePartie.Click += new System.EventHandler(this.MnuNouvellePartie_Click);
             // 
             // FrmZoo
             // 
@@ -78,17 +78,17 @@ namespace TP2
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 952);
             this.Controls.Add(this.zoo1);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.MnuStrip);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.MnuStrip;
             this.MaximizeBox = false;
             this.Name = "FrmZoo";
             this.Text = "le zoo";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmZoo_KeyDown);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.MnuStrip.ResumeLayout(false);
+            this.MnuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -97,8 +97,8 @@ namespace TP2
         #endregion
 
         public Zoo zoo1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fichierToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nouvellePartieToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip MnuStrip;
+        private System.Windows.Forms.ToolStripMenuItem MnuFichier;
+        private System.Windows.Forms.ToolStripMenuItem MnuNouvellePartie;
     }
 }

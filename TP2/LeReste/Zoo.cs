@@ -289,10 +289,11 @@ namespace TP2.LeReste
         private void CreerEnclos()
         {
             ListeEnclos = new Enclos[4];
-            ListeEnclos[0] = new Enclos(4, 4);
-            ListeEnclos[1] = new Enclos(17, 4);
-            ListeEnclos[2] = new Enclos(4, 14);
-            ListeEnclos[3] = new Enclos(17, 14);
+            //les x et y seront à changer
+            ListeEnclos[0] = new Enclos(3, 3);
+            ListeEnclos[1] = new Enclos(18, 3);
+            ListeEnclos[2] = new Enclos(3, 13);
+            ListeEnclos[3] = new Enclos(18, 13);
         }
 
         public void CreerEtLancerThreadAnimaux()
@@ -316,6 +317,7 @@ namespace TP2.LeReste
                         {
                             Animal a = e as Animal;
                             a.DeplacerEtModifierImage();
+                            Terrain[0, 0].ContientAnimal = false;
                         }
                     }
                     Refresh();

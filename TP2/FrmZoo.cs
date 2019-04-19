@@ -23,11 +23,11 @@ namespace TP2
         {
             if (e.KeyCode == Keys.W || e.KeyCode == Keys.A || e.KeyCode == Keys.S || e.KeyCode == Keys.D)
                 Zoo.Heros.DeplacerEtModifierImage(e.KeyCode);
-
+            Zoo.Terrain[0, 0].ContientAnimal = false;
             zoo1.Refresh();
         }
 
-        private void nouvellePartieToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MnuNouvellePartie_Click(object sender, EventArgs e)
         {
             new Partie(zoo1);
         }

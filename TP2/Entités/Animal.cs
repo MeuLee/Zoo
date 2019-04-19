@@ -78,37 +78,69 @@ namespace TP2.Entités
             Age = age;
             Enceinte = false;
             Sexe = (SexeEntite)_r.Next(0, 2);
-            Position = Zoo.Terrain[Enclos.X + 1, Enclos.Y + 1];
+            Position = DeterminerPositionDepart();
             Zoo.ListeEntites.Add(this);
         }
 
+        /// <summary>
+        /// S'assure que les animaux commencent tous à une place différente dans l'enclos
+        /// </summary>
+        /// <returns></returns>
+        private TuileZoo DeterminerPositionDepart()
+        {
+            TuileZoo possibilite;
+            do
+            {
+                possibilite = Zoo.Terrain[_r.Next(Enclos.X + 1, Enclos.X + Enclos.Width - 1), //X compris dans l'enclos de l'animal
+                                          _r.Next(Enclos.Y + 1, Enclos.Y + Enclos.Height - 1)];//Y compris dans l'enclos de l'animal
+            } while (possibilite.ContientAnimal || possibilite.ContientHumain);
+            return possibilite;
+        }
+
+        /// <summary>
+        /// L'animal se déplace sur une case au hasard, parmi celles où il peut se déplacer
+        /// </summary>
         internal void DeplacerEtModifierImage()
         {
             List<TuileZoo> casesDisponibles = DeterminerCasesDisponibles();
             if (casesDisponibles.Count != 0)
             {
                 var actuelle = casesDisponibles[_r.Next(0, casesDisponibles.Count)];
-                Position = actuelle;
                 actuelle.ContientAnimal = true;
+                Position = actuelle;
             }
         }
 
+        /// <summary>
+        /// Construction d'une liste comprenant les cases immédiates où l'animal peut se déplacer
+        /// </summary>
+        /// <returns>La liste de cases</returns>
         private List<TuileZoo> DeterminerCasesDisponibles()
         {
             List<TuileZoo> casesDisponibles = new List<TuileZoo>();
-            AjouterCaseAListe(Zoo.Terrain[Position.X - 1, Position.Y], ref casesDisponibles);
-            AjouterCaseAListe(Zoo.Terrain[Position.X, Position.Y - 1], ref casesDisponibles);
-            AjouterCaseAListe(Zoo.Terrain[Position.X + 1, Position.Y], ref casesDisponibles);
-            AjouterCaseAListe(Zoo.Terrain[Position.X, Position.Y + 1], ref casesDisponibles);
+            AjouterCaseAListe(Zoo.Terrain[Position.X - 1, Position.Y], casesDisponibles);
+            AjouterCaseAListe(Zoo.Terrain[Position.X, Position.Y - 1], casesDisponibles);
+            AjouterCaseAListe(Zoo.Terrain[Position.X + 1, Position.Y], casesDisponibles);
+            AjouterCaseAListe(Zoo.Terrain[Position.X, Position.Y + 1], casesDisponibles);
             return casesDisponibles;
         }
 
-        private void AjouterCaseAListe(TuileZoo possibilite, ref List<TuileZoo> casesDisponibles)
+        /// <summary>
+        /// Ajout d'une case à la liste si l'animal peut s'y déplacer
+        /// </summary>
+        /// <param name="possibilite"></param>
+        /// <param name="casesDisponibles"></param>
+        private void AjouterCaseAListe(TuileZoo possibilite, List<TuileZoo> casesDisponibles)
         {
-            if (!possibilite.ContientHumain && 
-                !possibilite.ContientAnimal && 
-                possibilite.Tuile == TuileZoo.TypeTuile.Enclos)
+            if (PeutSeDeplacer(possibilite))
                 casesDisponibles.Add(possibilite);
+        }
+
+        private bool PeutSeDeplacer(TuileZoo possibilite)
+        {
+            return !possibilite.ContientAnimal && 
+                   !possibilite.ContientHumain && 
+                    possibilite.Tuile == TuileZoo.TypeTuile.Enclos;
         }
     }
 }

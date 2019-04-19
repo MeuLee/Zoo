@@ -58,13 +58,10 @@ namespace TP2.Entités
         {
             var possibilite = Zoo.Terrain[nouveauX, nouveauY];
 
-            if (possibilite.Tuile == TuileZoo.TypeTuile.Allee || 
-                possibilite.Tuile == TuileZoo.TypeTuile.Enclos && 
-                !possibilite.ContientHumain &&
-                !possibilite.ContientAnimal)
+            if (PeutSeDeplacer(possibilite))
             {
-                Position = Zoo.Terrain[nouveauX, nouveauY];
-                Zoo.Terrain[nouveauX, nouveauY].ContientHumain = true;
+                possibilite.ContientHumain = true;
+                Position = possibilite;
             }
         }
 
@@ -98,6 +95,17 @@ namespace TP2.Entités
                 Image = TileSetGenerator.GetTile(offset + 1);
             else
                 Image = TileSetGenerator.GetTile(offset);
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="possibilite">La case où le héros veut se déplacer</param>
+        /// <returns>S'il peut se déplacer sur la case ou non</returns>
+        private bool PeutSeDeplacer(TuileZoo possibilite)
+        {
+            return !possibilite.ContientAnimal && 
+                   !possibilite.ContientHumain && 
+                   (possibilite.Tuile == TuileZoo.TypeTuile.Allee || possibilite.Tuile == TuileZoo.TypeTuile.Enclos);
         }
     }
 }
