@@ -301,27 +301,28 @@ namespace TP2.LeReste
             Thread thread = new Thread(new ThreadStart(this.BoucleDeJeu));
             thread.IsBackground = true;
             thread.Name = "Boucle de jeu";
-            //thread.Start();
+            thread.Start();
         }
 
         private void BoucleDeJeu()
         {
             while (true)
             {
+                Thread.Sleep(1000);
+                foreach (Entite e in ListeEntites.OfType<Animal>())
+                {
+                    if (e != null)
+                    {
+                        Animal a = e as Animal;
+                        a.DeplacerEtModifierImage();
+                    }
+
+                }
                 Invoke((MethodInvoker)delegate ()
                 {
-                    foreach (Entite e in ListeEntites.OfType<Animal>())
-                    {
-                        if (e != null)
-                        {
-                            Animal a = e as Animal;
-                            a.DeplacerEtModifierImage();
-                            Terrain[0, 0].ContientAnimal = false;
-                        }
-                    }
+                    
                     Refresh();
                 });
-                Thread.Sleep(1000);
             }
         }
     }

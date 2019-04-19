@@ -31,7 +31,6 @@ namespace TP2.LeReste
         {
             ContientDechet = false;
             ContientHumain = false;
-            ContientAnimal = false;
             EstSortie = estSortie;
             Tuile = tuile;
             X = x;

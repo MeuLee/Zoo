@@ -23,7 +23,6 @@ namespace TP2
         {
             if (e.KeyCode == Keys.W || e.KeyCode == Keys.A || e.KeyCode == Keys.S || e.KeyCode == Keys.D)
                 Zoo.Heros.DeplacerEtModifierImage(e.KeyCode);
-            Zoo.Terrain[0, 0].ContientAnimal = false;
             zoo1.Refresh();
         }
 
