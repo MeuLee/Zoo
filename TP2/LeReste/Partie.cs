@@ -13,6 +13,7 @@ namespace TP2.LeReste
     {
         public Partie(Zoo zoo)
         {
+            //pour tester avec les animaux, sera à changer plus tard
             for (int i = 0; i < 3; i++)
             {
                 Animal a = new Animal(Animal.TypeAnimal.Grizzly, Zoo.ListeEnclos[0]);

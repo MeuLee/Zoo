@@ -29,8 +29,6 @@ namespace TP2.LeReste
 
         public TuileZoo(TypeTuile tuile, bool estSortie, int x, int y)
         {
-            ContientDechet = false;
-            ContientHumain = false;
             EstSortie = estSortie;
             Tuile = tuile;
             X = x;

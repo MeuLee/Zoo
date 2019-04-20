@@ -64,7 +64,7 @@ namespace TP2
             // 
             // zoo1
             // 
-            this.zoo1.Location = new System.Drawing.Point(-1, 33);
+            this.zoo1.Location = new System.Drawing.Point(0, 24);
             this.zoo1.MaximumSize = new System.Drawing.Size(1025, 929);
             this.zoo1.MinimumSize = new System.Drawing.Size(1025, 929);
             this.zoo1.Name = "zoo1";
@@ -76,7 +76,7 @@ namespace TP2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1024, 952);
+            this.ClientSize = new System.Drawing.Size(1024, 953);
             this.Controls.Add(this.zoo1);
             this.Controls.Add(this.MnuStrip);
             this.DoubleBuffered = true;

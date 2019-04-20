@@ -79,7 +79,6 @@ namespace TP2.Entités
             Enceinte = false;
             Sexe = (SexeEntite)_r.Next(0, 2);
             Position = DeterminerPositionDepart();
-            Zoo.Terrain[Position.X, Position.Y].ContientAnimal = true;
             Zoo.ListeEntites.Add(this);
         }
 
@@ -137,6 +136,10 @@ namespace TP2.Entités
                 casesDisponibles.Add(possibilite);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="possibilite">Une case adjacente à l'animal</param>
+        /// <returns>Si la case est libre ou non</returns>
         private bool PeutSeDeplacer(TuileZoo possibilite)
         {
             foreach (Entite e in Zoo.ListeEntites)

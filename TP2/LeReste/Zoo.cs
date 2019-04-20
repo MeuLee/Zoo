@@ -274,16 +274,16 @@ namespace TP2.LeReste
         public Zoo()
         {
             Terrain = new TuileZoo[32, 24];
-            
-            ListeEntites = new List<Entite>();
-
             CreerEnclos();
-
-            Heros = new Heros();
-            ListeEntites.Add(Heros);
+            CreerHeros();
             InitializeComponent();
             DoubleBuffered = true;
+        }
 
+        private void CreerHeros()
+        {
+            Heros = new Heros();
+            ListeEntites.Add(Heros);
         }
 
         private void CreerEnclos()
@@ -311,20 +311,30 @@ namespace TP2.LeReste
             while (true)
             {
                 Thread.Sleep(500);
-                foreach (Entite e in ListeEntites.OfType<Animal>())
-                {
-                    if (e != null)
-                    {
-                        Animal a = e as Animal;
-                        a.DeplacerEtModifierImage();
-                    }
-
-                }
+                DeplacerAnimaux();
+                //ajouter visiteur + argent/animal
+                //ajouter argent/visiteur-dechet
+                //deplacer concierges
+                //updater temps 
                 Invoke((MethodInvoker)delegate ()
                 {
-                    
                     Refresh();
                 });
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        private void DeplacerAnimaux()
+        {
+            foreach (Entite e in ListeEntites.OfType<Animal>())
+            {
+                if (e != null)
+                {
+                    Animal a = e as Animal;
+                    a.DeplacerEtModifierImage();
+                }
+
             }
         }
     }
