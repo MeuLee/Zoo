@@ -30,22 +30,12 @@ namespace TP2
         /// </summary>
         private void InitializeComponent()
         {
-            this.zoo1 = new TP2.LeReste.Zoo();
             this.MnuStrip = new System.Windows.Forms.MenuStrip();
             this.MnuFichier = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuNouvellePartie = new System.Windows.Forms.ToolStripMenuItem();
+            this.zoo1 = new TP2.LeReste.Zoo();
             this.MnuStrip.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // zoo1
-            // 
-            this.zoo1.Location = new System.Drawing.Point(-1, 33);
-            this.zoo1.MaximumSize = new System.Drawing.Size(1025, 929);
-            this.zoo1.MinimumSize = new System.Drawing.Size(1025, 929);
-            this.zoo1.Name = "zoo1";
-            this.zoo1.Size = new System.Drawing.Size(1025, 929);
-            this.zoo1.TabIndex = 0;
-            this.zoo1.Text = "zoo1";
             // 
             // MnuStrip
             // 
@@ -68,9 +58,19 @@ namespace TP2
             // MnuNouvellePartie
             // 
             this.MnuNouvellePartie.Name = "MnuNouvellePartie";
-            this.MnuNouvellePartie.Size = new System.Drawing.Size(180, 22);
+            this.MnuNouvellePartie.Size = new System.Drawing.Size(154, 22);
             this.MnuNouvellePartie.Text = "&Nouvelle partie";
             this.MnuNouvellePartie.Click += new System.EventHandler(this.MnuNouvellePartie_Click);
+            // 
+            // zoo1
+            // 
+            this.zoo1.Location = new System.Drawing.Point(-1, 33);
+            this.zoo1.MaximumSize = new System.Drawing.Size(1025, 929);
+            this.zoo1.MinimumSize = new System.Drawing.Size(1025, 929);
+            this.zoo1.Name = "zoo1";
+            this.zoo1.Size = new System.Drawing.Size(1025, 929);
+            this.zoo1.TabIndex = 0;
+            this.zoo1.Text = "zoo1";
             // 
             // FrmZoo
             // 

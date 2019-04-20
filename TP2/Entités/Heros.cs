@@ -103,9 +103,12 @@ namespace TP2.Entités
         /// <returns>S'il peut se déplacer sur la case ou non</returns>
         private bool PeutSeDeplacer(TuileZoo possibilite)
         {
-            return !possibilite.ContientAnimal && 
-                   !possibilite.ContientHumain && 
-                   (possibilite.Tuile == TuileZoo.TypeTuile.Allee || possibilite.Tuile == TuileZoo.TypeTuile.Enclos);
+            foreach (Entite e in Zoo.ListeEntites)
+            {
+                if (e.Position.X == possibilite.X && e.Position.Y == possibilite.Y)
+                    return false;
+            }
+            return (possibilite.Tuile == TuileZoo.TypeTuile.Allee || possibilite.Tuile == TuileZoo.TypeTuile.Enclos);
         }
     }
 }

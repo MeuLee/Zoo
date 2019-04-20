@@ -298,9 +298,11 @@ namespace TP2.LeReste
 
         public void CreerEtLancerThreadAnimaux()
         {
-            Thread thread = new Thread(new ThreadStart(this.BoucleDeJeu));
-            thread.IsBackground = true;
-            thread.Name = "Boucle de jeu";
+            Thread thread = new Thread(new ThreadStart(BoucleDeJeu))
+            {
+                IsBackground = true,
+                Name = "Boucle de jeu"
+            };
             thread.Start();
         }
 
@@ -308,7 +310,7 @@ namespace TP2.LeReste
         {
             while (true)
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(500);
                 foreach (Entite e in ListeEntites.OfType<Animal>())
                 {
                     if (e != null)
