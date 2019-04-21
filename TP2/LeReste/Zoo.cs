@@ -34,6 +34,8 @@ namespace TP2.LeReste
 
         public static Heros Heros { get; set; }
 
+        private static Random _r = new Random();
+
         #region OnPaint
         protected override void OnPaint(PaintEventArgs pe)
         {
@@ -310,9 +312,13 @@ namespace TP2.LeReste
         {
             while (true)
             {
-                Thread.Sleep(500);
+                Thread.Sleep(250);
+
                 DeplacerAnimaux();
-                //ajouter visiteur + argent/animal
+                if (ListeEntites.OfType<Animal>().Count() > ListeEntites.OfType<Visiteur>().Count() && 
+                    _r.Next(0, 10) == 0)//1/10 chance de spawn un visiteur à chaque 1.5 sec
+                    CreerNouveauVisiteur();
+                DeplacerVisiteurs();
                 //ajouter argent/visiteur-dechet
                 //deplacer concierges
                 //updater temps 
@@ -321,6 +327,25 @@ namespace TP2.LeReste
                     Refresh();
                 });
             }
+        }
+
+        private void DeplacerVisiteurs()
+        {
+            foreach (Entite e in ListeEntites.OfType<Visiteur>())
+            {
+                if (e != null)
+                {
+                    Visiteur v = e as Visiteur;
+                    v.DeplacerEtModifierImage();
+                }
+
+            }
+        }
+
+        private void CreerNouveauVisiteur()
+        {
+            Visiteur v = new Visiteur();
+            ListeEntites.Add(v);
         }
 
         /// <summary>

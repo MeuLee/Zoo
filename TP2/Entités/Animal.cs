@@ -10,8 +10,6 @@ namespace TP2.Entités
 {
     public class Animal : Entite
     {
-        private static Random _r = new Random();
-
         public TypeAnimal Type { get; set; }
         public int JoursGestation { get; set; }
         public int JoursJusquaAdulte { get; set; }

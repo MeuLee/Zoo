@@ -72,7 +72,7 @@ namespace TP2.Entités
         /// La méthode GetTile accepte un int, il suffit que les 3 images de la même
         /// direction se suivent en ordre (ex. 25-26-27)
         /// </param>
-        private void ModifierImageCote(int offset)
+        private void ModifierImageCote(int offset)//changer images pour les .gif sur le r:\
         {
             if (Image == TileSetGenerator.GetTile(offset))
                 Image = TileSetGenerator.GetTile(offset + 1);

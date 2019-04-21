@@ -10,7 +10,6 @@ namespace TP2.Entités
 {
     public class Visiteur : Humain
     {
-        private static Random _r = new Random();
 
         public DateTime QuandEntreZoo { get; private set; }
         public SexeEntite SexeVisiteur { get; private set; }
@@ -30,15 +29,15 @@ namespace TP2.Entités
             "Tremblay", "Gagnon", "Roy", "Bouchard", "Gauthier", "Morin", "Lavoie", "Fortin", "Ouellet", "Pelletier", "Bergeron", "Leblanc", "Paquette", "Girard", "Simard"
         };
 
-        public Visiteur(TuileZoo position)
+        public Visiteur()
         {
             SexeVisiteur = (SexeEntite)_r.Next(0, 2);
             QuandEntreZoo = DateTime.Now;
-            Position = position;
-            //Image = random entre les 4
+            Position = Zoo.Terrain[15, 0];//sera à changer
+            Image = TileSetGenerator.GetTile(TileSetGenerator.V1_DOWN_IDLE);//random entre les 4
             Nom = CreerNomComplet(SexeVisiteur);
         }
-
+        #region Creation du nom
         /// <summary>
         /// </summary>
         /// <param name="sexeVisiteur">Le sexe du visiteur, M ou F (enum)</param>
@@ -64,7 +63,7 @@ namespace TP2.Entités
             }
             return "";
         }
-        
+
         /// <summary>
         /// </summary>
         /// <returns>Le nom de famille</returns>
@@ -72,6 +71,60 @@ namespace TP2.Entités
         {
             return _noms[_r.Next(0, 15)];
         }
-    }
+        #endregion
 
+        internal void DeplacerEtModifierImage()
+        {
+            List<TuileZoo> casesDisponibles = DeterminerCasesDisponibles();
+            if (casesDisponibles.Count != 0)
+            {
+                var actuelle = casesDisponibles[_r.Next(0, casesDisponibles.Count)];
+                actuelle.ContientHumain = true;
+                Position = actuelle;
+            }
+        }
+
+        /// <summary>
+        /// Construction d'une liste comprenant les cases immédiates où l'animal peut se déplacer
+        /// </summary>
+        /// <returns>La liste de cases</returns>
+        private List<TuileZoo> DeterminerCasesDisponibles()
+        {
+            List<TuileZoo> casesDisponibles = new List<TuileZoo>();
+            if (Position.X != 0)
+                AjouterCaseAListe(Zoo.Terrain[Position.X - 1, Position.Y], casesDisponibles);
+            if (Position.Y != 0)
+                AjouterCaseAListe(Zoo.Terrain[Position.X, Position.Y - 1], casesDisponibles);
+            if (Position.X != Zoo.Terrain.GetLength(0) - 1)
+                AjouterCaseAListe(Zoo.Terrain[Position.X + 1, Position.Y], casesDisponibles);
+            if (Position.Y != Zoo.Terrain.GetLength(1) - 1)
+                AjouterCaseAListe(Zoo.Terrain[Position.X, Position.Y + 1], casesDisponibles);
+            return casesDisponibles;
+        }
+
+        /// <summary>
+        /// Ajout d'une case à la liste si l'animal peut s'y déplacer
+        /// </summary>
+        /// <param name="possibilite"></param>
+        /// <param name="casesDisponibles"></param>
+        private void AjouterCaseAListe(TuileZoo possibilite, List<TuileZoo> casesDisponibles)
+        {
+            if (PeutSeDeplacer(possibilite))
+                casesDisponibles.Add(possibilite);
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="possibilite">Une case adjacente à l'animal</param>
+        /// <returns>Si la case est libre ou non</returns>
+        private bool PeutSeDeplacer(TuileZoo possibilite)
+        {
+            foreach (Entite e in Zoo.ListeEntites.OfType<Humain>())
+            {
+                if (e.Position.X == possibilite.X && e.Position.Y == possibilite.Y)
+                    return false;
+            }
+            return possibilite.Tuile == TuileZoo.TypeTuile.Allee;
+        }
+    }
 }
