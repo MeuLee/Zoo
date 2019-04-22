@@ -35,8 +35,10 @@ namespace TP2.LeReste
         public static int ROCK = 18;
         public static int TB_CLOTURE_ENCLOS = 19;
         public static int RL_CLOTURE_ENCLOS = 20;
+        public static int BR_CLOTURE_ENCLOS = 21;
 
-         
+
+
 
         private static List<TileCoord> listeCoord = new List<TileCoord>();
         private static List<Bitmap> listeBitmap = new List<Bitmap>();
@@ -69,7 +71,8 @@ namespace TP2.LeReste
             listeCoord.Add(new TileCoord() { Ligne = 3, Colonne = 2 });
             listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 29 });
             listeCoord.Add(new TileCoord() { Ligne = 14, Colonne = 22 });
-            listeCoord.Add(new TileCoord() { Ligne = 14, Colonne = 21 });
+            listeCoord.Add(new TileCoord() { Ligne = 10, Colonne = 18 });
+            listeCoord.Add(new TileCoord() { Ligne = 5, Colonne = 31});
 
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, ENTREE, 160, 96));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, SORTIE, 160, 96));
@@ -93,6 +96,7 @@ namespace TP2.LeReste
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, ROCK, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, TB_CLOTURE_ENCLOS, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, RL_CLOTURE_ENCLOS, 32, 32));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, BR_CLOTURE_ENCLOS, 32, 32));
 
         }
 

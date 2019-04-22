@@ -39,17 +39,65 @@ namespace TP2.LeReste
             DessinerEntreeSortie(g);
             DessinerAllee(g);
             DessinerClotureZoo(g);
-            DessinerClotureEnclos(g);
             DessinerInterieurEnclos(g);
+            DessinerClotureEnclos(g);
 
         }
 
+
         private void DessinerClotureEnclos(Graphics g)
         {
-            for(int i=3; i<30; i++)
+
+            //Cloture enclos horizontaux
+            for (int i = 3; i < 28; i++)
             {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TB_CLOTURE_ENCLOS), i, 5, TuileZoo.TypeTuile.Cloture);
+                if (!(i < 18 && i > 12))
+                {
+                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TB_CLOTURE_ENCLOS), i, 6, TuileZoo.TypeTuile.Cloture);
+                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TB_CLOTURE_ENCLOS), i, 23, TuileZoo.TypeTuile.Cloture);
+                }
             }
+
+
+            for (int i = 3; i < 28; i++)
+            {
+                if (!(i < 18 && i > 12 || i < 25 && i > 20 || i < 10 && i > 5))
+                {
+                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TB_CLOTURE_ENCLOS), i, 13, TuileZoo.TypeTuile.Cloture);
+                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TB_CLOTURE_ENCLOS), i, 16, TuileZoo.TypeTuile.Cloture);
+                }
+            }
+
+
+            //Clotures enclos verticaux
+            for (int j = 6; j < 23; j++)
+            {
+                if (!(j < 16 && j > 12))
+                {
+                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.RL_CLOTURE_ENCLOS), 3, j, TuileZoo.TypeTuile.Cloture);
+                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.RL_CLOTURE_ENCLOS), 13, j, TuileZoo.TypeTuile.Cloture);
+                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.RL_CLOTURE_ENCLOS), 18, j, TuileZoo.TypeTuile.Cloture);
+                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.RL_CLOTURE_ENCLOS), 28, j, TuileZoo.TypeTuile.Cloture);
+                }
+            }
+
+
+            //Les coins en bas a droite
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BR_CLOTURE_ENCLOS), 13, 13, TuileZoo.TypeTuile.Cloture);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BR_CLOTURE_ENCLOS), 28, 13, TuileZoo.TypeTuile.Cloture);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BR_CLOTURE_ENCLOS), 13, 23, TuileZoo.TypeTuile.Cloture);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BR_CLOTURE_ENCLOS), 28, 23, TuileZoo.TypeTuile.Cloture);
+
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BR_CLOTURE_ENCLOS), 6, 13, TuileZoo.TypeTuile.Cloture);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BR_CLOTURE_ENCLOS), 21, 13, TuileZoo.TypeTuile.Cloture);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BR_CLOTURE_ENCLOS), 6, 16, TuileZoo.TypeTuile.Cloture);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BR_CLOTURE_ENCLOS), 21, 16, TuileZoo.TypeTuile.Cloture);
+
+            //Redessiner des allees aux endroits necessaires
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ALLEE), 7, 13, TuileZoo.TypeTuile.Allee);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ALLEE), 22, 13, TuileZoo.TypeTuile.Allee);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ALLEE), 7, 16, TuileZoo.TypeTuile.Allee);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ALLEE), 22, 16, TuileZoo.TypeTuile.Allee);
         }
 
         private void DessinerInterieurEnclos(Graphics g)
@@ -188,7 +236,20 @@ namespace TP2.LeReste
 
         private void DessinerUneImageEtInitialiserTerrain(Graphics g, Bitmap image, int x, int y, TuileZoo.TypeTuile typeTuile)
         {
-            g.DrawImage(image, x * 32, y * 32);
+            if (image == TileSetGenerator.GetTile(TileSetGenerator.TB_CLOTURE_ENCLOS))
+            {
+                g.DrawImage(image, x * 32 + 8, y * 32);
+            }
+
+            else if (image == TileSetGenerator.GetTile(TileSetGenerator.BR_CLOTURE_ENCLOS))
+            {
+                g.DrawImage(image, x * 32 - 8, y * 32);
+            }
+            else
+            {
+                g.DrawImage(image, x * 32, y * 32);
+            }
+
             //Terrain[x, y] = new TuileZoo(typeTuile, x == 16 && y == 0);
         }
 
