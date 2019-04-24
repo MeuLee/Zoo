@@ -83,10 +83,7 @@ namespace TP2.Entités
         /// <param name="bmp2">Deuxième image</param>
         private void ModifierImageCote(Bitmap bmp1, Bitmap bmp2)
         {
-            if (Image == bmp1)
-                Image = bmp2;
-            else
-                Image = bmp1;
+            Image = Image == bmp1 ? bmp2 : bmp1;
         }
 
         /// <summary>
