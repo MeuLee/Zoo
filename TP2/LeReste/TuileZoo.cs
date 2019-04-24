@@ -22,6 +22,9 @@ namespace TP2.LeReste
             Gazon,
             Fleur,
             Plante,
+            Terre,
+            Eau,
+            Sable,
         }
 
         public TuileZoo(TypeTuile tuile, bool estSortie)

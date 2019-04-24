@@ -46,7 +46,8 @@ namespace TP2.LeReste
         public static int GLACE_BLEU = 29;
         public static int NEIGE = 30;
         public static int SABLE_GAZON = 31;
-
+        public static int FLAQUE = 32;
+        public static int TRONC = 33;
 
         private static List<TileCoord> listeCoord = new List<TileCoord>();
         private static List<Bitmap> listeBitmap = new List<Bitmap>();
@@ -92,6 +93,9 @@ namespace TP2.LeReste
             listeCoord.Add(new TileCoord() { Ligne = 7, Colonne = 4 });
             listeCoord.Add(new TileCoord() { Ligne = 2, Colonne = 30 });
             listeCoord.Add(new TileCoord() { Ligne = 13, Colonne = 3 });
+            listeCoord.Add(new TileCoord() { Ligne = 13, Colonne = 0 });
+            listeCoord.Add(new TileCoord() { Ligne = 5, Colonne = 25 });
+
 
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, ENTREE, 160, 96));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, SORTIE, 160, 96));
@@ -126,6 +130,8 @@ namespace TP2.LeReste
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, GLACE_BLEU, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, NEIGE, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, SABLE_GAZON, 96, 96));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, FLAQUE, 96, 96));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, TRONC, 64, 64));
         }
 
         private static Bitmap LoadTile(Image source, int posListe, int width, int height)
