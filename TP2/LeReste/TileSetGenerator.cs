@@ -83,7 +83,7 @@ namespace TP2.LeReste
             listeCoord.Add(new TileCoord() { Ligne = 5, Colonne = 31});
 
             listeCoord.Add(new TileCoord() { Ligne = 13, Colonne = 12 });
-            listeCoord.Add(new TileCoord() { Ligne = 6, Colonne = 23 });
+            listeCoord.Add(new TileCoord() { Ligne = 6, Colonne = 22 });
             listeCoord.Add(new TileCoord() { Ligne = 6, Colonne = 6 });
             listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 6 });
             listeCoord.Add(new TileCoord() { Ligne = 14, Colonne = 4 });
@@ -117,7 +117,7 @@ namespace TP2.LeReste
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, RL_CLOTURE_ENCLOS, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, BR_CLOTURE_ENCLOS, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, FLEUR, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, NOURRITURE, 32, 64));
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, NOURRITURE, 64, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, TERRE, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, TERRE_VERTE, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, SABLE, 32, 32));

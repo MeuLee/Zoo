@@ -19,7 +19,9 @@ namespace TP2.LeReste
             Allee,
             Cloture,
             Enclos,
-            Gazon
+            Gazon,
+            Fleur,
+            Plante,
         }
 
         public TuileZoo(TypeTuile tuile, bool estSortie)
