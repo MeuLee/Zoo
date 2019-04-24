@@ -27,14 +27,14 @@ namespace TP2.LeReste
         #endregion
 
         public static TuileZoo[,] Terrain { get; private set; }
-
         public static List<Entite> ListeEntites { get; set; } = new List<Entite>();
+        public static Enclos[] ListeEnclos { get; set; } = new Enclos[4];
 
-        public static Enclos[] ListeEnclos { get; set; }
-
-        public static Heros Heros { get; set; }
+        public static Heros Heros { get; set; } = new Heros();
 
         private static Random _r = new Random();
+        private const int MILLISEC_SLEEP = 500;
+
 
         #region OnPaint
         protected override void OnPaint(PaintEventArgs pe)
@@ -277,20 +277,13 @@ namespace TP2.LeReste
         {
             Terrain = new TuileZoo[32, 24];
             CreerEnclos();
-            CreerHeros();
+            ListeEntites.Add(Heros);
             InitializeComponent();
             DoubleBuffered = true;
         }
 
-        private void CreerHeros()
-        {
-            Heros = new Heros();
-            ListeEntites.Add(Heros);
-        }
-
         private void CreerEnclos()
         {
-            ListeEnclos = new Enclos[4];
             //les x et y seront à changer
             ListeEnclos[0] = new Enclos(3, 3);
             ListeEnclos[1] = new Enclos(18, 3);
@@ -310,18 +303,24 @@ namespace TP2.LeReste
 
         private void BoucleDeJeu()
         {
-            while (true)
+            for (int nbThreadLoops = 0; true; nbThreadLoops++)
             {
-                Thread.Sleep(250);
+                Thread.Sleep(MILLISEC_SLEEP);
 
-                DeplacerAnimaux();
-                if (ListeEntites.OfType<Animal>().Count() > ListeEntites.OfType<Visiteur>().Count() && 
-                    _r.Next(0, 10) == 0)//1/10 chance de spawn un visiteur à chaque 1.5 sec
+                if (nbThreadLoops * MILLISEC_SLEEP % 60000 == 0)
+                {
+                    //a chaque minute, seul defaut est si MILLISEC_SLEEP n'est pas un multiple de 60000
+                    AjouterArgentSelonAnimauxEtDechets();
+                }
+
+                if (MoinsDeVisiteursQueDAnimaux() && _r.Next(0, 10) == 0)//une chance sur 10
                     CreerNouveauVisiteur();
+                DeplacerAnimaux();
                 DeplacerVisiteurs();
-                //ajouter argent/visiteur-dechet
                 //deplacer concierges
-                //updater temps 
+                //updater temps
+                //dechets
+                //breed
                 Invoke((MethodInvoker)delegate ()
                 {
                     Refresh();
@@ -329,6 +328,25 @@ namespace TP2.LeReste
             }
         }
 
+        /// <summary>
+        /// Ajoute 1 dollar par animal présent dans le zoo, - 10c par déchet présent
+        /// </summary>
+        private void AjouterArgentSelonAnimauxEtDechets()
+        {
+            Heros.Argent += ListeEntites.OfType<Animal>().Count() - ListeEntites.OfType<Dechet>().Count() * 0.1;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <returns>True s'il y a plus d'animaux que de visiteurs, false sinon.</returns>
+        private bool MoinsDeVisiteursQueDAnimaux()
+        {
+            return ListeEntites.OfType<Animal>().Count() > ListeEntites.OfType<Visiteur>().Count();
+        }
+
+        /// <summary>
+        /// Déplace les visiteurs dans le tableau 2d (Refresh sera call plus tard).
+        /// </summary>
         private void DeplacerVisiteurs()
         {
             foreach (Entite e in ListeEntites.OfType<Visiteur>())
@@ -338,10 +356,12 @@ namespace TP2.LeReste
                     Visiteur v = e as Visiteur;
                     v.DeplacerEtModifierImage();
                 }
-
             }
         }
 
+        /// <summary>
+        /// Cree un nouveau visiteur et l'ajoute à la liste de visiteurs.
+        /// </summary>
         private void CreerNouveauVisiteur()
         {
             Visiteur v = new Visiteur();
@@ -349,6 +369,7 @@ namespace TP2.LeReste
         }
 
         /// <summary>
+        /// Déplace les animaux dans le tableau 2d (Refresh sera call plus tard).
         /// </summary>
         private void DeplacerAnimaux()
         {
@@ -359,7 +380,6 @@ namespace TP2.LeReste
                     Animal a = e as Animal;
                     a.DeplacerEtModifierImage();
                 }
-
             }
         }
     }

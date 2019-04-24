@@ -22,7 +22,7 @@ namespace TP2.Entités
         private static Bitmap HEROS_HAUT_1 = Resources.haut1;
         private static Bitmap HEROS_HAUT_2 = Resources.haut2;
         private static Bitmap HEROS_HAUT_3 = Resources.haut3;
-        public int Argent { get; set; }
+        public double Argent { get; set; }
 
         public Heros()
         {
