@@ -107,6 +107,7 @@ namespace TP2.Entités
                 actuelle.ContientAnimal = true;
                 Position = actuelle;
             }
+            //Modifier image
         }
 
         /// <summary>

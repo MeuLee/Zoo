@@ -36,25 +36,6 @@ namespace TP2.LeReste
         public static int LICORNE = 21;
         public static int MOUTON = 22;
         public static int HEROS_UP_IDLE = 23;
-        public static int HEROS_UP_WALK = 24;
-        public static int HEROS_DOWN_IDLE = 25;
-        public static int HEROS_DOWN_WALK = 26;
-        public static int HEROS_LEFT_IDLE = 27;
-        public static int HEROS_LEFT_WALK_1= 28;
-        public static int HEROS_LEFT_WALK_2 = 29;
-        public static int HEROS_RIGHT_IDLE = 30;
-        public static int HEROS_RIGHT_WALK_1 = 31;
-        public static int HEROS_RIGHT_WALK_2 = 32;
-        public static int V1_UP_IDLE = 32;
-        public static int V1_UP_WALK = 32;
-        public static int V1_DOWN_IDLE = 33;
-        public static int V1_DOWN_WALK = 34;
-        public static int V1_LEFT_IDLE = 35;
-        public static int V1_LEFT_WALK_1 = 36;
-        public static int V1_LEFT_WALK_2 = 37;
-        public static int V1_RIGHT_IDLE = 38;
-        public static int V1_RIGHT_WALK_1 = 39;
-        public static int V1_RIGHT_WALK_2 = 40;
 
         private static List<TileCoord> listeCoord = new List<TileCoord>();
         private static List<Bitmap> listeBitmap = new List<Bitmap>();
@@ -133,25 +114,6 @@ namespace TP2.LeReste
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, LICORNE, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, MOUTON, 32, 32));
             listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_UP_IDLE, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_UP_WALK, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_DOWN_IDLE, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_DOWN_WALK, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_LEFT_IDLE, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_LEFT_WALK_1, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_LEFT_WALK_2, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_RIGHT_IDLE, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_RIGHT_WALK_1, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, HEROS_RIGHT_WALK_2, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, V1_UP_IDLE, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, V1_UP_WALK, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, V1_DOWN_IDLE, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, V1_DOWN_WALK, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, V1_LEFT_IDLE, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, V1_LEFT_WALK_1, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, V1_LEFT_WALK_2, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, V1_RIGHT_WALK_2, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, V1_RIGHT_WALK_2, 32, 32));
-            listeBitmap.Add(LoadTile(Properties.Resources.personnages, V1_RIGHT_WALK_2, 32, 32));
         }
 
         private static Bitmap LoadTile(Image source, int posListe, int width, int height)

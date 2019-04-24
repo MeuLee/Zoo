@@ -106,5 +106,35 @@
   <ItemGroup>
     <None Include="Resources\personnages.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bas1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bas2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bas3.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\droite1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\droite2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gauche1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gauche2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\haut1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\haut2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\haut3.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

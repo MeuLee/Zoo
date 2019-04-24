@@ -6,16 +6,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TP2.LeReste;
+using TP2.Properties;
 
 namespace TP2.Entités
 {
     public class Heros : Humain
     {
+        private static Bitmap HEROS_BAS_1 = Resources.bas1;
+        private static Bitmap HEROS_BAS_2 = Resources.bas2;
+        private static Bitmap HEROS_BAS_3 = Resources.bas3;
+        private static Bitmap HEROS_DROITE_1 = Resources.droite1;
+        private static Bitmap HEROS_DROITE_2 = Resources.droite2;
+        private static Bitmap HEROS_GAUCHE_1 = Resources.gauche1;
+        private static Bitmap HEROS_GAUCHE_2 = Resources.gauche2;
+        private static Bitmap HEROS_HAUT_1 = Resources.haut1;
+        private static Bitmap HEROS_HAUT_2 = Resources.haut2;
+        private static Bitmap HEROS_HAUT_3 = Resources.haut3;
         public int Argent { get; set; }
 
         public Heros()
         {
-            Image = TileSetGenerator.GetTile(TileSetGenerator.HEROS_DOWN_IDLE);
+            Image = HEROS_BAS_1;
             Argent = 100;
         }
 
@@ -29,22 +40,22 @@ namespace TP2.Entités
                 case Keys.A:
                     if (Position.X != 0)
                         Deplacer(Position.X - 1, Position.Y);
-                    ModifierImageCote(TileSetGenerator.HEROS_LEFT_IDLE);
+                    ModifierImageCote(HEROS_GAUCHE_1, HEROS_GAUCHE_2);
                     break;
                 case Keys.W:
                     if (Position.Y != 0)
                         Deplacer(Position.X, Position.Y - 1);
-                    ModifierImageHautBas(TileSetGenerator.HEROS_UP_IDLE);
+                    ModifierImageHautBas(HEROS_HAUT_1, HEROS_HAUT_2, HEROS_HAUT_3);
                     break;
                 case Keys.D:
                     if (Position.X != Zoo.Terrain.GetLength(0) - 1)//largeur
                         Deplacer(Position.X + 1, Position.Y);
-                    ModifierImageCote(TileSetGenerator.HEROS_RIGHT_IDLE);
+                    ModifierImageCote(HEROS_DROITE_1, HEROS_DROITE_2);
                     break;
                 case Keys.S:
                     if (Position.Y != Zoo.Terrain.GetLength(1) - 1)//hauteur
                         Deplacer(Position.X, Position.Y + 1);
-                    ModifierImageHautBas(TileSetGenerator.HEROS_DOWN_IDLE);
+                    ModifierImageHautBas(HEROS_BAS_1, HEROS_BAS_2, HEROS_BAS_3);
                     break;
             }
         }
@@ -66,35 +77,32 @@ namespace TP2.Entités
         }
 
         /// <summary>
-        /// Effectue une rotation entre l'image du héros pour simuler qu'il marche
+        /// Effectue une rotation entre 2 images pour simuler que le héros marche.
         /// </summary>
-        /// <param name="offset">
-        /// La méthode GetTile accepte un int, il suffit que les 3 images de la même
-        /// direction se suivent en ordre (ex. 25-26-27)
-        /// </param>
-        private void ModifierImageCote(int offset)//changer images pour les .gif sur le r:\
+        /// <param name="bmp1">Première image</param>
+        /// <param name="bmp2">Deuxième image</param>
+        private void ModifierImageCote(Bitmap bmp1, Bitmap bmp2)
         {
-            if (Image == TileSetGenerator.GetTile(offset))
-                Image = TileSetGenerator.GetTile(offset + 1);
-            else if (Image == TileSetGenerator.GetTile(offset + 1))
-                Image = TileSetGenerator.GetTile(offset + 2);
+            if (Image == bmp1)
+                Image = bmp2;
             else
-                Image = TileSetGenerator.GetTile(offset);
+                Image = bmp1;
         }
 
         /// <summary>
-        /// Effectue une rotation entre l'image du héros pour simuler qu'il marche
+        /// Effectue une rotation entre 3 images pour simuler que le héros marche.
         /// </summary>
-        /// <param name="offset">
-        /// La méthode GetTile accepte un int, il suffit que les 2 images de la même
-        /// direction se suivent en ordre (ex. 23-24)
-        /// </param>
-        private void ModifierImageHautBas(int offset)
+        /// <param name="bmp1">Première image</param>
+        /// <param name="bmp2">Deuxième image</param>
+        /// <param name="bmp3">Troisième image</param>
+        private void ModifierImageHautBas(Bitmap bmp1, Bitmap bmp2, Bitmap bmp3)
         {
-            if (Image == TileSetGenerator.GetTile(offset))
-                Image = TileSetGenerator.GetTile(offset + 1);
+            if (Image == bmp1)
+                Image = bmp2;
+            else if (Image == bmp2)
+                Image = bmp3;
             else
-                Image = TileSetGenerator.GetTile(offset);
+                Image = bmp1;
         }
 
         /// <summary>
