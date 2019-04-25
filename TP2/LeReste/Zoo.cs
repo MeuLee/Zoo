@@ -333,7 +333,7 @@ namespace TP2.LeReste
                 g.DrawImage(image, x * 32, y * 32);
             }
 
-            Terrain[x, y] = new TuileZoo(typeTuile, x == 16 && y == 0, x, y);
+            Terrain[x, y] = new TuileZoo(typeTuile, x == 26 && y == 4, x, y);
         }
 
         public void InitializeComponent()
