@@ -113,7 +113,7 @@ namespace TP2.Entités
                 if (e.Position.X == possibilite.X && e.Position.Y == possibilite.Y)
                     return false;
             }
-            return (possibilite.Tuile == TuileZoo.TypeTuile.Allee || possibilite.Tuile == TuileZoo.TypeTuile.Enclos);
+            return (possibilite.Tuile == TuileZoo.TypeTuile.Allee || possibilite.Tuile == TuileZoo.TypeTuile.Enclos || possibilite.Tuile == TuileZoo.TypeTuile.Gazon || possibilite.Tuile == TuileZoo.TypeTuile.Glace || possibilite.Tuile == TuileZoo.TypeTuile.Sable || possibilite.Tuile == TuileZoo.TypeTuile.Terre);
         }
     }
 }

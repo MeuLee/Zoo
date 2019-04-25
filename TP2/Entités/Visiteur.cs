@@ -34,7 +34,7 @@ namespace TP2.Entités
             SexeVisiteur = (SexeEntite)_r.Next(0, 2);
             QuandEntreZoo = DateTime.Now;
             Position = Zoo.Terrain[15, 0];//sera à changer
-            Image = TileSetGenerator.GetTile(TileSetGenerator.HEROS_UP_IDLE);//random entre les 4
+            //Image = TileSetGenerator.GetTile(TileSetGenerator.HEROS_UP_IDLE);//random entre les 4
             Nom = CreerNomComplet(SexeVisiteur);
             Zoo.Heros.Argent += Zoo.ListeEntites.OfType<Animal>().Count() * 2;
         }

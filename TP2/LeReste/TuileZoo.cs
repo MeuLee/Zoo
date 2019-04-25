@@ -19,15 +19,14 @@ namespace TP2.LeReste
         public enum TypeTuile
         {
             Allee,
-            Cloture,
             Enclos,
             Gazon,
-            Fleur,
-            Plante,
             Terre,
             Eau,
             Sable,
             Glace,
+            Interdit,
+            Decoration,
         }
 
         public TuileZoo(TypeTuile tuile, bool estSortie, int x, int y)

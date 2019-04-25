@@ -25,10 +25,5 @@ namespace TP2
                 Zoo.Heros.DeplacerEtModifierImage(e.KeyCode);
             zoo1.Refresh();
         }
-
-        private void MnuNouvellePartie_Click(object sender, EventArgs e)
-        {
-            new Partie(zoo1);
-        }
     }
 }
