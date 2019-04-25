@@ -21,10 +21,13 @@ namespace TP2.LeReste
             Allee,
             Cloture,
             Enclos,
-            Entree,
-            Sortie,
-            Eau, 
-            Decoration
+            Gazon,
+            Fleur,
+            Plante,
+            Terre,
+            Eau,
+            Sable,
+            Glace,
         }
 
         public TuileZoo(TypeTuile tuile, bool estSortie, int x, int y)
@@ -33,6 +36,6 @@ namespace TP2.LeReste
             Tuile = tuile;
             X = x;
             Y = y;
-        } 
+        }
     }
 }

@@ -36,9 +36,9 @@ namespace TP2
             this.zoo1 = new TP2.LeReste.Zoo();
             this.MnuStrip.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // MnuStrip
-            // 
+            //
             this.MnuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MnuFichier});
             this.MnuStrip.Location = new System.Drawing.Point(0, 0);
@@ -46,24 +46,24 @@ namespace TP2
             this.MnuStrip.Size = new System.Drawing.Size(1024, 24);
             this.MnuStrip.TabIndex = 1;
             this.MnuStrip.Text = "menuStrip1";
-            // 
+            //
             // MnuFichier
-            // 
+            //
             this.MnuFichier.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MnuNouvellePartie});
             this.MnuFichier.Name = "MnuFichier";
             this.MnuFichier.Size = new System.Drawing.Size(54, 20);
             this.MnuFichier.Text = "&Fichier";
-            // 
+            //
             // MnuNouvellePartie
-            // 
+            //
             this.MnuNouvellePartie.Name = "MnuNouvellePartie";
             this.MnuNouvellePartie.Size = new System.Drawing.Size(154, 22);
             this.MnuNouvellePartie.Text = "&Nouvelle partie";
             this.MnuNouvellePartie.Click += new System.EventHandler(this.MnuNouvellePartie_Click);
-            // 
+            //
             // zoo1
-            // 
+            //
             this.zoo1.Location = new System.Drawing.Point(0, 24);
             this.zoo1.MaximumSize = new System.Drawing.Size(1025, 929);
             this.zoo1.MinimumSize = new System.Drawing.Size(1025, 929);
@@ -71,18 +71,19 @@ namespace TP2
             this.zoo1.Size = new System.Drawing.Size(1025, 929);
             this.zoo1.TabIndex = 0;
             this.zoo1.Text = "zoo1";
-            // 
+            //
             // FrmZoo
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            //
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1024, 953);
+            this.ClientSize = new System.Drawing.Size(1365, 1142);
             this.Controls.Add(this.zoo1);
             this.Controls.Add(this.MnuStrip);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.MainMenuStrip = this.MnuStrip;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "FrmZoo";
             this.Text = "le zoo";
