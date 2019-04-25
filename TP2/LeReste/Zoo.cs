@@ -108,6 +108,7 @@ namespace TP2.LeReste
 
             //Fleurs, nourriture, plantes
             g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.NOURRITURE), 4 * 32, 7 * 32);
+            g.DrawImage(TileSetGenerator.GetTile(TileSetGenerator.PUIT), 4 * 32, 10 * 32);
 
             for (int j = 7; j < 10; j++)
             {
@@ -146,7 +147,7 @@ namespace TP2.LeReste
             DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.FLAQUE), 25, 7, TuileZoo.TypeTuile.Eau);
             DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TRONC), 19, 11, TuileZoo.TypeTuile.Eau);
 
-            //Enclos 4
+            //Enclos 3
             for (int i = 3; i < 14; i++)
             {
                 for (int j = 16; j < 24; j++)
@@ -169,10 +170,43 @@ namespace TP2.LeReste
 
             for (int i = 3; i < 8; i++)
             {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.PALMIER), i, 19, TuileZoo.TypeTuile.Sable);
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.PALMIER), i, 23, TuileZoo.TypeTuile.Gazon);
+                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.PALMIER), i, 19, TuileZoo.TypeTuile.Plante);
             }
 
+            for (int j = 20; j < 24; j++)
+            {
+                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.PALMIER), 7, j, TuileZoo.TypeTuile.Plante);
+            }
+
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.SABLE_GAZON), 10, 17, TuileZoo.TypeTuile.Sable);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.WATER), 11, 18, TuileZoo.TypeTuile.Eau);
+
+            //Enclos 4
+            for (int i = 18; i < 29; i++)
+            {
+                for (int j = 16; j < 24; j++)
+                {
+                    if (!((i < 27 && i > 19 && j < 22 && j > 17) || j==16 || j==23 || i==18 || i==28))
+                    {
+                        DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.WATER), i, j, TuileZoo.TypeTuile.Eau);
+                    }
+                    else
+                    {
+                        DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.GLACE_BLANCHE), i, j, TuileZoo.TypeTuile.Glace);
+                    }
+
+                }
+            }
+
+            for (int i = 21; i < 26; i++)
+            {
+                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.GLACE_BLEU), i, 19, TuileZoo.TypeTuile.Glace);
+                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.GLACE_BLEU), i, 20, TuileZoo.TypeTuile.Glace);
+            }
+
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.GLACE_BLANCHE), 22, 17, TuileZoo.TypeTuile.Glace);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.GLACE_BLANCHE), 23, 17, TuileZoo.TypeTuile.Glace);
+            DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.GLACE_BLANCHE), 24, 17, TuileZoo.TypeTuile.Glace);
 
         }
 

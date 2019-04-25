@@ -25,6 +25,7 @@ namespace TP2.LeReste
             Terre,
             Eau,
             Sable,
+            Glace,
         }
 
         public TuileZoo(TypeTuile tuile, bool estSortie)
