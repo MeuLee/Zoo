@@ -30,7 +30,7 @@ namespace TP2.LeReste
         public static List<Entite> ListeEntites { get; set; } = new List<Entite>();
         public static Enclos[] ListeEnclos { get; set; } = new Enclos[4];
 
-        public static Heros Heros { get; set; } = new Heros();
+        public static Heros Heros { get; set; }
 
         private static Random _r = new Random();
         private const int MILLISEC_SLEEP = 500;
@@ -52,9 +52,6 @@ namespace TP2.LeReste
 
         private void DessinerEntites(Graphics g)
         {
-            if (Heros.Position == null)
-                Heros.Position = Terrain[5,4];
-
             foreach (Entite e in ListeEntites)
                 g.DrawImage(e.Image, e.Position.X * 32, e.Position.Y * 32);
         }
@@ -337,7 +334,6 @@ namespace TP2.LeReste
         public Zoo()
         {
             CreerEnclos();
-            ListeEntites.Add(Heros);
             InitializeComponent();
             DoubleBuffered = true;
         }

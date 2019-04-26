@@ -13,7 +13,12 @@ namespace TP2.LeReste
     {
         public Partie(Zoo zoo)
         {
+            Zoo.ListeEntites.Add(new Heros());
             zoo.CreerEtLancerThreadAnimaux();
+            for (int i = 0; i < 3; i++)
+            {
+                Zoo.ListeEntites.Add(new Visiteur());
+            }
         }
 
         

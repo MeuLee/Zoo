@@ -45,28 +45,24 @@ namespace TP2.Entités
                     JoursGestation = 220;
                     JoursJusquaAdulte = 220;
                     MoisPourNourrir = 1;
-                    Image = TileSetGenerator.GetTile(TileSetGenerator.GRIZZLI);
                     Prix = 30;
                     break;
                 case TypeAnimal.Lion:
                     JoursGestation = 360;
                     JoursJusquaAdulte = 360;
                     MoisPourNourrir = 2;
-                    //Image = TileSetGenerator.GetTile(TileSetGenerator.LICORNE);
                     Prix = 35;
                     break;
                 case TypeAnimal.Mouton:
                     JoursGestation = 150;
                     JoursJusquaAdulte = 150;
                     MoisPourNourrir = 1;
-                    Image = TileSetGenerator.GetTile(TileSetGenerator.MOUTON);
                     Prix = 20;
                     break;
                 case TypeAnimal.Rhinoceros:
                     JoursGestation = 150;
                     JoursJusquaAdulte = 150;
                     MoisPourNourrir = 1;
-                    Image = TileSetGenerator.GetTile(TileSetGenerator.MOUTON);
                     Prix = 40;
                     break;
             }

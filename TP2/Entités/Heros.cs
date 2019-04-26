@@ -28,6 +28,8 @@ namespace TP2.Entités
         {
             Image = HEROS_BAS_1;
             Argent = 100;
+            Position = Zoo.Terrain[5, 4];
+            Zoo.Heros = this;
         }
 
         /// <summary>

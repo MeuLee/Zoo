@@ -19,5 +19,13 @@ namespace TP2.Entités
             M,
             F
         }
+
+        public enum Direction
+        {
+            Left,
+            Up,
+            Right,
+            Down
+        }
     }
 }
