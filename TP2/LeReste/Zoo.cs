@@ -42,6 +42,7 @@ namespace TP2.LeReste
             Graphics g = pe.Graphics;
             DessinerGazon(g);
             DessinerEntreeSortie(g);
+            DessinerMotZoo(g);
             DessinerAllee(g);
             DessinerClotureZoo(g);
             DessinerInterieurEnclos(g);
@@ -53,6 +54,7 @@ namespace TP2.LeReste
         {
             if (Heros.Position == null)
                 Heros.Position = Terrain[5,4];
+
             foreach (Entite e in ListeEntites)
                 g.DrawImage(e.Image, e.Position.X * 32, e.Position.Y * 32);
         }
@@ -68,19 +70,14 @@ namespace TP2.LeReste
                     DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TB_CLOTURE_ENCLOS), i, 6, TuileZoo.TypeTuile.Interdit);
                     DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TB_CLOTURE_ENCLOS), i, 23, TuileZoo.TypeTuile.Interdit);
                 }
-            }
 
-
-            for (int i = 3; i < 28; i++)
-            {
                 if (!(i < 18 && i > 12 || i < 25 && i > 20 || i < 10 && i > 5))
                 {
                     DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TB_CLOTURE_ENCLOS), i, 13, TuileZoo.TypeTuile.Interdit);
                     DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TB_CLOTURE_ENCLOS), i, 16, TuileZoo.TypeTuile.Interdit);
                 }
             }
-
-
+            
             //Clotures enclos verticaux
             for (int j = 6; j < 23; j++)
             {
@@ -248,40 +245,26 @@ namespace TP2.LeReste
             DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BR_CLOTURE_ZOO), 8, 3, TuileZoo.TypeTuile.Interdit);
             DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.BL_CLOTURE_ZOO), 23, 3, TuileZoo.TypeTuile.Interdit);
 
-            //Le haut
+            //Haut et bas
             for (int i = 2; i < 30; i++)
             {
                 if (!(i == 5 || i == 26 || (i < 24 && i > 7)))
                 {
                     DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.T_CLOTURE_ZOO), i, 3, TuileZoo.TypeTuile.Interdit);
                 }
-            }
-
-            //La gauche
-            for (int j = 4; j < 25; j++)
-            {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.L_CLOTURE_ZOO), 1, j, TuileZoo.TypeTuile.Interdit);
-            }
-
-            for (int j = 0; j < 3; j++)
-            {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.L_CLOTURE_ZOO),23, j, TuileZoo.TypeTuile.Interdit);
-            }
-
-            //Le bas
-            for (int i = 2; i < 30; i++)
-            {
                 DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.B_CLOTURE_ZOO), i, 25, TuileZoo.TypeTuile.Interdit);
             }
 
-            //La droite
+            //Gauche et droite
             for (int j = 4; j < 25; j++)
             {
+                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.L_CLOTURE_ZOO), 1, j, TuileZoo.TypeTuile.Interdit);
                 DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.R_CLOTURE_ZOO), 30, j, TuileZoo.TypeTuile.Interdit);
             }
 
             for (int j = 0; j < 3; j++)
             {
+                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.L_CLOTURE_ZOO),23, j, TuileZoo.TypeTuile.Interdit);
                 DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.R_CLOTURE_ZOO), 8, j, TuileZoo.TypeTuile.Interdit);
             }
         }
@@ -301,8 +284,10 @@ namespace TP2.LeReste
         {
             DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ENTREE), 3, 0, TuileZoo.TypeTuile.Interdit);
             DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.SORTIE), 24, 0, TuileZoo.TypeTuile.Interdit);
+        }
 
-            //Mot Zoo écrit avec les plantes
+        private void DessinerMotZoo(Graphics g)
+        {
             for (int i = 9; i < 23; i++)
             {
                 for (int j = 0; j < 4; j++)
@@ -335,6 +320,8 @@ namespace TP2.LeReste
 
             Terrain[x, y] = new TuileZoo(typeTuile, x == 26 && y == 4, x, y);
         }
+        #endregion
+
 
         public void InitializeComponent()
         {
@@ -357,11 +344,10 @@ namespace TP2.LeReste
 
         private void CreerEnclos()
         {
-            //les x et y seront à changer
-            ListeEnclos[0] = new Enclos(3, 3);
-            ListeEnclos[1] = new Enclos(18, 3);
-            ListeEnclos[2] = new Enclos(3, 13);
-            ListeEnclos[3] = new Enclos(18, 13);
+            ListeEnclos[0] = new Enclos(3, 6);
+            ListeEnclos[1] = new Enclos(18, 6);
+            ListeEnclos[2] = new Enclos(3, 16);
+            ListeEnclos[3] = new Enclos(18, 16);
         }
 
         public void CreerEtLancerThreadAnimaux()
@@ -383,6 +369,7 @@ namespace TP2.LeReste
                 if (nbThreadLoops * MILLISEC_SLEEP % 60000 == 0)
                 {
                     //a chaque minute, seul defaut est si MILLISEC_SLEEP n'est pas un multiple de 60000
+                    //peut etre que ca serait plus approprié de mettre ceci dans un timer
                     AjouterArgentSelonAnimauxEtDechets();
                 }
 
@@ -402,11 +389,12 @@ namespace TP2.LeReste
         }
 
         /// <summary>
-        /// Ajoute 1 dollar par animal présent dans le zoo, - 10c par déchet présent
+        /// Ajoute 1 dollar par animal présent dans le zoo, - 10c par déchet présent, par visiteur
         /// </summary>
         private void AjouterArgentSelonAnimauxEtDechets()
         {
-            Heros.Argent += ListeEntites.OfType<Animal>().Count() - ListeEntites.OfType<Dechet>().Count() * 0.1;
+            Heros.Argent += ListeEntites.OfType<Visiteur>().Count() * 
+                            (ListeEntites.OfType<Animal>().Count() - ListeEntites.OfType<Dechet>().Count() * 0.1);
         }
 
         /// <summary>
@@ -457,4 +445,3 @@ namespace TP2.LeReste
         }
     }
 }
-#endregion
