@@ -32,6 +32,7 @@ namespace TP2.Entités
             Zoo.Heros = this;
         }
 
+        #region Déplacement
         /// <summary>
         /// </summary>
         /// <param name="keyCode">La touche appuyée (w, a, s ou d)</param>
@@ -78,6 +79,7 @@ namespace TP2.Entités
             }
         }
 
+        #region Image
         /// <summary>
         /// Effectue une rotation entre 2 images pour simuler que le héros marche.
         /// </summary>
@@ -103,19 +105,28 @@ namespace TP2.Entités
             else
                 Image = bmp1;
         }
+        #endregion
+
+        internal override void DeplacerEtModifierImage() { return; }
 
         /// <summary>
         /// </summary>
         /// <param name="possibilite">La case où le héros veut se déplacer</param>
         /// <returns>S'il peut se déplacer sur la case ou non</returns>
-        private bool PeutSeDeplacer(TuileZoo possibilite)
+        protected override bool PeutSeDeplacer(TuileZoo possibilite)
         {
             foreach (Entite e in Zoo.ListeEntites)
             {
                 if (e.Position.X == possibilite.X && e.Position.Y == possibilite.Y)
                     return false;
             }
-            return (possibilite.Tuile == TuileZoo.TypeTuile.Allee || possibilite.Tuile == TuileZoo.TypeTuile.Enclos || possibilite.Tuile == TuileZoo.TypeTuile.Gazon || possibilite.Tuile == TuileZoo.TypeTuile.Glace || possibilite.Tuile == TuileZoo.TypeTuile.Sable || possibilite.Tuile == TuileZoo.TypeTuile.Terre);
+            return (possibilite.Tuile == TuileZoo.TypeTuile.Allee || 
+                    possibilite.Tuile == TuileZoo.TypeTuile.Enclos || 
+                    possibilite.Tuile == TuileZoo.TypeTuile.Gazon || 
+                    possibilite.Tuile == TuileZoo.TypeTuile.Glace || 
+                    possibilite.Tuile == TuileZoo.TypeTuile.Sable || 
+                    possibilite.Tuile == TuileZoo.TypeTuile.Terre);
         }
+        #endregion
     }
 }

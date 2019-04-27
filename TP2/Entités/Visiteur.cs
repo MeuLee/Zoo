@@ -94,7 +94,8 @@ namespace TP2.Entités
         }
         #endregion
 
-        internal void DeplacerEtModifierImage()
+        #region Déplacement
+        internal override void DeplacerEtModifierImage()
         {
             List<KeyValuePair<TuileZoo, Direction>> casesDisponibles = DeterminerCasesDisponibles();
             if (casesDisponibles.Count != 0)
@@ -107,6 +108,7 @@ namespace TP2.Entités
             }
         }
 
+        #region Image
         private void ModifierImage(Direction d)
         {
             switch(d)
@@ -143,6 +145,7 @@ namespace TP2.Entités
             else
                 Image = TileSetGenerator.GetTile(spriteInt);
         }
+        #endregion
 
         /// <summary>
         /// Construction d'une liste comprenant les cases immédiates où l'animal peut se déplacer
@@ -177,7 +180,7 @@ namespace TP2.Entités
         /// </summary>
         /// <param name="possibilite">Une case adjacente à l'animal</param>
         /// <returns>Si la case est libre ou non</returns>
-        private bool PeutSeDeplacer(TuileZoo possibilite)
+        protected override bool PeutSeDeplacer(TuileZoo possibilite)
         {
             foreach (Entite e in Zoo.ListeEntites.OfType<Humain>())
             {
@@ -186,5 +189,6 @@ namespace TP2.Entités
             }
             return possibilite.Tuile == TuileZoo.TypeTuile.Allee;
         }
+        #endregion
     }
 }

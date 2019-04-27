@@ -94,14 +94,15 @@ namespace TP2.Entités
             {
                 possibilite = Zoo.Terrain[_r.Next(Enclos.X + 1, Enclos.X + Enclos.Width - 1), //X compris dans l'enclos de l'animal
                                           _r.Next(Enclos.Y + 1, Enclos.Y + Enclos.Height - 1)];//Y compris dans l'enclos de l'animal
-            } while (possibilite.ContientAnimal || possibilite.ContientHumain);
+            } while (possibilite.ContientAnimal || possibilite.ContientHumain || possibilite.Tuile == TuileZoo.TypeTuile.Interdit);
             return possibilite;
         }
 
+        #region Déplacement
         /// <summary>
         /// L'animal se déplace sur une case au hasard, parmi celles où il peut se déplacer
         /// </summary>
-        internal void DeplacerEtModifierImage()
+        internal override void DeplacerEtModifierImage()
         {
             List<TuileZoo> casesDisponibles = DeterminerCasesDisponibles();
             if (casesDisponibles.Count != 0)
@@ -142,21 +143,23 @@ namespace TP2.Entités
         /// </summary>
         /// <param name="possibilite">Une case adjacente à l'animal</param>
         /// <returns>Si la case est libre ou non</returns>
-        private bool PeutSeDeplacer(TuileZoo possibilite)
+        protected override bool PeutSeDeplacer(TuileZoo possibilite)
         {
             foreach (Entite e in Zoo.ListeEntites)
             {
                 if (e.Position.X == possibilite.X && e.Position.Y == possibilite.Y)
                     return false;
             }
-            return possibilite.Tuile == TuileZoo.TypeTuile.Enclos ||
+            return (possibilite.Tuile == TuileZoo.TypeTuile.Enclos ||
                    possibilite.Tuile == TuileZoo.TypeTuile.Glace ||
                    possibilite.Tuile == TuileZoo.TypeTuile.Sable ||
                    possibilite.Tuile == TuileZoo.TypeTuile.Terre ||
                    possibilite.Tuile == TuileZoo.TypeTuile.Eau ||
                    possibilite.Tuile == TuileZoo.TypeTuile.Decoration ||
-                   possibilite.Tuile == TuileZoo.TypeTuile.Gazon &&
+                   possibilite.Tuile == TuileZoo.TypeTuile.Gazon) &&
                    possibilite.Tuile != TuileZoo.TypeTuile.Interdit;
         }
+        #endregion
+
     }
 }

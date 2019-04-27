@@ -15,5 +15,15 @@ namespace TP2.Entités
             Position = position;
             //Image = ;
         }
+
+        internal override void DeplacerEtModifierImage()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool PeutSeDeplacer(TuileZoo tuile)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

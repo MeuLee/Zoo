@@ -19,6 +19,8 @@ namespace TP2.LeReste
             {
                 new Animal(Animal.TypeAnimal.Grizzly);
                 new Animal(Animal.TypeAnimal.Lion);
+                new Animal(Animal.TypeAnimal.Licorne, Zoo.ListeEnclos[0]);
+                new Animal(Animal.TypeAnimal.Mouton, Zoo.ListeEnclos[1]);
             }
         }
 

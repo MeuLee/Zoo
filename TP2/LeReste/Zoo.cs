@@ -346,6 +346,7 @@ namespace TP2.LeReste
             ListeEnclos[3] = new Enclos(18, 16);
         }
 
+        #region Thread
         public void CreerEtLancerThreadAnimaux()
         {
             Thread thread = new Thread(new ThreadStart(BoucleDeJeu))
@@ -369,7 +370,7 @@ namespace TP2.LeReste
                     AjouterArgentSelonAnimauxEtDechets();
                 }
 
-                if (MoinsDeVisiteursQueDAnimaux() && _r.Next(0, 10) == 0)//une chance sur 10
+                if (_r.Next(0, 10) == 0 && MoinsDeVisiteursQueDAnimaux())//une chance sur 10
                     CreerNouveauVisiteur();
                 DeplacerAnimaux();
                 DeplacerVisiteurs();
@@ -439,5 +440,6 @@ namespace TP2.LeReste
                 }
             }
         }
+        #endregion
     }
 }

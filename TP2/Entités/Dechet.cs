@@ -15,5 +15,12 @@ namespace TP2.Entités
             Position = position;
             //Image = ;
         }
+
+        internal override void DeplacerEtModifierImage() { };
+
+        protected override bool PeutSeDeplacer(TuileZoo tuile)
+        {
+            return false;
+        }
     }
 }

@@ -27,5 +27,8 @@ namespace TP2.Entités
             Right,
             Down
         }
+
+        internal abstract void DeplacerEtModifierImage();
+        protected abstract bool PeutSeDeplacer(TuileZoo tuile);
     }
 }

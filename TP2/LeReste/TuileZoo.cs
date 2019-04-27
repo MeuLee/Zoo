@@ -25,8 +25,8 @@ namespace TP2.LeReste
             Eau,
             Sable,
             Glace,
-            Interdit,
-            Decoration
+            Decoration,
+            Interdit
         }
 
         public TuileZoo(TypeTuile tuile, bool estSortie, int x, int y)
