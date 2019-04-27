@@ -29,6 +29,7 @@ namespace TP2
         private void BtnNouvellePartie_Click(object sender, EventArgs e)
         {
             new Partie(zoo1);
+            BtnNouvellePartie.Hide();
         }
     }
 }

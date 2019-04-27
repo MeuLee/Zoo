@@ -17,7 +17,8 @@ namespace TP2.LeReste
             zoo.CreerEtLancerThreadAnimaux();
             for (int i = 0; i < 3; i++)
             {
-                Zoo.ListeEntites.Add(new Visiteur());
+                new Animal(Animal.TypeAnimal.Grizzly);
+                new Animal(Animal.TypeAnimal.Lion);
             }
         }
 

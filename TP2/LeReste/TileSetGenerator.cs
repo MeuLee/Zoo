@@ -95,6 +95,13 @@ namespace TP2.LeReste
         public static int V4_RIGHT_WALK2 = 70;
         #endregion
 
+        #region Animaux
+        public static int GRIZZLY = 71;
+        public static int LICORNE = 72;
+        public static int LION = 73;
+        public static int MOUTON = 74;
+        #endregion
+
         private static List<TileCoord> listeCoord = new List<TileCoord>();
         private static List<Bitmap> listeBitmap = new List<Bitmap>();
 
@@ -254,6 +261,16 @@ namespace TP2.LeReste
             listeBitmap.Add(LoadTile(Properties.Resources.personnages, V3_RIGHT_WALK2, 32, 32));
             #endregion
 
+            #region Animaux
+            listeCoord.Add(new TileCoord() { Ligne = 20, Colonne = 16 });
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, GRIZZLY, 32, 32));
+            listeCoord.Add(new TileCoord() { Ligne = 16, Colonne = 16 });
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, LICORNE, 32, 32));
+            listeCoord.Add(new TileCoord() { Ligne = 16, Colonne = 24 });
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, LION, 32, 32));
+            listeCoord.Add(new TileCoord() { Ligne = 19, Colonne = 8 });
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, MOUTON, 32, 32));
+            #endregion
         }
 
         private static Bitmap LoadTile(Image source, int posListe, int width, int height)

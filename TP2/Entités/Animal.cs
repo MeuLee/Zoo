@@ -13,7 +13,7 @@ namespace TP2.Entités
         public TypeAnimal Type { get; set; }
         public int JoursGestation { get; set; }
         public int JoursJusquaAdulte { get; set; }
-        public int MoisPourNourrir { get; set; }
+        public int MinutesPourNourrir { get; set; }//en temps reel, ou on peut changer ca pour des jours (*60)
         public DateTime DerniereFoisNourri { get; set; }
         public AgeAnimal Age { get; set; }
         public bool Enceinte { get; set; }
@@ -27,7 +27,7 @@ namespace TP2.Entités
             Mouton,
             Grizzly,
             Lion,
-            Rhinoceros
+            Licorne
         }
 
         public enum AgeAnimal
@@ -36,7 +36,7 @@ namespace TP2.Entités
             Adulte
         }
 
-        public Animal(TypeAnimal type, Enclos enclos, AgeAnimal age = AgeAnimal.Adulte)
+        public Animal(TypeAnimal type, Enclos enclos = null, AgeAnimal age = AgeAnimal.Adulte)
         {
             Type = type;
             switch (type)
@@ -44,29 +44,36 @@ namespace TP2.Entités
                 case TypeAnimal.Grizzly:
                     JoursGestation = 220;
                     JoursJusquaAdulte = 220;
-                    MoisPourNourrir = 1;
+                    MinutesPourNourrir = 2;
                     Prix = 30;
+                    Image = TileSetGenerator.GetTile(TileSetGenerator.GRIZZLY);
+                    Enclos = Zoo.ListeEnclos[3];
                     break;
                 case TypeAnimal.Lion:
-                    JoursGestation = 360;
-                    JoursJusquaAdulte = 360;
-                    MoisPourNourrir = 2;
+                    JoursGestation = 110;
+                    JoursJusquaAdulte = 110;
+                    MinutesPourNourrir = 2;
                     Prix = 35;
+                    Image = TileSetGenerator.GetTile(TileSetGenerator.LION);
+                    Enclos = Zoo.ListeEnclos[2];
                     break;
                 case TypeAnimal.Mouton:
                     JoursGestation = 150;
                     JoursJusquaAdulte = 150;
-                    MoisPourNourrir = 1;
+                    MinutesPourNourrir = 2;
                     Prix = 20;
+                    Image = TileSetGenerator.GetTile(TileSetGenerator.MOUTON);
+                    Enclos = enclos;
                     break;
-                case TypeAnimal.Rhinoceros:
-                    JoursGestation = 150;
-                    JoursJusquaAdulte = 150;
-                    MoisPourNourrir = 1;
-                    Prix = 40;
+                case TypeAnimal.Licorne:
+                    JoursGestation = 360;
+                    JoursJusquaAdulte = 360;
+                    MinutesPourNourrir = 3;
+                    Prix = 50;
+                    Image = TileSetGenerator.GetTile(TileSetGenerator.LICORNE);
+                    Enclos = enclos;
                     break;
             }
-            Enclos = enclos;
             DerniereFoisNourri = DateTime.Now;
             AFaim = false;
             Age = age;
@@ -142,7 +149,14 @@ namespace TP2.Entités
                 if (e.Position.X == possibilite.X && e.Position.Y == possibilite.Y)
                     return false;
             }
-            return possibilite.Tuile == TuileZoo.TypeTuile.Enclos;
+            return possibilite.Tuile == TuileZoo.TypeTuile.Enclos ||
+                   possibilite.Tuile == TuileZoo.TypeTuile.Glace ||
+                   possibilite.Tuile == TuileZoo.TypeTuile.Sable ||
+                   possibilite.Tuile == TuileZoo.TypeTuile.Terre ||
+                   possibilite.Tuile == TuileZoo.TypeTuile.Eau ||
+                   possibilite.Tuile == TuileZoo.TypeTuile.Decoration ||
+                   possibilite.Tuile == TuileZoo.TypeTuile.Gazon &&
+                   possibilite.Tuile != TuileZoo.TypeTuile.Interdit;
         }
     }
 }
