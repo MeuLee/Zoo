@@ -74,7 +74,7 @@ namespace TP2.LeReste
                     DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TB_CLOTURE_ENCLOS), i, 16, TuileZoo.TypeTuile.Interdit);
                 }
             }
-            
+
             //Clotures enclos verticaux
             for (int j = 6; j < 23; j++)
             {
@@ -108,7 +108,15 @@ namespace TP2.LeReste
             {
                 for (int j = 6; j < 14; j++)
                 {
-                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.GAZON), i, j, TuileZoo.TypeTuile.Gazon);
+                    if (!(j == 10 && i > 3 && i < 7 || j == 11 && i > 3 && i < 7 || j == 12 && i > 3 && i < 7 || j == 7 && i == 5))
+                    {
+                        DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.GAZON), i, j, TuileZoo.TypeTuile.Gazon);
+                    }
+                    else
+                    {
+                        DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.GAZON), i, j, TuileZoo.TypeTuile.Interdit);
+                    }
+
                 }
             }
 
@@ -150,6 +158,23 @@ namespace TP2.LeReste
                 }
             }
 
+            for (int i = 25; i < 28; i++)
+            {
+                for (int j = 7; j < 10; j++)
+                {
+                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TERRE_VERTE), i, j, TuileZoo.TypeTuile.Interdit);
+                }
+            }
+
+            for (int i = 19; i < 21; i++)
+            {
+                for (int j = 11; j < 13; j++)
+                {
+                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TERRE_VERTE), i, j, TuileZoo.TypeTuile.Interdit);
+                }
+            }
+
+
             DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.FLAQUE), 25, 7, TuileZoo.TypeTuile.Eau);
             DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TRONC), 19, 11, TuileZoo.TypeTuile.Eau);
 
@@ -176,7 +201,11 @@ namespace TP2.LeReste
 
             for (int i = 3; i < 8; i++)
             {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.PALMIER), i, 19, TuileZoo.TypeTuile.Decoration);
+                if (i != 5)
+                {
+                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.PALMIER), i, 19, TuileZoo.TypeTuile.Decoration);
+                }
+
             }
 
             for (int j = 20; j < 24; j++)
@@ -261,7 +290,7 @@ namespace TP2.LeReste
 
             for (int j = 0; j < 3; j++)
             {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.L_CLOTURE_ZOO),23, j, TuileZoo.TypeTuile.Interdit);
+                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.L_CLOTURE_ZOO), 23, j, TuileZoo.TypeTuile.Interdit);
                 DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.R_CLOTURE_ZOO), 8, j, TuileZoo.TypeTuile.Interdit);
             }
         }
@@ -389,7 +418,7 @@ namespace TP2.LeReste
         /// </summary>
         private void AjouterArgentSelonAnimauxEtDechets()
         {
-            Heros.Argent += ListeEntites.OfType<Visiteur>().Count() * 
+            Heros.Argent += ListeEntites.OfType<Visiteur>().Count() *
                             (ListeEntites.OfType<Animal>().Count() - ListeEntites.OfType<Dechet>().Count() * 0.1);
         }
 
