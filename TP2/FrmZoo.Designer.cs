@@ -46,22 +46,23 @@ namespace TP2
             // 
             // zoo1
             // 
-            this.zoo1.Location = new System.Drawing.Point(0, 0);
-            this.zoo1.Margin = new System.Windows.Forms.Padding(2);
+            this.zoo1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.zoo1.Location = new System.Drawing.Point(0, 30);
             this.zoo1.MaximumSize = new System.Drawing.Size(1025, 929);
             this.zoo1.MinimumSize = new System.Drawing.Size(1025, 929);
             this.zoo1.Name = "zoo1";
             this.zoo1.Size = new System.Drawing.Size(1025, 929);
-            this.zoo1.TabIndex = 0;
+            this.zoo1.TabIndex = 2;
             this.zoo1.Text = "zoo1";
             // 
             // FrmZoo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1024, 863);
-            this.Controls.Add(this.BtnNouvellePartie);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1127, 870);
             this.Controls.Add(this.zoo1);
+            this.Controls.Add(this.BtnNouvellePartie);
             this.DoubleBuffered = true;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -73,8 +74,7 @@ namespace TP2
         }
 
         #endregion
-
-        public Zoo zoo1;
         private System.Windows.Forms.Button BtnNouvellePartie;
+        private Zoo zoo1;
     }
 }
