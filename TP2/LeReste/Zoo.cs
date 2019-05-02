@@ -401,15 +401,58 @@ namespace TP2.LeReste
                 if (MoinsDeVisiteursQueDAnimaux() && _r.Next(0, 10) == 0)//une chance sur 10
                     CreerNouveauVisiteur();
                 DeplacerAnimaux();
-                DeplacerVisiteurs();
+                List<TuileZoo> listeNouveauxDechets = DeplacerVisiteurs();
+                SpawnDechets(listeNouveauxDechets);
+                DeplacerConcierges();
+                RamasserDechets();
                 //deplacer concierges
                 //updater temps
-                //dechets
                 //breed
                 Invoke((MethodInvoker)delegate ()
                 {
                     Refresh();
                 });
+            }
+        }
+
+        private void SpawnDechets(List<TuileZoo> listeNouveauxDechets)
+        {
+            foreach (TuileZoo emplacementDechet in listeNouveauxDechets)
+
+                new Dechet(emplacementDechet);
+        }
+
+        private void RamasserDechets()
+        {
+            List<TuileZoo> emplacementConciergesActuel = new List<TuileZoo>();
+            List<Dechet> dechetsAEnlever = new List<Dechet>();
+
+            //liste de la position des concierges
+            foreach (Entite e in ListeEntites.OfType<Concierge>())
+                emplacementConciergesActuel.Add(e.Position);
+
+            //liste des dechets qui ont la meme position qu'un concierge
+            foreach (Entite e in ListeEntites.OfType<Dechet>())
+                if (Contient(emplacementConciergesActuel, e.Position))
+                    dechetsAEnlever.Add(e as Dechet);
+            
+            foreach (Dechet d in dechetsAEnlever)
+                ListeEntites.Remove(d);
+        }
+
+        private bool Contient(List<TuileZoo> listeTuile, TuileZoo position)
+        {
+            foreach (TuileZoo tuile in listeTuile)
+                if (tuile.X == position.X && tuile.Y == position.Y)
+                    return true;
+            return false;
+        }
+
+        private void DeplacerConcierges()
+        {
+            foreach (Entite e in ListeEntites.OfType<Concierge>())
+            {
+                (e as Concierge).DeplacerEtModifierImage();
             }
         }
 
@@ -433,16 +476,25 @@ namespace TP2.LeReste
         /// <summary>
         /// Déplace les visiteurs dans le tableau 2d (Refresh sera call plus tard).
         /// </summary>
-        private void DeplacerVisiteurs()
+        private List<TuileZoo> DeplacerVisiteurs()
         {
+            List<TuileZoo> emplacementsDechet = new List<TuileZoo>();
             foreach (Entite e in ListeEntites.OfType<Visiteur>())
             {
-                if (e != null)
-                {
-                    Visiteur v = e as Visiteur;
-                    v.DeplacerEtModifierImage();
-                }
+                if (TuileContientPasDechet(e.Position) && _r.Next(0, 100) == 0)
+                    emplacementsDechet.Add(e.Position);
+                (e as Visiteur).DeplacerEtModifierImage();
+
             }
+            return emplacementsDechet;
+        }
+
+        private bool TuileContientPasDechet(TuileZoo position)
+        {
+            foreach (Entite e in ListeEntites.OfType<Dechet>())
+                if (e.Position.X == position.X && e.Position.Y == position.Y)
+                    return false;
+            return true;
         }
 
         /// <summary>
@@ -461,11 +513,7 @@ namespace TP2.LeReste
         {
             foreach (Entite e in ListeEntites.OfType<Animal>())
             {
-                if (e != null)
-                {
-                    Animal a = e as Animal;
-                    a.DeplacerEtModifierImage();
-                }
+                (e as Animal).DeplacerEtModifierImage();
             }
         }
     }

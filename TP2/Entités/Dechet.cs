@@ -13,7 +13,13 @@ namespace TP2.Entités
         public Dechet(TuileZoo position)
         {
             Position = position;
-            //Image = ;
+            Image = DeterminerImage();
+            Zoo.ListeEntites.Add(this);
+        }
+
+        private Bitmap DeterminerImage()
+        {
+            return TileSetGenerator.GetTile(_r.Next(0, 2) + TileSetGenerator.DECHET_1);
         }
     }
 }

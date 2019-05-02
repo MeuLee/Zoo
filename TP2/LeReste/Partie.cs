@@ -19,6 +19,7 @@ namespace TP2.LeReste
             {
                 new Animal(Animal.TypeAnimal.Grizzly);
                 new Animal(Animal.TypeAnimal.Lion);
+                new Concierge();
             }
         }
 
