@@ -360,9 +360,9 @@ namespace TP2.LeReste
         public void InitializeComponent()
         {
             this.SuspendLayout();
-            //
+            // 
             // Zoo
-            //
+            // 
             this.Size = new System.Drawing.Size(1024, 832);
             this.ResumeLayout(false);
 

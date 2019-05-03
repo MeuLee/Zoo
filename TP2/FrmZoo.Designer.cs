@@ -36,7 +36,7 @@ namespace TP2
             // 
             // BtnNouvellePartie
             // 
-            this.BtnNouvellePartie.Location = new System.Drawing.Point(12, 839);
+            this.BtnNouvellePartie.Location = new System.Drawing.Point(-2, 0);
             this.BtnNouvellePartie.Name = "BtnNouvellePartie";
             this.BtnNouvellePartie.Size = new System.Drawing.Size(91, 23);
             this.BtnNouvellePartie.TabIndex = 1;
@@ -47,7 +47,7 @@ namespace TP2
             // zoo1
             // 
             this.zoo1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.zoo1.Location = new System.Drawing.Point(0, 30);
+            this.zoo1.Location = new System.Drawing.Point(-2, 12);
             this.zoo1.MaximumSize = new System.Drawing.Size(1025, 929);
             this.zoo1.MinimumSize = new System.Drawing.Size(1025, 929);
             this.zoo1.Name = "zoo1";
@@ -60,14 +60,14 @@ namespace TP2
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1127, 870);
+            this.ClientSize = new System.Drawing.Size(1142, 871);
             this.Controls.Add(this.zoo1);
             this.Controls.Add(this.BtnNouvellePartie);
             this.DoubleBuffered = true;
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "FrmZoo";
-            this.Text = "le zoo";
+            this.Text = "ZOO";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmZoo_KeyDown);
             this.ResumeLayout(false);
 
