@@ -74,7 +74,7 @@ namespace TP2.LeReste
                     DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TB_CLOTURE_ENCLOS), i, 16, TuileZoo.TypeTuile.Interdit);
                 }
             }
-            
+
             //Clotures enclos verticaux
             for (int j = 6; j < 23; j++)
             {
@@ -108,7 +108,15 @@ namespace TP2.LeReste
             {
                 for (int j = 6; j < 14; j++)
                 {
-                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.GAZON), i, j, TuileZoo.TypeTuile.Gazon);
+                    if (!(j == 10 && i > 3 && i < 7 || j == 11 && i > 3 && i < 7 || j == 12 && i > 3 && i < 7 || j == 7 && i == 5))
+                    {
+                        DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.GAZON), i, j, TuileZoo.TypeTuile.Gazon);
+                    }
+                    else
+                    {
+                        DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.GAZON), i, j, TuileZoo.TypeTuile.Interdit);
+                    }
+
                 }
             }
 
@@ -150,6 +158,23 @@ namespace TP2.LeReste
                 }
             }
 
+            for (int i = 25; i < 28; i++)
+            {
+                for (int j = 7; j < 10; j++)
+                {
+                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TERRE_VERTE), i, j, TuileZoo.TypeTuile.Interdit);
+                }
+            }
+
+            for (int i = 19; i < 21; i++)
+            {
+                for (int j = 11; j < 13; j++)
+                {
+                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TERRE_VERTE), i, j, TuileZoo.TypeTuile.Interdit);
+                }
+            }
+
+
             DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.FLAQUE), 25, 7, TuileZoo.TypeTuile.Eau);
             DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.TRONC), 19, 11, TuileZoo.TypeTuile.Eau);
 
@@ -176,7 +201,11 @@ namespace TP2.LeReste
 
             for (int i = 3; i < 8; i++)
             {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.PALMIER), i, 19, TuileZoo.TypeTuile.Decoration);
+                if (i != 5)
+                {
+                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.PALMIER), i, 19, TuileZoo.TypeTuile.Decoration);
+                }
+
             }
 
             for (int j = 20; j < 24; j++)
@@ -261,7 +290,7 @@ namespace TP2.LeReste
 
             for (int j = 0; j < 3; j++)
             {
-                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.L_CLOTURE_ZOO),23, j, TuileZoo.TypeTuile.Interdit);
+                DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.L_CLOTURE_ZOO), 23, j, TuileZoo.TypeTuile.Interdit);
                 DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.R_CLOTURE_ZOO), 8, j, TuileZoo.TypeTuile.Interdit);
             }
         }
@@ -373,10 +402,12 @@ namespace TP2.LeReste
                 if (_r.Next(0, 10) == 0 && MoinsDeVisiteursQueDAnimaux())//une chance sur 10
                     CreerNouveauVisiteur();
                 DeplacerAnimaux();
-                DeplacerVisiteurs();
+                List<TuileZoo> listeNouveauxDechets = DeplacerVisiteurs();
+                SpawnDechets(listeNouveauxDechets);
+                DeplacerConcierges();
+                RamasserDechets();
                 //deplacer concierges
                 //updater temps
-                //dechets
                 //breed
                 Invoke((MethodInvoker)delegate ()
                 {
@@ -385,12 +416,53 @@ namespace TP2.LeReste
             }
         }
 
+        private void SpawnDechets(List<TuileZoo> listeNouveauxDechets)
+        {
+            foreach (TuileZoo emplacementDechet in listeNouveauxDechets)
+
+                new Dechet(emplacementDechet);
+        }
+
+        private void RamasserDechets()
+        {
+            List<TuileZoo> emplacementConciergesActuel = new List<TuileZoo>();
+            List<Dechet> dechetsAEnlever = new List<Dechet>();
+
+            //liste de la position des concierges
+            foreach (Entite e in ListeEntites.OfType<Concierge>())
+                emplacementConciergesActuel.Add(e.Position);
+
+            //liste des dechets qui ont la meme position qu'un concierge
+            foreach (Entite e in ListeEntites.OfType<Dechet>())
+                if (Contient(emplacementConciergesActuel, e.Position))
+                    dechetsAEnlever.Add(e as Dechet);
+            
+            foreach (Dechet d in dechetsAEnlever)
+                ListeEntites.Remove(d);
+        }
+
+        private bool Contient(List<TuileZoo> listeTuile, TuileZoo position)
+        {
+            foreach (TuileZoo tuile in listeTuile)
+                if (tuile.X == position.X && tuile.Y == position.Y)
+                    return true;
+            return false;
+        }
+
+        private void DeplacerConcierges()
+        {
+            foreach (Entite e in ListeEntites.OfType<Concierge>())
+            {
+                (e as Concierge).DeplacerEtModifierImage();
+            }
+        }
+
         /// <summary>
         /// Ajoute 1 dollar par animal présent dans le zoo, - 10c par déchet présent, par visiteur
         /// </summary>
         private void AjouterArgentSelonAnimauxEtDechets()
         {
-            Heros.Argent += ListeEntites.OfType<Visiteur>().Count() * 
+            Heros.Argent += ListeEntites.OfType<Visiteur>().Count() *
                             (ListeEntites.OfType<Animal>().Count() - ListeEntites.OfType<Dechet>().Count() * 0.1);
         }
 
@@ -405,16 +477,25 @@ namespace TP2.LeReste
         /// <summary>
         /// Déplace les visiteurs dans le tableau 2d (Refresh sera call plus tard).
         /// </summary>
-        private void DeplacerVisiteurs()
+        private List<TuileZoo> DeplacerVisiteurs()
         {
+            List<TuileZoo> emplacementsDechet = new List<TuileZoo>();
             foreach (Entite e in ListeEntites.OfType<Visiteur>())
             {
-                if (e != null)
-                {
-                    Visiteur v = e as Visiteur;
-                    v.DeplacerEtModifierImage();
-                }
+                if (TuileContientPasDechet(e.Position) && _r.Next(0, 100) == 0)
+                    emplacementsDechet.Add(e.Position);
+                (e as Visiteur).DeplacerEtModifierImage();
+
             }
+            return emplacementsDechet;
+        }
+
+        private bool TuileContientPasDechet(TuileZoo position)
+        {
+            foreach (Entite e in ListeEntites.OfType<Dechet>())
+                if (e.Position.X == position.X && e.Position.Y == position.Y)
+                    return false;
+            return true;
         }
 
         /// <summary>
@@ -433,11 +514,7 @@ namespace TP2.LeReste
         {
             foreach (Entite e in ListeEntites.OfType<Animal>())
             {
-                if (e != null)
-                {
-                    Animal a = e as Animal;
-                    a.DeplacerEtModifierImage();
-                }
+                (e as Animal).DeplacerEtModifierImage();
             }
         }
         #endregion

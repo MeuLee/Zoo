@@ -106,6 +106,7 @@ namespace TP2.Entités
                 Position = prochaineTuile;
                 ModifierImage(caseDirection.Value);
             }
+
         }
 
         #region Image
@@ -182,9 +183,9 @@ namespace TP2.Entités
         /// <returns>Si la case est libre ou non</returns>
         protected override bool PeutSeDeplacer(TuileZoo possibilite)
         {
-            foreach (Entite e in Zoo.ListeEntites.OfType<Humain>())
+            foreach (Entite e in Zoo.ListeEntites)
             {
-                if (e.Position.X == possibilite.X && e.Position.Y == possibilite.Y)
+                if ((e is Humain || e is Dechet) && e.Position.X == possibilite.X && e.Position.Y == possibilite.Y)
                     return false;
             }
             return possibilite.Tuile == TuileZoo.TypeTuile.Allee;

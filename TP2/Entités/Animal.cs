@@ -121,10 +121,14 @@ namespace TP2.Entités
         private List<TuileZoo> DeterminerCasesDisponibles()
         {
             List<TuileZoo> casesDisponibles = new List<TuileZoo>();
-            AjouterCaseAListe(Zoo.Terrain[Position.X - 1, Position.Y], casesDisponibles);
-            AjouterCaseAListe(Zoo.Terrain[Position.X, Position.Y - 1], casesDisponibles);
-            AjouterCaseAListe(Zoo.Terrain[Position.X + 1, Position.Y], casesDisponibles);
-            AjouterCaseAListe(Zoo.Terrain[Position.X, Position.Y + 1], casesDisponibles);
+            try
+            {
+                AjouterCaseAListe(Zoo.Terrain[Position.X - 1, Position.Y], casesDisponibles);
+                AjouterCaseAListe(Zoo.Terrain[Position.X, Position.Y - 1], casesDisponibles);
+                AjouterCaseAListe(Zoo.Terrain[Position.X + 1, Position.Y], casesDisponibles);
+                AjouterCaseAListe(Zoo.Terrain[Position.X, Position.Y + 1], casesDisponibles);
+            } 
+            catch (IndexOutOfRangeException e) { }
             return casesDisponibles;
         }
 

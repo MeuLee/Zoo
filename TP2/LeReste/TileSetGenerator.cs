@@ -102,6 +102,23 @@ namespace TP2.LeReste
         public static int MOUTON = 74;
         #endregion
 
+        #region Concierge
+        public static int C_DOWN_IDLE = 75;
+        public static int C_DOWN_WALK = 76;
+        public static int C_UP_IDLE = 77;
+        public static int C_UP_WALK = 78;
+        public static int C_LEFT_IDLE = 79;
+        public static int C_LEFT_WALK1 = 80;
+        public static int C_LEFT_WALK2 = 81;
+        public static int C_RIGHT_IDLE = 82;
+        public static int C_RIGHT_WALK1 = 83;
+        public static int C_RIGHT_WALK2 = 84;
+        #endregion
+
+        #region Déchets
+        public static int DECHET_1 = 85;
+        public static int DECHET_2 = 86;
+        #endregion
         private static List<TileCoord> listeCoord = new List<TileCoord>();
         private static List<Bitmap> listeBitmap = new List<Bitmap>();
 
@@ -175,7 +192,7 @@ namespace TP2.LeReste
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, PUIT, 96, 96));
             #endregion
 
-            #region Personnages
+            #region Visiteurs
             listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 0 });
             listeBitmap.Add(LoadTile(Properties.Resources.personnages, V1_DOWN_IDLE, 32, 32));
             listeCoord.Add(new TileCoord() { Ligne = 0, Colonne = 3 });
@@ -271,6 +288,37 @@ namespace TP2.LeReste
             listeCoord.Add(new TileCoord() { Ligne = 19, Colonne = 8 });
             listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, MOUTON, 32, 32));
             #endregion
+
+            #region Concierge
+            listeCoord.Add(new TileCoord() { Ligne = 2, Colonne = 0 });
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, C_DOWN_IDLE, 32, 32));
+            listeCoord.Add(new TileCoord() { Ligne = 2, Colonne = 3 });
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, C_DOWN_WALK, 32, 32));
+            listeCoord.Add(new TileCoord() { Ligne = 2, Colonne = 1 });
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, C_UP_IDLE, 32, 32));
+            listeCoord.Add(new TileCoord() { Ligne = 2, Colonne = 4 });
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, C_UP_WALK, 32, 32));
+            listeCoord.Add(new TileCoord() { Ligne = 2, Colonne = 2 });
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, C_LEFT_IDLE, 32, 32));
+            listeCoord.Add(new TileCoord() { Ligne = 2, Colonne = 5 });
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, C_LEFT_WALK1, 32, 32));
+            listeCoord.Add(new TileCoord() { Ligne = 2, Colonne = 6 });
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, C_LEFT_WALK2, 32, 32));
+            listeCoord.Add(new TileCoord() { Ligne = 2, Colonne = 7 });
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, C_RIGHT_IDLE, 32, 32));
+            listeCoord.Add(new TileCoord() { Ligne = 2, Colonne = 8 });
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, C_RIGHT_WALK1, 32, 32));
+            listeCoord.Add(new TileCoord() { Ligne = 2, Colonne = 9 });
+            listeBitmap.Add(LoadTile(Properties.Resources.personnages, C_RIGHT_WALK2, 32, 32));
+            #endregion
+
+            #region Déchet
+            listeCoord.Add(new TileCoord() { Ligne = 23, Colonne = 0 });
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, DECHET_1, 32, 32));
+            listeCoord.Add(new TileCoord() { Ligne = 23, Colonne = 1 });
+            listeBitmap.Add(LoadTile(Properties.Resources.zoo_tileset, DECHET_2, 32, 32));
+            #endregion
+
         }
 
         private static Bitmap LoadTile(Image source, int posListe, int width, int height)
