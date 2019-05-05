@@ -14,18 +14,17 @@ namespace TP2.Entités
         public DateTime QuandEntreZoo { get; private set; }
         public SexeEntite SexeVisiteur { get; private set; }
         public string Nom { get; private set; }
-        public int TileSetSprite { get; private set; }
 
         /// <summary>
         /// 0-14 prénoms féminins, 15-29 prénoms masculins
         /// </summary>
-        private List<string> _prenoms = new List<string>
+        private readonly List<string> _prenoms = new List<string>
         {
             "Camille", "Louise", "Ambre", "Agathe", "Jade", "Julia", "Mila", "Alice", "Emma", "Anna", "Lucie", "Eden", "Romane", "Lola", "Emy",
             "Louis", "Gabriel", "Paul", "Hugo", "Valentin", "Gabin", "Arthur", "Jules", "Lucas", "Sacha", "Ethan", "Antoine", "Nathan", "Thomas", "Tom"
         };
 
-        private List<string> _noms = new List<string>
+        private readonly List<string> _noms = new List<string>
         {
             "Tremblay", "Gagnon", "Roy", "Bouchard", "Gauthier", "Morin", "Lavoie", "Fortin", "Ouellet", "Pelletier", "Bergeron", "Leblanc", "Paquette", "Girard", "Simard"
         };
@@ -94,102 +93,22 @@ namespace TP2.Entités
         }
         #endregion
 
-        #region Déplacement
-        internal override void DeplacerEtModifierImage()
-        {
-            List<KeyValuePair<TuileZoo, Direction>> casesDisponibles = DeterminerCasesDisponibles();
-            if (casesDisponibles.Count != 0)
-            {
-                var caseDirection = casesDisponibles[_r.Next(0, casesDisponibles.Count)];
-                TuileZoo prochaineTuile = caseDirection.Key;
-                prochaineTuile.ContientHumain = true;
-                Position = prochaineTuile;
-                ModifierImage(caseDirection.Value);
-            }
-
-        }
-
-        #region Image
-        private void ModifierImage(Direction d)
-        {
-            switch(d)
-            {
-                case Direction.Left:
-                    ModifierImageCote(TileSetSprite + 4);
-                    break;
-                case Direction.Up:
-                    ModifierImageHautBas(TileSetSprite + 2);
-                    break;
-                case Direction.Right:
-                    ModifierImageCote(TileSetSprite + 7);
-                    break;
-                case Direction.Down:
-                    ModifierImageHautBas(TileSetSprite);
-                    break;
-            }
-        }
-        
-        private void ModifierImageHautBas(int spriteInt)
-        {
-            if (Image == TileSetGenerator.GetTile(spriteInt))
-                Image = TileSetGenerator.GetTile(spriteInt + 1);
-            else
-                Image = TileSetGenerator.GetTile(spriteInt);
-        }
-
-        private void ModifierImageCote(int spriteInt)
-        {
-            if (Image == TileSetGenerator.GetTile(spriteInt))
-                Image = TileSetGenerator.GetTile(spriteInt + 1);
-            else if (Image == TileSetGenerator.GetTile(spriteInt + 1))
-                Image = TileSetGenerator.GetTile(spriteInt + 2);
-            else
-                Image = TileSetGenerator.GetTile(spriteInt);
-        }
-        #endregion
-
-        /// <summary>
-        /// Construction d'une liste comprenant les cases immédiates où l'animal peut se déplacer
-        /// </summary>
-        /// <returns>La liste de cases</returns>
-        private List<KeyValuePair<TuileZoo, Direction>> DeterminerCasesDisponibles()
-        {
-            var casesDisponibles = new List<KeyValuePair<TuileZoo, Direction>>();
-            if (Position.X != 0)
-                AjouterCaseAListe(Zoo.Terrain[Position.X - 1, Position.Y], casesDisponibles, Direction.Left);
-            if (Position.Y != 0)
-                AjouterCaseAListe(Zoo.Terrain[Position.X, Position.Y - 1], casesDisponibles, Direction.Up);
-            if (Position.X != Zoo.Terrain.GetLength(0) - 1)
-                AjouterCaseAListe(Zoo.Terrain[Position.X + 1, Position.Y], casesDisponibles, Direction.Right);
-            if (Position.Y != Zoo.Terrain.GetLength(1) - 1)
-                AjouterCaseAListe(Zoo.Terrain[Position.X, Position.Y + 1], casesDisponibles, Direction.Down);
-            return casesDisponibles;
-        }
-
-        /// <summary>
-        /// Ajout d'une case à la liste si l'animal peut s'y déplacer
-        /// </summary>
-        /// <param name="possibilite"></param>
-        /// <param name="casesDisponibles"></param>
-        private void AjouterCaseAListe(TuileZoo possibilite, List<KeyValuePair<TuileZoo, Direction>> casesDisponibles, Direction d)
-        {
-            if (PeutSeDeplacer(possibilite))
-                casesDisponibles.Add(new KeyValuePair<TuileZoo, Direction>(possibilite, d));
-        }
-
         /// <summary>
         /// </summary>
         /// <param name="possibilite">Une case adjacente à l'animal</param>
         /// <returns>Si la case est libre ou non</returns>
         protected override bool PeutSeDeplacer(TuileZoo possibilite)
         {
+            /* pourquoi le code en commentaire dans le return ne marche pas?
+             * les visiteurs peuvent marcher sur le héros, mais pas vice-versa.
+             * quand le héros se déplace sur une nouvelle tuile, il initialise ContientHumain à true
+             * voir méthode Deplacer dans Heros.cs
+            */
             foreach (Entite e in Zoo.ListeEntites)
-            {
-                if ((e is Humain || e is Dechet) && e.Position.X == possibilite.X && e.Position.Y == possibilite.Y)
+                if ((e is Humain || e is Dechet) && e.Position == possibilite)
                     return false;
-            }
-            return possibilite.Tuile == TuileZoo.TypeTuile.Allee;
+
+            return /*!possibilite.ContientHumain && */ possibilite.Tuile == TuileZoo.TypeTuile.Allee;
         }
-        #endregion
     }
 }

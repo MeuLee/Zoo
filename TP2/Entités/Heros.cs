@@ -74,8 +74,11 @@ namespace TP2.Entités
 
             if (PeutSeDeplacer(possibilite))
             {
-                possibilite.ContientHumain = true;
                 Position = possibilite;
+                //Zoo.Terrain[nouveauX, nouveauY].ContientHumain = true;
+                //possibilite.ContientHumain = true;
+                //Position.ContientHumain = true;
+                //aucun des 3 ne marche
             }
         }
 
@@ -107,19 +110,16 @@ namespace TP2.Entités
         }
         #endregion
 
-        internal override void DeplacerEtModifierImage() { return; }
-
         /// <summary>
+        /// Le héros peut se déplacer dans l'allée et dans les enclos.
         /// </summary>
         /// <param name="possibilite">La case où le héros veut se déplacer</param>
         /// <returns>S'il peut se déplacer sur la case ou non</returns>
         protected override bool PeutSeDeplacer(TuileZoo possibilite)
         {
             foreach (Entite e in Zoo.ListeEntites)
-            {
-                if (e.Position.X == possibilite.X && e.Position.Y == possibilite.Y)
+                if (e.Position == possibilite)
                     return false;
-            }
             return (possibilite.Tuile == TuileZoo.TypeTuile.Allee || 
                     possibilite.Tuile == TuileZoo.TypeTuile.Enclos || 
                     possibilite.Tuile == TuileZoo.TypeTuile.Gazon || 

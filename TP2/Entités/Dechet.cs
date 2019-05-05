@@ -13,6 +13,7 @@ namespace TP2.Entités
         public Dechet(TuileZoo position)
         {
             Position = position;
+            //Position.ContientDechet = true;//sert à rien
             Image = DeterminerImage();
             Zoo.ListeEntites.Add(this);
         }
@@ -21,8 +22,6 @@ namespace TP2.Entités
         {
             return TileSetGenerator.GetTile(_r.Next(0, 2) + TileSetGenerator.DECHET_1);
         }
-
-        internal override void DeplacerEtModifierImage() { };
 
         protected override bool PeutSeDeplacer(TuileZoo tuile)
         {

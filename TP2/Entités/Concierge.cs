@@ -15,59 +15,52 @@ namespace TP2.Entités
             Position = Zoo.Heros.Position;
             Image = TileSetGenerator.GetTile(TileSetGenerator.C_DOWN_IDLE);
             Zoo.ListeEntites.Add(this);
+            TileSetSprite = 75;
         }
 
-        internal void DeplacerEtModifierImage()
+        internal new void DeplacerEtModifierImage()
         {
             List<KeyValuePair<TuileZoo, Direction>> casesDisponibles = DeterminerCasesDisponibles();
             if (casesDisponibles.Count != 0)
             {
-                var caseDirection = casesDisponibles[_r.Next(0, casesDisponibles.Count)];
+                KeyValuePair<TuileZoo, Direction> caseDirection = DeterminerProchaineTuileSelonDechetsProches(casesDisponibles);
                 TuileZoo prochaineTuile = caseDirection.Key;
                 prochaineTuile.ContientHumain = true;
                 Position = prochaineTuile;
-                //ModifierImage(caseDirection.Value);
+                ModifierImage(caseDirection.Value);
             }
         }
 
-        private List<KeyValuePair<TuileZoo, Direction>> DeterminerCasesDisponibles()
+        /// <summary>
+        /// Donne priorité à une case qui contient un déchet, donc si un concierge est à côté d'un déchet, il se déplacera dessus au lieu de se fier au random
+        /// </summary>
+        /// <param name="casesDisponibles">Les cases sur lesquelles </param>
+        /// <returns>La prochaine case du concierge</returns>
+        private KeyValuePair<TuileZoo, Direction> DeterminerProchaineTuileSelonDechetsProches(List<KeyValuePair<TuileZoo, Direction>> casesDisponibles)
         {
-            var casesDisponibles = new List<KeyValuePair<TuileZoo, Direction>>();
-            if (Position.X != 0)
-                AjouterCaseAListe(Zoo.Terrain[Position.X - 1, Position.Y], casesDisponibles, Direction.Left);
-            if (Position.Y != 0)
-                AjouterCaseAListe(Zoo.Terrain[Position.X, Position.Y - 1], casesDisponibles, Direction.Up);
-            if (Position.X != Zoo.Terrain.GetLength(0) - 1)
-                AjouterCaseAListe(Zoo.Terrain[Position.X + 1, Position.Y], casesDisponibles, Direction.Right);
-            if (Position.Y != Zoo.Terrain.GetLength(1) - 1)
-                AjouterCaseAListe(Zoo.Terrain[Position.X, Position.Y + 1], casesDisponibles, Direction.Down);
-            return casesDisponibles;
+            foreach (KeyValuePair<TuileZoo, Direction> tuile in casesDisponibles)
+            {
+                if (tuile.Key.ContientDechet())
+                {
+                    return tuile;
+                }
+            }
+            return casesDisponibles[_r.Next(0, casesDisponibles.Count)];
         }
 
-        private void AjouterCaseAListe(TuileZoo possibilite, List<KeyValuePair<TuileZoo, Direction>> casesDisponibles, Direction d)
-        {
-            if (PeutSeDeplacer(possibilite))
-                casesDisponibles.Add(new KeyValuePair<TuileZoo, Direction>(possibilite, d));
-        }
-
-        private bool PeutSeDeplacer(TuileZoo possibilite)
+        /// <summary>
+        /// Le concierge peut se déplacer sur les Tuiles Allée qui ne contiennent pas d'humains.
+        /// Contrairement aux visiteurs, il peut se déplacer sur les cases qui contiennent un déchet.
+        /// </summary>
+        /// <param name="possibilite"></param>
+        /// <returns></returns>
+        protected override bool PeutSeDeplacer(TuileZoo possibilite)
         {
             foreach (Entite e in Zoo.ListeEntites.OfType<Humain>())
-            {
-                if (e.Position.X == possibilite.X && e.Position.Y == possibilite.Y)
+                if (e.Position == possibilite)
                     return false;
-            }
-            return possibilite.Tuile == TuileZoo.TypeTuile.Allee;
-        }
 
-        internal override void DeplacerEtModifierImage()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override bool PeutSeDeplacer(TuileZoo tuile)
-        {
-            throw new NotImplementedException();
+            return /*!possibilite.ContientHumain &&*/ possibilite.Tuile == TuileZoo.TypeTuile.Allee;
         }
     }
 }

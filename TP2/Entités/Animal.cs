@@ -102,7 +102,7 @@ namespace TP2.Entités
         /// <summary>
         /// L'animal se déplace sur une case au hasard, parmi celles où il peut se déplacer
         /// </summary>
-        internal override void DeplacerEtModifierImage()
+        internal void Deplacer()
         {
             List<TuileZoo> casesDisponibles = DeterminerCasesDisponibles();
             if (casesDisponibles.Count != 0)
@@ -111,7 +111,6 @@ namespace TP2.Entités
                 actuelle.ContientAnimal = true;
                 Position = actuelle;
             }
-            //Modifier image
         }
 
         /// <summary>
@@ -127,7 +126,7 @@ namespace TP2.Entités
                 AjouterCaseAListe(Zoo.Terrain[Position.X, Position.Y - 1], casesDisponibles);
                 AjouterCaseAListe(Zoo.Terrain[Position.X + 1, Position.Y], casesDisponibles);
                 AjouterCaseAListe(Zoo.Terrain[Position.X, Position.Y + 1], casesDisponibles);
-            } 
+            }
             catch (IndexOutOfRangeException e) { }
             return casesDisponibles;
         }
@@ -150,10 +149,9 @@ namespace TP2.Entités
         protected override bool PeutSeDeplacer(TuileZoo possibilite)
         {
             foreach (Entite e in Zoo.ListeEntites)
-            {
-                if (e.Position.X == possibilite.X && e.Position.Y == possibilite.Y)
+                if (e.Position == possibilite)
                     return false;
-            }
+
             return (possibilite.Tuile == TuileZoo.TypeTuile.Enclos ||
                    possibilite.Tuile == TuileZoo.TypeTuile.Glace ||
                    possibilite.Tuile == TuileZoo.TypeTuile.Sable ||
