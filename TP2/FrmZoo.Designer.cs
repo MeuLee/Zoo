@@ -32,10 +32,10 @@ namespace TP2
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmZoo));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.MnuStrip = new System.Windows.Forms.MenuStrip();
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nouvellePartieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuNouvellePartie = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuQuitter = new System.Windows.Forms.ToolStripMenuItem();
             this.LblJour = new System.Windows.Forms.Label();
             this.LblArgent = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -49,7 +49,7 @@ namespace TP2
             this.TmrTemps = new System.Windows.Forms.Timer(this.components);
             this.TmrMinute = new System.Windows.Forms.Timer(this.components);
             this.zoo1 = new TP2.LeReste.Zoo();
-            this.menuStrip1.SuspendLayout();
+            this.MnuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.PnlJour.SuspendLayout();
@@ -58,38 +58,38 @@ namespace TP2
             this.PnlPoubelle.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // MnuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MnuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fichierToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1341, 24);
-            this.menuStrip1.TabIndex = 3;
-            this.menuStrip1.Text = "menuStrip1";
+            this.MnuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MnuStrip.Name = "MnuStrip";
+            this.MnuStrip.Size = new System.Drawing.Size(1341, 24);
+            this.MnuStrip.TabIndex = 3;
+            this.MnuStrip.Text = "menuStrip1";
             // 
             // fichierToolStripMenuItem
             // 
             this.fichierToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nouvellePartieToolStripMenuItem,
-            this.quitterToolStripMenuItem});
+            this.MnuNouvellePartie,
+            this.MnuQuitter});
             this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
             this.fichierToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.fichierToolStripMenuItem.Text = "Fichier";
             // 
-            // nouvellePartieToolStripMenuItem
+            // MnuNouvellePartie
             // 
-            this.nouvellePartieToolStripMenuItem.Name = "nouvellePartieToolStripMenuItem";
-            this.nouvellePartieToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.nouvellePartieToolStripMenuItem.Text = "Nouvelle Partie";
-            this.nouvellePartieToolStripMenuItem.Click += new System.EventHandler(this.BtnNouvellePartie_Click);
+            this.MnuNouvellePartie.Name = "MnuNouvellePartie";
+            this.MnuNouvellePartie.Size = new System.Drawing.Size(180, 22);
+            this.MnuNouvellePartie.Text = "Nouvelle Partie";
+            this.MnuNouvellePartie.Click += new System.EventHandler(this.MnuNouvellePartie_Click);
             // 
-            // quitterToolStripMenuItem
+            // MnuQuitter
             // 
-            this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.quitterToolStripMenuItem.Text = "Quitter";
-            this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
+            this.MnuQuitter.Name = "MnuQuitter";
+            this.MnuQuitter.Size = new System.Drawing.Size(180, 22);
+            this.MnuQuitter.Text = "Quitter";
+            this.MnuQuitter.Click += new System.EventHandler(this.MnuQuitter_Click);
             // 
             // LblJour
             // 
@@ -238,18 +238,18 @@ namespace TP2
             this.Controls.Add(this.PnlArgent);
             this.Controls.Add(this.PnlJour);
             this.Controls.Add(this.zoo1);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.MnuStrip);
             this.DoubleBuffered = true;
             this.KeyPreview = true;
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.MnuStrip;
             this.MaximizeBox = false;
             this.Name = "FrmZoo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "le zoo";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmZoo_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmZoo_KeyDown);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.MnuStrip.ResumeLayout(false);
+            this.MnuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.PnlJour.ResumeLayout(false);
@@ -263,10 +263,10 @@ namespace TP2
 
         #endregion
         private Zoo zoo1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip MnuStrip;
         private System.Windows.Forms.ToolStripMenuItem fichierToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nouvellePartieToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MnuNouvellePartie;
+        private System.Windows.Forms.ToolStripMenuItem MnuQuitter;
         private System.Windows.Forms.Label LblJour;
         private System.Windows.Forms.Label LblArgent;
         private System.Windows.Forms.PictureBox pictureBox1;

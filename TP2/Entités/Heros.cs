@@ -75,12 +75,28 @@ namespace TP2.Entités
             if (PeutSeDeplacer(possibilite))
             {
                 Position = possibilite;
-                //Zoo.Terrain[nouveauX, nouveauY].ContientHumain = true;
-                //possibilite.ContientHumain = true;
-                //Position.ContientHumain = true;
-                //aucun des 3 ne marche
             }
         }
+
+        /// <summary>
+        /// Le héros peut se déplacer dans l'allée et dans les enclos.
+        /// </summary>
+        /// <param name="possibilite">La case où le héros veut se déplacer</param>
+        /// <returns>S'il peut se déplacer sur la case ou non</returns>
+        protected override bool PeutSeDeplacer(TuileZoo possibilite)
+        {
+            foreach (Entite e in Zoo.ListeEntites)
+                if (e.Position == possibilite)
+                    return false;
+
+            return (possibilite.Tuile == TuileZoo.TypeTuile.Allee || 
+                    possibilite.Tuile == TuileZoo.TypeTuile.Enclos || 
+                    possibilite.Tuile == TuileZoo.TypeTuile.Gazon || 
+                    possibilite.Tuile == TuileZoo.TypeTuile.Glace || 
+                    possibilite.Tuile == TuileZoo.TypeTuile.Sable || 
+                    possibilite.Tuile == TuileZoo.TypeTuile.Terre);
+        }
+        #endregion
 
         #region Image
         /// <summary>
@@ -90,8 +106,8 @@ namespace TP2.Entités
         /// <param name="bmp2">Deuxième image</param>
         private void ModifierImageCote(Bitmap bmp1, Bitmap bmp2)
         {
-            Image = Image == bmp1 
-                    ? bmp2 
+            Image = Image == bmp1
+                    ? bmp2
                     : bmp1;
         }
 
@@ -112,25 +128,6 @@ namespace TP2.Entités
         #endregion
 
         /// <summary>
-        /// Le héros peut se déplacer dans l'allée et dans les enclos.
-        /// </summary>
-        /// <param name="possibilite">La case où le héros veut se déplacer</param>
-        /// <returns>S'il peut se déplacer sur la case ou non</returns>
-        protected override bool PeutSeDeplacer(TuileZoo possibilite)
-        {
-            foreach (Entite e in Zoo.ListeEntites)
-                if (e.Position == possibilite)
-                    return false;
-
-            return (possibilite.Tuile == TuileZoo.TypeTuile.Allee || 
-                    possibilite.Tuile == TuileZoo.TypeTuile.Enclos || 
-                    possibilite.Tuile == TuileZoo.TypeTuile.Gazon || 
-                    possibilite.Tuile == TuileZoo.TypeTuile.Glace || 
-                    possibilite.Tuile == TuileZoo.TypeTuile.Sable || 
-                    possibilite.Tuile == TuileZoo.TypeTuile.Terre);
-        }
-
-        /// <summary>
         /// Ajoute 1 dollar par animal présent dans le zoo, - 10c par déchet présent, par visiteur
         /// </summary>
         internal void AjouterArgentSelonAnimauxEtDechets()
@@ -138,6 +135,5 @@ namespace TP2.Entités
             Argent += Zoo.ListeEntites.OfType<Visiteur>().Count() *
                      (Zoo.ListeEntites.OfType<Animal>().Count() - Zoo.ListeEntites.OfType<Dechet>().Count() * 0.1);
         }
-        #endregion
     }
 }

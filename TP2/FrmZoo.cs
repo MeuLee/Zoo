@@ -24,6 +24,10 @@ namespace TP2
             _date = DateTime.Now;
         }
 
+        #region Events
+        /// <summary>
+        /// Déplace le héros (si possible) dans la direction précisée
+        /// </summary>
         private void FrmZoo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.W || e.KeyCode == Keys.A || e.KeyCode == Keys.S || e.KeyCode == Keys.D)
@@ -33,19 +37,37 @@ namespace TP2
             }
         }
 
-        private void BtnNouvellePartie_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Crée une partie
+        /// </summary>
+        private void MnuNouvellePartie_Click(object sender, EventArgs e)
         {
             new Partie(zoo1, this);
-
         }
 
-        private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Ferme l'application
+        /// </summary>
+        private void MnuQuitter_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
         /// <summary>
-        /// Ajoute un jour et re-set le texte des labels
+        /// Affiche l'argent du Héros et ferme l'application (même si le code ne raconte pas ça)
+        /// </summary>
+        private void FrmZoo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+            string argentObtenu = (Zoo.Heros == null ? 0 : Zoo.Heros.Argent).ToString() + "$",
+                   titre = "Merci de votre séjour avec nous!";
+            MessageBox.Show("Vous avez obtenu " + argentObtenu + " lors de votre visite.\nÀ la prochaine!", titre);
+        }
+        #endregion
+
+        #region Timer 822
+        /// <summary>
+        /// Modifie les labels de la form
         /// </summary>
         private void TmrTemps_Tick(object sender, EventArgs e)
         {
@@ -55,6 +77,9 @@ namespace TP2
             AjusterLblDechets();
         }
 
+        /// <summary>
+        /// Modifie LblDechets selon le nombre de déchets présents
+        /// </summary>
         private void AjusterLblDechets()
         {
             int nbDechets = Zoo.ListeEntites.OfType<Dechet>().Count();
@@ -72,6 +97,9 @@ namespace TP2
             }
         }
 
+        /// <summary>
+        /// Modifie LblAnimaux selon le nombre d'animaux présents
+        /// </summary>
         private void AjusterLblAnimaux()
         {
             int nbAnimaux = Zoo.ListeEntites.OfType<Animal>().Count();
@@ -89,26 +117,24 @@ namespace TP2
             }
         }
 
+        /// <summary>
+        /// Ajoute un jour à la date et modifie LblJour en fonction
+        /// </summary>
         private void AjusterLblDate()
         {
             _date = _date.AddDays(1);
             LblJour.Text = _date.ToLongDateString();
         }
+        #endregion
 
+        #region Timer 60000
         /// <summary>
-        /// Affiche l'argent du Héros et ferme l'application (même si le code ne raconte pas ça)
+        /// À chaque minute, ajoute 1$ par visiteur par (animal -10c par déchet)
         /// </summary>
-        private void FrmZoo_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-            string argentObtenu = (Zoo.Heros == null ? 0 : Zoo.Heros.Argent).ToString() + "$",
-                   titre = "Merci de votre séjour avec nous!";
-            MessageBox.Show("Vous avez obtenu " + argentObtenu + " lors de votre visite.\nÀ la prochaine!", titre);
-        }
-
         private void TmrMinute_Tick(object sender, EventArgs e)
         {
             Zoo.Heros.AjouterArgentSelonAnimauxEtDechets();
         }
+        #endregion
     }
 }

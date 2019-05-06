@@ -14,6 +14,7 @@ namespace TP2.Entités
         /// </summary>
         public int TileSetSprite { get; protected set; }
 
+        #region Déplacement
         /// <summary>
         /// À partir de la liste de TuileZoos disponible, un random détermine la nouvelle position de l'humain et change son image en conséquent.
         /// </summary>
@@ -59,6 +60,7 @@ namespace TP2.Entités
                 casesDisponibles.Add(new KeyValuePair<TuileZoo, Direction>(possibilite, d));
             return casesDisponibles;
         }
+        #endregion
 
         #region Image
         /// <summary>

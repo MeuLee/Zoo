@@ -37,25 +37,20 @@ namespace TP2.LeReste
         /// <summary>
         /// Compare les positions de deux TuileZoos et indique si elles ont la même.
         /// </summary>
+        /// <param name="left">La première tuile à comparer</param>
+        /// <param name="right">La deuxième tuile à comparer</param>
+        /// <returns>True si les deux TuileZoos ont la même position</returns>
         public static bool operator == (TuileZoo left, TuileZoo right)
         {
             return left.X == right.X && left.Y == right.Y;
         }
 
+        /// <summary>
+        /// N'est pas utilisée, mais l'opérateur == a besoin que l'opérateur != soit redéfini
+        /// </summary>
         public static bool operator != (TuileZoo left, TuileZoo right)
         {
             return left.X != right.X || left.Y != right.Y;
-        }
-
-        /// <summary>
-        /// Indique si une tuile figure dans une liste de tuiles
-        /// </summary>
-        internal bool EstDans(List<TuileZoo> listeTuiles)
-        {
-            foreach (TuileZoo tuile in listeTuiles)
-                if (tuile == this)
-                    return true;
-            return false;
         }
 
         /// <summary>

@@ -28,6 +28,11 @@ namespace TP2.Entités
             Down
         }
         
+        /// <summary>
+        /// Les entités ne peuvent pas se déplacer sur le même type de tuile
+        /// </summary>
+        /// <param name="tuile">La tuile où l'entité veut se déplacer</param>
+        /// <returns>True si l'entité peut s'y déplacer</returns>
         protected abstract bool PeutSeDeplacer(TuileZoo tuile);
     }
 }

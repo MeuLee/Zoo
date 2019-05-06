@@ -377,6 +377,9 @@ namespace TP2.LeReste
             DoubleBuffered = true;
         }
 
+        /// <summary>
+        /// Initialise les enclos avec leur position respective
+        /// </summary>
         private void CreerEnclos()
         {
             ListeEnclos[0] = new Enclos(3, 6);
@@ -386,6 +389,9 @@ namespace TP2.LeReste
         }
 
         #region Thread
+        /// <summary>
+        /// Démarre le thread de jeu
+        /// </summary>
         public void CreerEtLancerThreadAnimaux()
         {
             Thread thread = new Thread(new ThreadStart(BoucleDeJeu))
@@ -396,19 +402,32 @@ namespace TP2.LeReste
             thread.Start();
         }
 
+        /// <summary>
+        /// -Spawn les visiteurs
+        /// -Déplace les visiteurs
+        /// -Spawn les déchets
+        /// -Déplace les concierges
+        /// -Ramasse les déchets
+        /// -Déplace les animaux
+        /// -
+        /// </summary>
         private void BoucleDeJeu()
         {
-            for (int nbThreadLoops = 0; true; nbThreadLoops++)
+            while (true)
             {
                 Thread.Sleep(MILLISEC_SLEEP);
+
                 if (_r.Next(0, 10) == 0 && MoinsDeVisiteursQueDAnimaux())//une chance sur 10
                     new Visiteur();
-                DeplacerAnimaux();
+                
                 List<TuileZoo> listeNouveauxDechets = DeplacerVisiteursEtCreerDechets();
+
                 if (listeNouveauxDechets.Count > 0)
                     SpawnDechets(listeNouveauxDechets);
+
                 DeplacerConcierges();
                 RamasserDechets();
+                DeplacerAnimaux();
                 //breed
 
                 Invoke((MethodInvoker)delegate ()
@@ -429,7 +448,7 @@ namespace TP2.LeReste
         }
 
         /// <summary>
-        /// 
+        /// Enlève les déchets de la ListeEntite qui ont la même position qu'un concierge
         /// </summary>
         private void RamasserDechets()
         {
