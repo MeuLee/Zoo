@@ -35,10 +35,15 @@ namespace TP2
 
         private void BtnNouvellePartie_Click(object sender, EventArgs e)
         {
-            new Partie(zoo1, this);
-            BtnNouvellePartie.Hide();
+            new Partie(zoo1);
+
         }
-    
+
+        private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
         /// <summary>
         /// Ajoute un jour et re-set le texte du label
         /// </summary>
@@ -51,10 +56,9 @@ namespace TP2
         private void FrmZoo_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
-            string argentObtenu = (Zoo.Heros == null ? 0 : Zoo.Heros.Argent).ToString() + "$", 
+            string argentObtenu = (Zoo.Heros == null ? 0 : Zoo.Heros.Argent).ToString() + "$",
                    titre = "Merci de votre séjour avec nous!";
             MessageBox.Show("Vous avez obtenu " + argentObtenu + " lors de votre visite.\nÀ la prochaine!", titre);
         }
     }
 }
-

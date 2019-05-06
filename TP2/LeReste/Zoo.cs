@@ -303,7 +303,15 @@ namespace TP2.LeReste
             {
                 for (int j = 0; j < 26; j++)
                 {
-                    DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.GAZON), i, j, TuileZoo.TypeTuile.Gazon);
+                    if (!(i>2 && i<8 &&j<3 || i > 23 && i < 29 && j < 3))
+                    {
+                        DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.GAZON), i, j, TuileZoo.TypeTuile.Gazon);
+                    }
+                    else
+                    {
+                        DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.GAZON), i, j, TuileZoo.TypeTuile.Interdit);
+                    }
+
                 }
             }
         }
@@ -354,9 +362,9 @@ namespace TP2.LeReste
         public void InitializeComponent()
         {
             this.SuspendLayout();
-            //
+            // 
             // Zoo
-            //
+            // 
             this.Size = new System.Drawing.Size(1024, 832);
             this.ResumeLayout(false);
 
