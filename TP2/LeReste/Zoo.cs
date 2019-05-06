@@ -35,7 +35,7 @@ namespace TP2.LeReste
         public static Heros Heros { get; set; }
 
         private static Random _r = new Random();
-        private const int MILLISEC_SLEEP = 1000;
+        private const int MILLISEC_SLEEP = 822;
         private const int DECHET_SPAWN_RATE = 100;
 
         #region OnPaint

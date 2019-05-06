@@ -15,12 +15,13 @@ namespace TP2
 {
     public partial class FrmZoo : Form
     {
-        private DateTime _date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
+        private DateTime _date = new DateTime();
 
         public FrmZoo()
         {
             InitializeComponent();
             TmrTemps.Stop();
+            _date = DateTime.Now;
         }
 
         private void FrmZoo_KeyDown(object sender, KeyEventArgs e)
