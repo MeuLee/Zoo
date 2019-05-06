@@ -37,6 +37,7 @@ namespace TP2.Entités
             Image = DeterminerImageDepart();
             Nom = CreerNomComplet(SexeVisiteur);
             Zoo.Heros.Argent += Zoo.ListeEntites.OfType<Animal>().Count() * 2;
+            Zoo.ListeEntites.Add(this);
         }
 
         /// <summary>

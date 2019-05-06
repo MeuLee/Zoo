@@ -34,6 +34,7 @@ namespace TP2.LeReste
 
         private static Random _r = new Random();
         private const int MILLISEC_SLEEP = 1000;
+        private const int DECHET_SPAWN_RATE = 1;
 
 
         #region OnPaint
@@ -396,17 +397,16 @@ namespace TP2.LeReste
                 {
                     //a chaque minute, seul defaut est si MILLISEC_SLEEP n'est pas un multiple de 60000
                     //peut etre que ca serait plus approprié de mettre ceci dans un timer
-                    AjouterArgentSelonAnimauxEtDechets();
+                    Heros.AjouterArgentSelonAnimauxEtDechets();
                 }
 
                 if (_r.Next(0, 10) == 0 && MoinsDeVisiteursQueDAnimaux())//une chance sur 10
                     CreerNouveauVisiteur();
                 DeplacerAnimaux();
-                List<TuileZoo> listeNouveauxDechets = DeplacerVisiteurs();
+                List<TuileZoo> listeNouveauxDechets = DeplacerVisiteursEtCreerDechets();
                 if (listeNouveauxDechets.Count > 0) SpawnDechets(listeNouveauxDechets);
                 DeplacerConcierges();
                 RamasserDechets();
-                //deplacer concierges
                 //updater temps
                 //breed
                 Invoke((MethodInvoker)delegate ()
@@ -428,18 +428,12 @@ namespace TP2.LeReste
 
         private void RamasserDechets()
         {
-            List<TuileZoo> emplacementConciergesActuel = new List<TuileZoo>();
             List<Dechet> dechetsAEnlever = new List<Dechet>();
-
-            //liste de la position des concierges
+            
             foreach (Entite e in ListeEntites.OfType<Concierge>())
-                emplacementConciergesActuel.Add(e.Position);
-
-            //liste des dechets qui ont la meme position qu'un concierge
-            foreach (Entite e in ListeEntites.OfType<Dechet>())
-                //if (Contient(emplacementConciergesActuel, e.Position))
-                if (e.Position.EstDans(emplacementConciergesActuel))
-                        dechetsAEnlever.Add(e as Dechet);
+                foreach (Entite f in ListeEntites.OfType<Dechet>())
+                    if (e.Position == f.Position)
+                        dechetsAEnlever.Add(f as Dechet);
             
             foreach (Dechet d in dechetsAEnlever)
                 ListeEntites.Remove(d);
@@ -454,17 +448,6 @@ namespace TP2.LeReste
                 (e as Concierge).DeplacerEtModifierImage();
         }
 
-        /// <summary>
-        /// Ajoute 1 dollar par animal présent dans le zoo, - 10c par déchet présent, par visiteur
-        /// </summary>
-        private void AjouterArgentSelonAnimauxEtDechets()
-        {
-            Heros.Argent += ListeEntites.OfType<Visiteur>().Count() *
-                            (ListeEntites.OfType<Animal>().Count() - ListeEntites.OfType<Dechet>().Count() * 0.1);
-        }
-
-        /// <summary>
-        /// </summary>
         /// <returns>True s'il y a plus d'animaux que de visiteurs, false sinon.</returns>
         private bool MoinsDeVisiteursQueDAnimaux()
         {
@@ -474,12 +457,13 @@ namespace TP2.LeReste
         /// <summary>
         /// Déplace les visiteurs dans le tableau 2d (Refresh sera call plus tard).
         /// </summary>
-        private List<TuileZoo> DeplacerVisiteurs()
+        /// <returns>Une liste de TuileZoo comprenant la position des nouveaux déchets</returns>        
+        private List<TuileZoo> DeplacerVisiteursEtCreerDechets()
         {
             List<TuileZoo> emplacementsDechet = new List<TuileZoo>();
             foreach (Entite e in ListeEntites.OfType<Visiteur>())
             {
-                if (!e.Position.ContientDechet() && _r.Next(0, 1) == 0)
+                if (_r.Next(0, DECHET_SPAWN_RATE) == 0 && !e.Position.ContientDechet())
                         emplacementsDechet.Add(e.Position);
                 (e as Visiteur).DeplacerEtModifierImage();
             }
@@ -491,8 +475,7 @@ namespace TP2.LeReste
         /// </summary>
         private void CreerNouveauVisiteur()
         {
-            Visiteur v = new Visiteur();
-            ListeEntites.Add(v);
+            new Visiteur();
         }
 
         /// <summary>

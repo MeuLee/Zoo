@@ -90,7 +90,9 @@ namespace TP2.Entités
         /// <param name="bmp2">Deuxième image</param>
         private void ModifierImageCote(Bitmap bmp1, Bitmap bmp2)
         {
-            Image = Image == bmp1 ? bmp2 : bmp1;
+            Image = Image == bmp1 
+                    ? bmp2 
+                    : bmp1;
         }
 
         /// <summary>
@@ -101,12 +103,11 @@ namespace TP2.Entités
         /// <param name="bmp3">Troisième image</param>
         private void ModifierImageHautBas(Bitmap bmp1, Bitmap bmp2, Bitmap bmp3)
         {
-            if (Image == bmp1)
-                Image = bmp2;
-            else if (Image == bmp2)
-                Image = bmp3;
-            else
-                Image = bmp1;
+            Image = Image == bmp1
+                    ? bmp2
+                    : Image == bmp2
+                        ? bmp3
+                        : bmp1;
         }
         #endregion
 
@@ -120,12 +121,22 @@ namespace TP2.Entités
             foreach (Entite e in Zoo.ListeEntites)
                 if (e.Position == possibilite)
                     return false;
+
             return (possibilite.Tuile == TuileZoo.TypeTuile.Allee || 
                     possibilite.Tuile == TuileZoo.TypeTuile.Enclos || 
                     possibilite.Tuile == TuileZoo.TypeTuile.Gazon || 
                     possibilite.Tuile == TuileZoo.TypeTuile.Glace || 
                     possibilite.Tuile == TuileZoo.TypeTuile.Sable || 
                     possibilite.Tuile == TuileZoo.TypeTuile.Terre);
+        }
+
+        /// <summary>
+        /// Ajoute 1 dollar par animal présent dans le zoo, - 10c par déchet présent, par visiteur
+        /// </summary>
+        internal void AjouterArgentSelonAnimauxEtDechets()
+        {
+            Argent += Zoo.ListeEntites.OfType<Visiteur>().Count() *
+                     (Zoo.ListeEntites.OfType<Animal>().Count() - Zoo.ListeEntites.OfType<Dechet>().Count() * 0.1);
         }
         #endregion
     }

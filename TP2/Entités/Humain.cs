@@ -88,20 +88,18 @@ namespace TP2.Entités
 
         private void ModifierImageHautBas(int spriteInt)
         {
-            if (Image == TileSetGenerator.GetTile(spriteInt))
-                Image = TileSetGenerator.GetTile(spriteInt + 1);
-            else
-                Image = TileSetGenerator.GetTile(spriteInt);
+            Image = Image == TileSetGenerator.GetTile(spriteInt) 
+                    ? TileSetGenerator.GetTile(spriteInt + 1) 
+                    : TileSetGenerator.GetTile(spriteInt);
         }
 
         private void ModifierImageCote(int spriteInt)
         {
-            if (Image == TileSetGenerator.GetTile(spriteInt))
-                Image = TileSetGenerator.GetTile(spriteInt + 1);
-            else if (Image == TileSetGenerator.GetTile(spriteInt + 1))
-                Image = TileSetGenerator.GetTile(spriteInt + 2);
-            else
-                Image = TileSetGenerator.GetTile(spriteInt);
+            Image = Image == TileSetGenerator.GetTile(spriteInt)
+                    ? TileSetGenerator.GetTile(spriteInt + 1)
+                    : Image == TileSetGenerator.GetTile(spriteInt + 1)
+                        ? TileSetGenerator.GetTile(spriteInt + 2)
+                        : TileSetGenerator.GetTile(spriteInt);
         }
         #endregion
     }
