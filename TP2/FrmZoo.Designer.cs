@@ -32,7 +32,6 @@ namespace TP2
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmZoo));
-            this.zoo1 = new TP2.LeReste.Zoo();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nouvellePartieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,7 +46,8 @@ namespace TP2
             this.PnlArgent = new System.Windows.Forms.Panel();
             this.PnlAnimaux = new System.Windows.Forms.Panel();
             this.PnlPoubelle = new System.Windows.Forms.Panel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.TmrTemps = new System.Windows.Forms.Timer(this.components);
+            this.zoo1 = new TP2.LeReste.Zoo();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -56,17 +56,6 @@ namespace TP2
             this.PnlAnimaux.SuspendLayout();
             this.PnlPoubelle.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // zoo1
-            // 
-            this.zoo1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.zoo1.Location = new System.Drawing.Point(0, 25);
-            this.zoo1.MaximumSize = new System.Drawing.Size(1025, 833);
-            this.zoo1.MinimumSize = new System.Drawing.Size(1025, 833);
-            this.zoo1.Name = "zoo1";
-            this.zoo1.Size = new System.Drawing.Size(1025, 833);
-            this.zoo1.TabIndex = 2;
-            this.zoo1.Text = "zoo1";
             // 
             // menuStrip1
             // 
@@ -213,6 +202,23 @@ namespace TP2
             this.PnlPoubelle.Size = new System.Drawing.Size(259, 151);
             this.PnlPoubelle.TabIndex = 14;
             // 
+            // TmrTemps
+            // 
+            this.TmrTemps.Enabled = true;
+            this.TmrTemps.Interval = 50;
+            this.TmrTemps.Tick += new System.EventHandler(this.TmrTemps_Tick);
+            // 
+            // zoo1
+            // 
+            this.zoo1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.zoo1.Location = new System.Drawing.Point(0, 25);
+            this.zoo1.MaximumSize = new System.Drawing.Size(1025, 833);
+            this.zoo1.MinimumSize = new System.Drawing.Size(1025, 833);
+            this.zoo1.Name = "zoo1";
+            this.zoo1.Size = new System.Drawing.Size(1025, 833);
+            this.zoo1.TabIndex = 2;
+            this.zoo1.Text = "zoo1";
+            // 
             // FrmZoo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -253,7 +259,6 @@ namespace TP2
         }
 
         #endregion
-        public System.Windows.Forms.Timer TmrTemps;
         private Zoo zoo1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fichierToolStripMenuItem;
@@ -269,6 +274,6 @@ namespace TP2
         private System.Windows.Forms.Panel PnlArgent;
         private System.Windows.Forms.Panel PnlAnimaux;
         private System.Windows.Forms.Panel PnlPoubelle;
-        private System.Windows.Forms.Timer timer1;
+        public System.Windows.Forms.Timer TmrTemps;
     }
 }
