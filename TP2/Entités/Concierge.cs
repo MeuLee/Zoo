@@ -25,7 +25,6 @@ namespace TP2.Entités
             {
                 KeyValuePair<TuileZoo, Direction> caseDirection = DeterminerProchaineTuileSelonDechetsProches(casesDisponibles);
                 TuileZoo prochaineTuile = caseDirection.Key;
-                prochaineTuile.ContientHumain = true;
                 Position = prochaineTuile;
                 ModifierImage(caseDirection.Value);
             }

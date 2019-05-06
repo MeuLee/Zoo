@@ -12,9 +12,6 @@ namespace TP2.LeReste
         public TypeTuile Tuile { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
-        public bool ContientHumain { get; set; }
-        public bool ContientAnimal { get; set; }
-        //public bool ContientDechet { get; set; }
 
 
         public enum TypeTuile

@@ -24,7 +24,6 @@ namespace TP2.Entités
             {
                 var caseDirection = casesDisponibles[_r.Next(0, casesDisponibles.Count)];
                 TuileZoo prochaineTuile = caseDirection.Key;
-                prochaineTuile.ContientHumain = true;
                 Position = prochaineTuile;
                 ModifierImage(caseDirection.Value);
             }

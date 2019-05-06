@@ -14,7 +14,8 @@ namespace TP2.LeReste
         public Partie(Zoo zoo, FrmZoo instanceForm)
         {
             Zoo.ListeEntites.Add(new Heros());
-            for (int i = 0; i < 3; i++)
+
+            for (int i = 0; i < 2; i++)
             {
                 new Animal(Animal.TypeAnimal.Grizzly);
                 new Animal(Animal.TypeAnimal.Lion);

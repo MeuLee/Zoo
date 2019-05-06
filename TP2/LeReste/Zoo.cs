@@ -401,13 +401,6 @@ namespace TP2.LeReste
             for (int nbThreadLoops = 0; true; nbThreadLoops++)
             {
                 Thread.Sleep(MILLISEC_SLEEP);
-
-                if (nbThreadLoops * MILLISEC_SLEEP % 60000 == 0)
-                {
-                    //apparement il faut que chaque visiteur ait son propre timer
-                    Heros.AjouterArgentSelonAnimauxEtDechets();
-                }
-
                 if (_r.Next(0, 10) == 0 && MoinsDeVisiteursQueDAnimaux())//une chance sur 10
                     new Visiteur();
                 DeplacerAnimaux();

@@ -94,7 +94,7 @@ namespace TP2.Entités
             {
                 possibilite = Zoo.Terrain[_r.Next(Enclos.X + 1, Enclos.X + Enclos.Width - 1), //X compris dans l'enclos de l'animal
                                           _r.Next(Enclos.Y + 1, Enclos.Y + Enclos.Height - 1)];//Y compris dans l'enclos de l'animal
-            } while (possibilite.ContientAnimal || possibilite.ContientHumain || possibilite.Tuile == TuileZoo.TypeTuile.Interdit);
+            } while (possibilite.Tuile == TuileZoo.TypeTuile.Interdit);
             return possibilite;
         }
 
@@ -108,7 +108,6 @@ namespace TP2.Entités
             if (casesDisponibles.Count != 0)
             {
                 var actuelle = casesDisponibles[_r.Next(0, casesDisponibles.Count)];
-                actuelle.ContientAnimal = true;
                 Position = actuelle;
             }
         }

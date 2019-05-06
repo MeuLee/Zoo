@@ -41,12 +41,13 @@ namespace TP2
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.LblAnimaux = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.LblDechets = new System.Windows.Forms.Label();
             this.PnlJour = new System.Windows.Forms.Panel();
             this.PnlArgent = new System.Windows.Forms.Panel();
             this.PnlAnimaux = new System.Windows.Forms.Panel();
             this.PnlPoubelle = new System.Windows.Forms.Panel();
             this.TmrTemps = new System.Windows.Forms.Timer(this.components);
+            this.TmrMinute = new System.Windows.Forms.Timer(this.components);
             this.zoo1 = new TP2.LeReste.Zoo();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -92,27 +93,27 @@ namespace TP2
             // 
             // LblJour
             // 
-            this.LblJour.AutoSize = true;
             this.LblJour.BackColor = System.Drawing.Color.Transparent;
             this.LblJour.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblJour.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.LblJour.Location = new System.Drawing.Point(47, 17);
+            this.LblJour.Location = new System.Drawing.Point(-2, 17);
             this.LblJour.Name = "LblJour";
-            this.LblJour.Size = new System.Drawing.Size(148, 23);
+            this.LblJour.Size = new System.Drawing.Size(259, 23);
             this.LblJour.TabIndex = 5;
-            this.LblJour.Text = "24 mai 2019";
+            this.LblJour.Text = "[Date]";
+            this.LblJour.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LblArgent
             // 
-            this.LblArgent.AutoSize = true;
             this.LblArgent.BackColor = System.Drawing.Color.Transparent;
             this.LblArgent.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblArgent.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.LblArgent.Location = new System.Drawing.Point(48, 16);
+            this.LblArgent.Location = new System.Drawing.Point(-2, 14);
             this.LblArgent.Name = "LblArgent";
-            this.LblArgent.Size = new System.Drawing.Size(151, 35);
+            this.LblArgent.Size = new System.Drawing.Size(259, 35);
             this.LblArgent.TabIndex = 6;
-            this.LblArgent.Text = "450.07$";
+            this.LblArgent.Text = "0$";
+            this.LblArgent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
@@ -127,15 +128,15 @@ namespace TP2
             // 
             // LblAnimaux
             // 
-            this.LblAnimaux.AutoSize = true;
             this.LblAnimaux.BackColor = System.Drawing.Color.Transparent;
             this.LblAnimaux.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblAnimaux.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.LblAnimaux.Location = new System.Drawing.Point(31, 87);
+            this.LblAnimaux.Location = new System.Drawing.Point(-2, 87);
             this.LblAnimaux.Name = "LblAnimaux";
-            this.LblAnimaux.Size = new System.Drawing.Size(207, 35);
+            this.LblAnimaux.Size = new System.Drawing.Size(259, 35);
             this.LblAnimaux.TabIndex = 8;
-            this.LblAnimaux.Text = "23 animaux";
+            this.LblAnimaux.Text = "Aucun animal";
+            this.LblAnimaux.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox2
             // 
@@ -148,17 +149,17 @@ namespace TP2
             this.pictureBox2.TabIndex = 9;
             this.pictureBox2.TabStop = false;
             // 
-            // label1
+            // LblDechets
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(31, 96);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(193, 35);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "15 déchets";
+            this.LblDechets.BackColor = System.Drawing.Color.Transparent;
+            this.LblDechets.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblDechets.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.LblDechets.Location = new System.Drawing.Point(-2, 91);
+            this.LblDechets.Name = "LblDechets";
+            this.LblDechets.Size = new System.Drawing.Size(259, 35);
+            this.LblDechets.TabIndex = 10;
+            this.LblDechets.Text = "Aucun déchet";
+            this.LblDechets.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // PnlJour
             // 
@@ -196,7 +197,7 @@ namespace TP2
             this.PnlPoubelle.BackColor = System.Drawing.Color.Transparent;
             this.PnlPoubelle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PnlPoubelle.Controls.Add(this.pictureBox2);
-            this.PnlPoubelle.Controls.Add(this.label1);
+            this.PnlPoubelle.Controls.Add(this.LblDechets);
             this.PnlPoubelle.Location = new System.Drawing.Point(1056, 624);
             this.PnlPoubelle.Name = "PnlPoubelle";
             this.PnlPoubelle.Size = new System.Drawing.Size(259, 151);
@@ -205,8 +206,14 @@ namespace TP2
             // TmrTemps
             // 
             this.TmrTemps.Enabled = true;
-            this.TmrTemps.Interval = 50;
+            this.TmrTemps.Interval = 822;
             this.TmrTemps.Tick += new System.EventHandler(this.TmrTemps_Tick);
+            // 
+            // TmrMinute
+            // 
+            this.TmrMinute.Enabled = true;
+            this.TmrMinute.Interval = 60000;
+            this.TmrMinute.Tick += new System.EventHandler(this.TmrMinute_Tick);
             // 
             // zoo1
             // 
@@ -246,13 +253,9 @@ namespace TP2
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.PnlJour.ResumeLayout(false);
-            this.PnlJour.PerformLayout();
             this.PnlArgent.ResumeLayout(false);
-            this.PnlArgent.PerformLayout();
             this.PnlAnimaux.ResumeLayout(false);
-            this.PnlAnimaux.PerformLayout();
             this.PnlPoubelle.ResumeLayout(false);
-            this.PnlPoubelle.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,11 +272,12 @@ namespace TP2
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label LblAnimaux;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LblDechets;
         private System.Windows.Forms.Panel PnlJour;
         private System.Windows.Forms.Panel PnlArgent;
         private System.Windows.Forms.Panel PnlAnimaux;
         private System.Windows.Forms.Panel PnlPoubelle;
         public System.Windows.Forms.Timer TmrTemps;
+        private System.Windows.Forms.Timer TmrMinute;
     }
 }

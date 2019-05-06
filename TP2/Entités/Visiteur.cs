@@ -100,16 +100,11 @@ namespace TP2.Entités
         /// <returns>Si la case est libre ou non</returns>
         protected override bool PeutSeDeplacer(TuileZoo possibilite)
         {
-            /* pourquoi le code en commentaire dans le return ne marche pas?
-             * les visiteurs peuvent marcher sur le héros, mais pas vice-versa.
-             * quand le héros se déplace sur une nouvelle tuile, il initialise ContientHumain à true
-             * voir méthode Deplacer dans Heros.cs
-            */
             foreach (Entite e in Zoo.ListeEntites)
                 if ((e is Humain || e is Dechet) && e.Position == possibilite)
                     return false;
 
-            return /*!possibilite.ContientHumain && */ possibilite.Tuile == TuileZoo.TypeTuile.Allee;
+            return possibilite.Tuile == TuileZoo.TypeTuile.Allee;
         }
     }
 }
