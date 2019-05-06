@@ -26,8 +26,10 @@ namespace TP2
         private void FrmZoo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.W || e.KeyCode == Keys.A || e.KeyCode == Keys.S || e.KeyCode == Keys.D)
+            {
                 Zoo.Heros.DeplacerEtModifierImage(e.KeyCode);
-            zoo1.Refresh();
+                zoo1.Refresh();
+            }
         }
 
         private void BtnNouvellePartie_Click(object sender, EventArgs e)
@@ -36,10 +38,21 @@ namespace TP2
             BtnNouvellePartie.Hide();
         }
     
+        /// <summary>
+        /// Ajoute un jour et re-set le texte du label
+        /// </summary>
         private void TmrTemps_Tick(object sender, EventArgs e)
         {
             _date = _date.AddDays(1);
             LblDate.Text = _date.ToLongDateString();
+        }
+
+        private void FrmZoo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+            string argentObtenu = (Zoo.Heros == null ? 0 : Zoo.Heros.Argent).ToString() + "$", 
+                   titre = "Merci de votre séjour avec nous!";
+            MessageBox.Show("Vous avez obtenu " + argentObtenu + " lors de votre visite.\nÀ la prochaine!", titre);
         }
     }
 }

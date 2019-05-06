@@ -36,7 +36,7 @@ namespace TP2.LeReste
 
         private static Random _r = new Random();
         private const int MILLISEC_SLEEP = 1000;
-        private const int DECHET_SPAWN_RATE = 1;
+        private const int DECHET_SPAWN_RATE = 100;
 
         #region OnPaint
         protected override void OnPaint(PaintEventArgs pe)
@@ -396,20 +396,20 @@ namespace TP2.LeReste
 
                 if (nbThreadLoops * MILLISEC_SLEEP % 60000 == 0)
                 {
-                    //a chaque minute, seul defaut est si MILLISEC_SLEEP n'est pas un multiple de 60000
-                    //peut etre que ca serait plus approprié de mettre ceci dans un timer
+                    //apparement il faut que chaque visiteur ait son propre timer
                     Heros.AjouterArgentSelonAnimauxEtDechets();
                 }
 
                 if (_r.Next(0, 10) == 0 && MoinsDeVisiteursQueDAnimaux())//une chance sur 10
-                    CreerNouveauVisiteur();
+                    new Visiteur();
                 DeplacerAnimaux();
                 List<TuileZoo> listeNouveauxDechets = DeplacerVisiteursEtCreerDechets();
-                if (listeNouveauxDechets.Count > 0) SpawnDechets(listeNouveauxDechets);
+                if (listeNouveauxDechets.Count > 0)
+                    SpawnDechets(listeNouveauxDechets);
                 DeplacerConcierges();
                 RamasserDechets();
-                //updater temps
                 //breed
+
                 Invoke((MethodInvoker)delegate ()
                 {
                     Refresh();
@@ -427,6 +427,9 @@ namespace TP2.LeReste
                 new Dechet(emplacementDechet);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void RamasserDechets()
         {
             List<Dechet> dechetsAEnlever = new List<Dechet>();
@@ -470,24 +473,14 @@ namespace TP2.LeReste
             }
             return emplacementsDechet;
         }
-
-        /// <summary>
-        /// Cree un nouveau visiteur et l'ajoute à la liste de visiteurs.
-        /// </summary>
-        private void CreerNouveauVisiteur()
-        {
-            new Visiteur();
-        }
-
+    
         /// <summary>
         /// Déplace les animaux dans le tableau 2d (Refresh sera call plus tard).
         /// </summary>
         private void DeplacerAnimaux()
         {
             foreach (Entite e in ListeEntites.OfType<Animal>())
-            {
                 (e as Animal).Deplacer();
-            }
         }
         #endregion
     }

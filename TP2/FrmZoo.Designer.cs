@@ -85,6 +85,7 @@ namespace TP2
             this.Name = "FrmZoo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "le zoo";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmZoo_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmZoo_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
