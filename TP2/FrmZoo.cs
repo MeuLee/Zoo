@@ -35,7 +35,7 @@ namespace TP2
 
         private void BtnNouvellePartie_Click(object sender, EventArgs e)
         {
-            new Partie(zoo1);
+            new Partie(zoo1, this);
 
         }
 
@@ -50,7 +50,7 @@ namespace TP2
         private void TmrTemps_Tick(object sender, EventArgs e)
         {
             _date = _date.AddDays(1);
-            LblDate.Text = _date.ToLongDateString();
+            LblJour.Text = _date.ToLongDateString();
         }
 
         private void FrmZoo_FormClosing(object sender, FormClosingEventArgs e)
