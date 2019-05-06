@@ -11,10 +11,9 @@ namespace TP2.LeReste
 {
     class Partie
     {
-        public Partie(Zoo zoo)
+        public Partie(Zoo zoo, FrmZoo instanceForm)
         {
             Zoo.ListeEntites.Add(new Heros());
-            zoo.CreerEtLancerThreadAnimaux();
             for (int i = 0; i < 3; i++)
             {
                 new Animal(Animal.TypeAnimal.Grizzly);
@@ -23,6 +22,8 @@ namespace TP2.LeReste
                 new Animal(Animal.TypeAnimal.Mouton, Zoo.ListeEnclos[1]);
                 new Concierge();
             }
+            zoo.CreerEtLancerThreadAnimaux();
+            instanceForm.TmrTemps.Start();
         }
 
         

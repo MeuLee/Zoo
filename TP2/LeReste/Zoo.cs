@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 using TP2.Entités;
 
@@ -13,12 +14,13 @@ namespace TP2.LeReste
     public class Zoo : Control
     {
         #region Taille fixe
-        private Size DesiredSize = new Size(1025, 929);
+        private Size DesiredSize = new Size(1025, 833);
         public override Size MinimumSize
         {
             get { return DesiredSize; }
             set { }
         }
+
         public override Size MaximumSize
         {
             get { return DesiredSize; }
@@ -35,7 +37,6 @@ namespace TP2.LeReste
         private static Random _r = new Random();
         private const int MILLISEC_SLEEP = 1000;
         private const int DECHET_SPAWN_RATE = 1;
-
 
         #region OnPaint
         protected override void OnPaint(PaintEventArgs pe)
@@ -429,12 +430,12 @@ namespace TP2.LeReste
         private void RamasserDechets()
         {
             List<Dechet> dechetsAEnlever = new List<Dechet>();
-            
+
             foreach (Entite e in ListeEntites.OfType<Concierge>())
                 foreach (Entite f in ListeEntites.OfType<Dechet>())
                     if (e.Position == f.Position)
                         dechetsAEnlever.Add(f as Dechet);
-            
+
             foreach (Dechet d in dechetsAEnlever)
                 ListeEntites.Remove(d);
         }
@@ -464,7 +465,7 @@ namespace TP2.LeReste
             foreach (Entite e in ListeEntites.OfType<Visiteur>())
             {
                 if (_r.Next(0, DECHET_SPAWN_RATE) == 0 && !e.Position.ContientDechet())
-                        emplacementsDechet.Add(e.Position);
+                    emplacementsDechet.Add(e.Position);
                 (e as Visiteur).DeplacerEtModifierImage();
             }
             return emplacementsDechet;
