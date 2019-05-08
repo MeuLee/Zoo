@@ -448,7 +448,6 @@ namespace TP2.LeReste
             {
                 if (e.Position == Terrain[26, 4])
                 {
-                    Console.WriteLine("hop la");
                     visiteurAEnlever = e as Visiteur;
                     break;
                 }
