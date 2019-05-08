@@ -352,10 +352,11 @@ namespace TP2.LeReste
         public void InitializeComponent()
         {
             this.SuspendLayout();
-            //
+            // 
             // Zoo
-            //
+            // 
             this.Size = new System.Drawing.Size(1024, 832);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Zoo_MouseClick);
             this.ResumeLayout(false);
 
         }
@@ -467,6 +468,30 @@ namespace TP2.LeReste
                     a.DeplacerEtModifierImage();
                 }
             }
+        }
+
+        private void Zoo_MouseClick(object sender, MouseEventArgs e)
+        {
+            TuileZoo tuile = Terrain[e.X / 32, e.Y / 26];
+
+            //Enclos 1
+
+
+
+            //Enclos 2
+
+
+
+            //Enclos 3
+
+
+
+            //Enclos 4
+
+
+
+
+
         }
     }
 }
