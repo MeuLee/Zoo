@@ -36,7 +36,6 @@ namespace TP2
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nouvellePartieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LblJourActuel = new System.Windows.Forms.Label();
             this.LblJour = new System.Windows.Forms.Label();
             this.LblArgent = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -100,25 +99,13 @@ namespace TP2
             this.quitterToolStripMenuItem.Text = "Quitter";
             this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
             // 
-            // LblJourActuel
-            // 
-            this.LblJourActuel.AutoSize = true;
-            this.LblJourActuel.BackColor = System.Drawing.Color.Transparent;
-            this.LblJourActuel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblJourActuel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.LblJourActuel.Location = new System.Drawing.Point(61, 0);
-            this.LblJourActuel.Name = "LblJourActuel";
-            this.LblJourActuel.Size = new System.Drawing.Size(162, 29);
-            this.LblJourActuel.TabIndex = 4;
-            this.LblJourActuel.Text = "Jour actuel : ";
-            // 
             // LblJour
             // 
             this.LblJour.AutoSize = true;
             this.LblJour.BackColor = System.Drawing.Color.Transparent;
             this.LblJour.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblJour.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.LblJour.Location = new System.Drawing.Point(17, 54);
+            this.LblJour.Location = new System.Drawing.Point(17, 18);
             this.LblJour.Name = "LblJour";
             this.LblJour.Size = new System.Drawing.Size(221, 35);
             this.LblJour.TabIndex = 5;
@@ -187,10 +174,9 @@ namespace TP2
             this.PnlJour.BackColor = System.Drawing.Color.Transparent;
             this.PnlJour.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PnlJour.Controls.Add(this.LblJour);
-            this.PnlJour.Controls.Add(this.LblJourActuel);
-            this.PnlJour.Location = new System.Drawing.Point(1056, 38);
+            this.PnlJour.Location = new System.Drawing.Point(1056, 78);
             this.PnlJour.Name = "PnlJour";
-            this.PnlJour.Size = new System.Drawing.Size(259, 111);
+            this.PnlJour.Size = new System.Drawing.Size(259, 73);
             this.PnlJour.TabIndex = 11;
             // 
             // PnlArgent
@@ -268,7 +254,6 @@ namespace TP2
         private System.Windows.Forms.ToolStripMenuItem fichierToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nouvellePartieToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
-        private System.Windows.Forms.Label LblJourActuel;
         private System.Windows.Forms.Label LblJour;
         private System.Windows.Forms.Label LblArgent;
         private System.Windows.Forms.PictureBox pictureBox1;
