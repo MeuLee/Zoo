@@ -21,6 +21,7 @@ namespace TP2
         {
             InitializeComponent();
             TmrTemps.Stop();
+            TmrMinute.Stop();
             _date = DateTime.Now;
         }
 
@@ -130,10 +131,12 @@ namespace TP2
         #region Timer 60000
         /// <summary>
         /// À chaque minute, ajoute 1$ par visiteur par (animal -10c par déchet)
+        /// Enlève 2$ par concierge
         /// </summary>
         private void TmrMinute_Tick(object sender, EventArgs e)
         {
             Zoo.Heros.AjouterArgentSelonAnimauxEtDechets();
+            Zoo.Heros.RetirerArgentSelonConcierges();
         }
         #endregion
     }

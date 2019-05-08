@@ -15,7 +15,8 @@ namespace TP2.LeReste
         {
             Zoo.ListeEntites.Add(new Heros());
 
-            for (int i = 0; i < 2; i++)
+            //à enlever
+            for (int i = 0; i < 4; i++)
             {
                 new Animal(Animal.TypeAnimal.Grizzly);
                 new Animal(Animal.TypeAnimal.Lion);
@@ -23,8 +24,10 @@ namespace TP2.LeReste
                 new Animal(Animal.TypeAnimal.Mouton, Zoo.ListeEnclos[1]);
                 new Concierge();
             }
+
             zoo.CreerEtLancerThreadAnimaux();
             instanceForm.TmrTemps.Start();
+            instanceForm.TmrMinute.Start();
         }
 
         

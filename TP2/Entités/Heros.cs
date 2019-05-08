@@ -135,5 +135,13 @@ namespace TP2.Entités
             Argent += Zoo.ListeEntites.OfType<Visiteur>().Count() *
                      (Zoo.ListeEntites.OfType<Animal>().Count() - Zoo.ListeEntites.OfType<Dechet>().Count() * 0.1);
         }
+
+        /// <summary>
+        /// Enlève 2 dollars par concierge engagé
+        /// </summary>
+        internal void RetirerArgentSelonConcierges()
+        {
+            Argent -= 2 * Zoo.ListeEntites.OfType<Concierge>().Count();
+        }
     }
 }

@@ -428,6 +428,7 @@ namespace TP2.LeReste
                 DeplacerConcierges();
                 RamasserDechets();
                 DeplacerAnimaux();
+                KickVisiteur();
                 //breed
 
                 Invoke((MethodInvoker)delegate ()
@@ -435,6 +436,24 @@ namespace TP2.LeReste
                     Refresh();
                 });
             }
+        }
+
+        /// <summary>
+        /// Kick les visiteurs hors du Zoo si ça fait plus d'une minute qu'ils sont entrés et qu'ils sont sur la case de sortie.
+        /// </summary>
+        private void KickVisiteur()
+        {
+            Visiteur visiteurAEnlever = null;
+            foreach (Entite e in ListeEntites.OfType<Visiteur>().Where(v => v.QuandEntreZoo.AddMinutes(1) <= DateTime.Now))
+            {
+                if (e.Position == Terrain[26, 4])
+                {
+                    Console.WriteLine("hop la");
+                    visiteurAEnlever = e as Visiteur;
+                    break;
+                }
+            }
+            ListeEntites.Remove(visiteurAEnlever);
         }
 
         /// <summary>

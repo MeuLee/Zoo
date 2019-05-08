@@ -80,14 +80,14 @@ namespace TP2
             // MnuNouvellePartie
             // 
             this.MnuNouvellePartie.Name = "MnuNouvellePartie";
-            this.MnuNouvellePartie.Size = new System.Drawing.Size(180, 22);
+            this.MnuNouvellePartie.Size = new System.Drawing.Size(154, 22);
             this.MnuNouvellePartie.Text = "Nouvelle Partie";
             this.MnuNouvellePartie.Click += new System.EventHandler(this.MnuNouvellePartie_Click);
             // 
             // MnuQuitter
             // 
             this.MnuQuitter.Name = "MnuQuitter";
-            this.MnuQuitter.Size = new System.Drawing.Size(180, 22);
+            this.MnuQuitter.Size = new System.Drawing.Size(154, 22);
             this.MnuQuitter.Text = "Quitter";
             this.MnuQuitter.Click += new System.EventHandler(this.MnuQuitter_Click);
             // 
@@ -278,6 +278,6 @@ namespace TP2
         private System.Windows.Forms.Panel PnlAnimaux;
         private System.Windows.Forms.Panel PnlPoubelle;
         public System.Windows.Forms.Timer TmrTemps;
-        private System.Windows.Forms.Timer TmrMinute;
+        public System.Windows.Forms.Timer TmrMinute;
     }
 }
