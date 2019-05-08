@@ -20,7 +20,6 @@ namespace TP2.Entités
         public Enclos Enclos { get; set; }
         public bool AFaim { get; set; }
         public SexeEntite Sexe { get; set; }
-        public int Prix { get; set; }
 
         public enum TypeAnimal
         {
@@ -36,7 +35,7 @@ namespace TP2.Entités
             Adulte
         }
 
-        public Animal(TypeAnimal type, Enclos enclos = null, AgeAnimal age = AgeAnimal.Adulte)
+        public Animal(TuileZoo position, TypeAnimal type, Enclos enclos = null, AgeAnimal age = AgeAnimal.Adulte)
         {
             Type = type;
             switch (type)
@@ -45,7 +44,7 @@ namespace TP2.Entités
                     JoursGestation = 220;
                     JoursJusquaAdulte = 220;
                     MinutesPourNourrir = 2;
-                    Prix = 30;
+                    Zoo.Heros.Argent -= 30;
                     Image = TileSetGenerator.GetTile(TileSetGenerator.GRIZZLY);
                     Enclos = Zoo.ListeEnclos[3];
                     break;
@@ -53,7 +52,7 @@ namespace TP2.Entités
                     JoursGestation = 110;
                     JoursJusquaAdulte = 110;
                     MinutesPourNourrir = 2;
-                    Prix = 35;
+                    Zoo.Heros.Argent -= 35;
                     Image = TileSetGenerator.GetTile(TileSetGenerator.LION);
                     Enclos = Zoo.ListeEnclos[2];
                     break;
@@ -61,7 +60,7 @@ namespace TP2.Entités
                     JoursGestation = 150;
                     JoursJusquaAdulte = 150;
                     MinutesPourNourrir = 2;
-                    Prix = 20;
+                    Zoo.Heros.Argent -= 20;
                     Image = TileSetGenerator.GetTile(TileSetGenerator.MOUTON);
                     Enclos = enclos;
                     break;
@@ -69,7 +68,7 @@ namespace TP2.Entités
                     JoursGestation = 360;
                     JoursJusquaAdulte = 360;
                     MinutesPourNourrir = 3;
-                    Prix = 50;
+                    Zoo.Heros.Argent -= 50;
                     Image = TileSetGenerator.GetTile(TileSetGenerator.LICORNE);
                     Enclos = enclos;
                     break;
@@ -79,23 +78,8 @@ namespace TP2.Entités
             Age = age;
             Enceinte = false;
             Sexe = (SexeEntite)_r.Next(0, 2);
-            Position = DeterminerPositionDepart();
+            Position = position;
             Zoo.ListeEntites.Add(this);
-        }
-
-        /// <summary>
-        /// S'assure que les animaux commencent tous à une place différente dans l'enclos
-        /// </summary>
-        /// <returns></returns>
-        private TuileZoo DeterminerPositionDepart()
-        {
-            TuileZoo possibilite;
-            do
-            {
-                possibilite = Zoo.Terrain[_r.Next(Enclos.X + 1, Enclos.X + Enclos.Width - 1), //X compris dans l'enclos de l'animal
-                                          _r.Next(Enclos.Y + 1, Enclos.Y + Enclos.Height - 1)];//Y compris dans l'enclos de l'animal
-            } while (possibilite.Tuile == TuileZoo.TypeTuile.Interdit);
-            return possibilite;
         }
 
         #region Déplacement

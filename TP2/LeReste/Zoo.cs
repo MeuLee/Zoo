@@ -303,7 +303,7 @@ namespace TP2.LeReste
             {
                 for (int j = 0; j < 26; j++)
                 {
-                    if (!(i>2 && i<8 &&j<3 || i > 23 && i < 29 && j < 3))
+                    if (!(i > 2 && i < 8 && j < 3 || i > 23 && i < 29 && j < 3))
                     {
                         DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.GAZON), i, j, TuileZoo.TypeTuile.Gazon);
                     }
@@ -366,6 +366,7 @@ namespace TP2.LeReste
             // Zoo
             // 
             this.Size = new System.Drawing.Size(1024, 832);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Zoo_MouseClick);
             this.ResumeLayout(false);
 
         }
@@ -419,7 +420,7 @@ namespace TP2.LeReste
 
                 if (_r.Next(0, 10) == 0 && MoinsDeVisiteursQueDAnimaux())//une chance sur 10
                     new Visiteur();
-                
+
                 List<TuileZoo> listeNouveauxDechets = DeplacerVisiteursEtCreerDechets();
 
                 if (listeNouveauxDechets.Count > 0)
@@ -511,7 +512,7 @@ namespace TP2.LeReste
             }
             return emplacementsDechet;
         }
-    
+
         /// <summary>
         /// Déplace les animaux dans le tableau 2d (Refresh sera call plus tard).
         /// </summary>
@@ -521,5 +522,79 @@ namespace TP2.LeReste
                 (e as Animal).Deplacer();
         }
         #endregion
+
+        private void Zoo_MouseClick(object sender, MouseEventArgs e)
+        {
+            TuileZoo tuile = Terrain[e.X / 32, e.Y / 32];
+
+            //Enclos 1
+
+            //liste enclos en haut
+            if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 5 && tuile.Y < 14)
+            {
+                //faire une mathode
+                if (Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y + 1] == Heros.Position || Terrain[tuile.X + 1, tuile.Y + 1] == Heros.Position
+                    || Terrain[tuile.X + 1, tuile.Y] == Heros.Position || Terrain[tuile.X + 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y - 1] == Heros.Position
+                    || Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X - 1, tuile.Y] == Heros.Position)
+                {
+                    new Animal(tuile, Animal.TypeAnimal.Mouton);
+                }
+
+
+            }
+
+            //Enclos 2
+
+            else if (tuile.X > 17 && tuile.X < 29 && tuile.Y > 5 && tuile.Y < 14)
+            {
+                if (Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y + 1] == Heros.Position || Terrain[tuile.X + 1, tuile.Y + 1] == Heros.Position
+                    || Terrain[tuile.X + 1, tuile.Y] == Heros.Position || Terrain[tuile.X + 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y - 1] == Heros.Position
+                    || Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X - 1, tuile.Y] == Heros.Position)
+                {
+                    new Animal(tuile, Animal.TypeAnimal.Licorne);
+                }
+            }
+
+
+            //Enclos 3
+
+            else if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 15 && tuile.Y < 24)
+            {
+                if (Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y + 1] == Heros.Position || Terrain[tuile.X + 1, tuile.Y + 1] == Heros.Position
+                    || Terrain[tuile.X + 1, tuile.Y] == Heros.Position || Terrain[tuile.X + 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y - 1] == Heros.Position
+                    || Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X - 1, tuile.Y] == Heros.Position)
+                {
+                    new Animal(tuile, Animal.TypeAnimal.Lion);
+                }
+            }
+
+
+
+            //Enclos 4
+
+            else if (tuile.X > 17 && tuile.X < 29 && tuile.Y > 15 && tuile.Y < 24)
+            {
+                if (Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y + 1] == Heros.Position || Terrain[tuile.X + 1, tuile.Y + 1] == Heros.Position
+                    || Terrain[tuile.X + 1, tuile.Y] == Heros.Position || Terrain[tuile.X + 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y - 1] == Heros.Position
+                    || Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X - 1, tuile.Y] == Heros.Position)
+                {
+                    new Animal(tuile, Animal.TypeAnimal.Grizzly);
+                }
+            }
+
+
+            //Concierge
+            else 
+            {
+                if (Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y + 1] == Heros.Position || Terrain[tuile.X + 1, tuile.Y + 1] == Heros.Position
+                    || Terrain[tuile.X + 1, tuile.Y] == Heros.Position || Terrain[tuile.X + 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y - 1] == Heros.Position
+                    || Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X - 1, tuile.Y] == Heros.Position)
+                {
+                    new Concierge();
+                }
+            }
+
+
+        }
     }
 }
