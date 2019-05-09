@@ -21,6 +21,13 @@ namespace TP2.Entités
         public bool AFaim { get; set; }
         public SexeEntite Sexe { get; set; }
 
+        public double Prix { get; set; }
+
+        public const double PRIX_MOUTON = 20;
+        public const double PRIX_GRIZZLY = 30;
+        public const double PRIX_LION = 35;
+        public const double PRIX_LICORNE = 50;
+
         public enum TypeAnimal
         {
             Mouton,
@@ -44,7 +51,8 @@ namespace TP2.Entités
                     JoursGestation = 220;
                     JoursJusquaAdulte = 220;
                     MinutesPourNourrir = 2;
-                    Zoo.Heros.Argent -= 30;
+                    Prix = PRIX_GRIZZLY;
+                    Zoo.Heros.Argent -= PRIX_GRIZZLY;
                     Image = TileSetGenerator.GetTile(TileSetGenerator.GRIZZLY);
                     Enclos = Zoo.ListeEnclos[3];
                     break;
@@ -52,7 +60,8 @@ namespace TP2.Entités
                     JoursGestation = 110;
                     JoursJusquaAdulte = 110;
                     MinutesPourNourrir = 2;
-                    Zoo.Heros.Argent -= 35;
+                    Prix = PRIX_LION;
+                    Zoo.Heros.Argent -= PRIX_LION;
                     Image = TileSetGenerator.GetTile(TileSetGenerator.LION);
                     Enclos = Zoo.ListeEnclos[2];
                     break;
@@ -60,7 +69,8 @@ namespace TP2.Entités
                     JoursGestation = 150;
                     JoursJusquaAdulte = 150;
                     MinutesPourNourrir = 2;
-                    Zoo.Heros.Argent -= 20;
+                    Prix = PRIX_MOUTON;
+                    Zoo.Heros.Argent -= PRIX_MOUTON;
                     Image = TileSetGenerator.GetTile(TileSetGenerator.MOUTON);
                     Enclos = enclos;
                     break;
@@ -68,11 +78,13 @@ namespace TP2.Entités
                     JoursGestation = 360;
                     JoursJusquaAdulte = 360;
                     MinutesPourNourrir = 3;
-                    Zoo.Heros.Argent -= 50;
+                    Prix = PRIX_LICORNE;
+                    Zoo.Heros.Argent -= PRIX_LICORNE;
                     Image = TileSetGenerator.GetTile(TileSetGenerator.LICORNE);
                     Enclos = enclos;
                     break;
             }
+
             DerniereFoisNourri = DateTime.Now;
             AFaim = false;
             Age = age;

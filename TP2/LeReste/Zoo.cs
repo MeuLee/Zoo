@@ -526,57 +526,65 @@ namespace TP2.LeReste
         private void Zoo_MouseClick(object sender, MouseEventArgs e)
         {
             TuileZoo tuile = Terrain[e.X / 32, e.Y / 32];
+            double prixAnimalChoisi = 0;
 
             //Enclos 1
-
-            //liste enclos en haut
             if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 5 && tuile.Y < 14)
             {
-                //faire une mathode
-                if (Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y + 1] == Heros.Position || Terrain[tuile.X + 1, tuile.Y + 1] == Heros.Position
-                    || Terrain[tuile.X + 1, tuile.Y] == Heros.Position || Terrain[tuile.X + 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y - 1] == Heros.Position
-                    || Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X - 1, tuile.Y] == Heros.Position)
+                if (verifierAdjacent(tuile))
                 {
-                    new Animal(tuile, Animal.TypeAnimal.Mouton);
+                    prixAnimalChoisi = selectionAnimal(tuile);
+
+                    if (verifierPrixAnimal(prixAnimalChoisi))
+                    {
+                        if (prixAnimalChoisi == Animal.PRIX_MOUTON)
+                        {
+                            new Animal(tuile, Animal.TypeAnimal.Mouton);
+                        }
+                        else if (prixAnimalChoisi == Animal.PRIX_LICORNE)
+                        {
+                            new Animal(tuile, Animal.TypeAnimal.Licorne);
+                        }
+                    }
                 }
-
-
             }
 
             //Enclos 2
-
             else if (tuile.X > 17 && tuile.X < 29 && tuile.Y > 5 && tuile.Y < 14)
             {
-                if (Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y + 1] == Heros.Position || Terrain[tuile.X + 1, tuile.Y + 1] == Heros.Position
-                    || Terrain[tuile.X + 1, tuile.Y] == Heros.Position || Terrain[tuile.X + 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y - 1] == Heros.Position
-                    || Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X - 1, tuile.Y] == Heros.Position)
+                if (verifierAdjacent(tuile))
                 {
-                    new Animal(tuile, Animal.TypeAnimal.Licorne);
+                    prixAnimalChoisi = selectionAnimal(tuile);
+
+                    if (verifierPrixAnimal(prixAnimalChoisi))
+                    {
+                        if (prixAnimalChoisi == Animal.PRIX_MOUTON)
+                        {
+                            new Animal(tuile, Animal.TypeAnimal.Mouton);
+                        }
+                        else if (prixAnimalChoisi == Animal.PRIX_LICORNE)
+                        {
+                            new Animal(tuile, Animal.TypeAnimal.Licorne);
+                        }
+                    }
                 }
             }
 
 
             //Enclos 3
-
             else if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 15 && tuile.Y < 24)
             {
-                if (Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y + 1] == Heros.Position || Terrain[tuile.X + 1, tuile.Y + 1] == Heros.Position
-                    || Terrain[tuile.X + 1, tuile.Y] == Heros.Position || Terrain[tuile.X + 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y - 1] == Heros.Position
-                    || Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X - 1, tuile.Y] == Heros.Position)
+                if (verifierAdjacent(tuile) && verifierPrixAnimal(Animal.PRIX_LION))
                 {
                     new Animal(tuile, Animal.TypeAnimal.Lion);
                 }
             }
 
 
-
             //Enclos 4
-
             else if (tuile.X > 17 && tuile.X < 29 && tuile.Y > 15 && tuile.Y < 24)
             {
-                if (Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y + 1] == Heros.Position || Terrain[tuile.X + 1, tuile.Y + 1] == Heros.Position
-                    || Terrain[tuile.X + 1, tuile.Y] == Heros.Position || Terrain[tuile.X + 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y - 1] == Heros.Position
-                    || Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X - 1, tuile.Y] == Heros.Position)
+                if (verifierAdjacent(tuile) && verifierPrixAnimal(Animal.PRIX_GRIZZLY))
                 {
                     new Animal(tuile, Animal.TypeAnimal.Grizzly);
                 }
@@ -584,17 +592,58 @@ namespace TP2.LeReste
 
 
             //Concierge
-            else 
+            else if (verifierAdjacent(tuile))
             {
-                if (Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y + 1] == Heros.Position || Terrain[tuile.X + 1, tuile.Y + 1] == Heros.Position
+                new Concierge();
+            }
+        }
+
+        private bool verifierAdjacent(TuileZoo tuile)
+        {
+            if (Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y + 1] == Heros.Position || Terrain[tuile.X + 1, tuile.Y + 1] == Heros.Position
                     || Terrain[tuile.X + 1, tuile.Y] == Heros.Position || Terrain[tuile.X + 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y - 1] == Heros.Position
                     || Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X - 1, tuile.Y] == Heros.Position)
-                {
-                    new Concierge();
-                }
+            {
+                return true;
             }
+            else
+            {
+                return false;
+            }
+        }
 
+        private bool verifierPrixAnimal(double prix)
+        {
+            if (Heros.Argent - prix < 0)
+            {
+                MessageBox.Show("Vous n'avez pas assez d'argent pour acheter cet animal !");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
+        private double selectionAnimal(TuileZoo tuile)
+        {
+            ChoixAnimal choix = new ChoixAnimal();
+            choix.ShowDialog();
+
+            if (choix.selection.Equals("Licorne"))
+            {
+                return Animal.PRIX_LICORNE;
+            }
+            else if (choix.selection.Equals("Mouton"))
+            {
+
+                return Animal.PRIX_MOUTON;
+            }
+            else
+            {
+                //Par défaut
+                return 0;
+            }
         }
     }
 }
