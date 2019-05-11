@@ -618,7 +618,7 @@ namespace TP2.LeReste
                 {
                     animal = e as Animal;
 
-                    if (verifierPrixAnimal(1))
+                    if (animal.Position == tuile && verifierPrixAnimal(1))
                     {
                         switch (animal.Type)
                         {
@@ -764,7 +764,7 @@ namespace TP2.LeReste
                 cliqueDroit(sender, e);
             }
 
-            if (e.Button == MouseButtons.Left)
+            else if (e.Button == MouseButtons.Left)
             {
                 cliqueGauche(sender, e);
             }
@@ -772,7 +772,44 @@ namespace TP2.LeReste
 
         private void cliqueDroit(object sender, MouseEventArgs e)
         {
-            
+            FormInfos infos = new FormInfos();
+            TuileZoo tuile = Terrain[e.X / 32, e.Y / 32];
+            nourrirAnimal(tuile);
+            Animal animal;
+            Visiteur visiteur;
+
+
+            foreach (Entite entite in ListeEntites.OfType<Animal>())
+            {
+                animal = entite as Animal;
+                if (animal.Position == tuile)
+                {
+                    infos.LblType.Text = "Animal";
+                    infos.LblGenre.Text = animal.Sexe.ToString();
+                    infos.LblAge.Text = animal.Age.ToString();
+                    infos.LblEnceinte.Text = animal.JoursGestation.ToString();
+                    infos.PicImage.Image = animal.Image;
+                    infos.Show();
+                }
+
+            }
+
+            foreach (Entite entite in ListeEntites.OfType<Visiteur>())
+            {
+                visiteur = entite as Visiteur;
+                if (visiteur.Position == tuile)
+                {
+                    infos.LblType.Text = visiteur.Nom;
+                    infos.LblGenre.Text = visiteur.SexeVisiteur.ToString();
+                    infos.LblAge.Text = (DateTime.Now - visiteur.QuandEntreZoo).ToString();
+                    infos.PicImage.Image = visiteur.Image;
+                    infos.LblEnceinte.Text = "";
+                    infos.LblFaim.Text = "";
+                    infos.Show();
+                }
+
+            }
+
         }
 
         /// <summary>
