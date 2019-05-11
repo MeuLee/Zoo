@@ -401,8 +401,11 @@ namespace TP2.LeReste
         public void InitializeComponent()
         {
             this.SuspendLayout();
+            // 
+            // Zoo
+            // 
             this.Size = new System.Drawing.Size(1024, 832);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Zoo_MouseClick);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Zoo_MouseDown);
             this.ResumeLayout(false);
 
         }
@@ -428,7 +431,7 @@ namespace TP2.LeReste
             ListeEnclos[2] = new Enclos(3, 16);
             ListeEnclos[2].AnimauxPresents = new List<Animal>();
             ListeEnclos[3] = new Enclos(18, 16);
-            ListeEnclos[2].AnimauxPresents = new List<Animal>();
+            ListeEnclos[3].AnimauxPresents = new List<Animal>();
         }
 
         #region Thread
@@ -567,72 +570,6 @@ namespace TP2.LeReste
 
 
         /// <summary>
-        /// Methode pour le click gauche, selon la position du clique on peut nourrir un animal, ajouter un animal ou un concierge.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Zoo_MouseClick(object sender, MouseEventArgs e)
-        {
-            //Avec l'endroit du clique, on peut savoir quel enclos a ete clique
-            if (partieCommence)
-            {
-                TuileZoo tuile = Terrain[e.X / 32, e.Y / 32];
-                nourrirAnimal(tuile);
-
-                //Enclos 1              
-                if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 5 && tuile.Y < 14)
-                {
-                    //Verifier s'il n'y a pas deja un type d'animal dans l'enclos
-                    if (ListeEnclos[0].Espece == Animal.TypeAnimal.Licorne || ListeEnclos[0].Espece == Animal.TypeAnimal.Mouton)
-                    {
-                        ajouterAnimal(ListeEnclos[0], ListeEnclos[0].prixEspece, tuile, ListeEnclos[0].Espece);
-                    }
-                    else
-                    {
-                        selectionAnimal(tuile, ListeEnclos[0]);
-                    }
-
-                }
-
-                //Enclos 2
-                else if (tuile.X > 17 && tuile.X < 29 && tuile.Y > 5 && tuile.Y < 14)
-                {
-
-                    //Verifier s'il n'y a pas deja un type d'animal dans l'enclos
-                    if (ListeEnclos[1].Espece == Animal.TypeAnimal.Licorne || ListeEnclos[1].Espece == Animal.TypeAnimal.Mouton)
-                    {
-                        ajouterAnimal(ListeEnclos[1], ListeEnclos[1].prixEspece, tuile, ListeEnclos[1].Espece);
-                    }
-                    else
-                    {
-                        selectionAnimal(tuile, ListeEnclos[1]);
-                    }
-
-                }
-
-                //Enclos 3
-                else if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 15 && tuile.Y < 24)
-                {
-                    ajouterAnimal(ListeEnclos[2], Animal.PRIX_LION, tuile, Animal.TypeAnimal.Lion);
-                }
-
-                //Enclos 4
-                else if (tuile.X > 17 && tuile.X < 29 && tuile.Y > 15 && tuile.Y < 24)
-                {
-                    ajouterAnimal(ListeEnclos[3], Animal.PRIX_GRIZZLY, tuile, Animal.TypeAnimal.Grizzly);
-                }
-
-                //Concierge
-                else if (verifierAdjacent(tuile))
-                {
-                    new Concierge();
-                }
-
-
-            }
-        }
-
-        /// <summary>
         /// Methode pour ajouter (acheter) un animal dans un enclos
         /// </summary>
         /// <param name="enclos"></param>
@@ -674,7 +611,7 @@ namespace TP2.LeReste
 
         private void nourrirAnimal(TuileZoo tuile)
         {
-            if (verifierAdjacent(tuile))
+            if (verifierAdjacent(tuile) && verifierTuile(tuile))
             {
                 Animal animal;
                 foreach (Entite e in ListeEntites.OfType<Animal>())
@@ -810,6 +747,94 @@ namespace TP2.LeReste
                 else if (choix.selection.Equals("Mouton"))
                 {
                     ajouterAnimal(enclos, Animal.PRIX_MOUTON, tuile, Animal.TypeAnimal.Mouton);
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Evenement clique du jeu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Zoo_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                cliqueDroit(sender, e);
+            }
+
+            if (e.Button == MouseButtons.Left)
+            {
+                cliqueGauche(sender, e);
+            }
+        }
+
+        private void cliqueDroit(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        /// <summary>
+        /// Methode pour le clique gauche (ajouter entite, nourrir animaux)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cliqueGauche(object sender, MouseEventArgs e)
+        {
+            //Avec l'endroit du clique, on peut savoir quel enclos a ete clique
+            if (partieCommence)
+            {
+                TuileZoo tuile = Terrain[e.X / 32, e.Y / 32];
+                nourrirAnimal(tuile);
+
+                //Enclos 1              
+                if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 5 && tuile.Y < 14)
+                {
+                    //Verifier s'il n'y a pas deja un type d'animal dans l'enclos
+                    if (ListeEnclos[0].Espece == Animal.TypeAnimal.Licorne || ListeEnclos[0].Espece == Animal.TypeAnimal.Mouton)
+                    {
+                        ajouterAnimal(ListeEnclos[0], ListeEnclos[0].prixEspece, tuile, ListeEnclos[0].Espece);
+                    }
+                    else
+                    {
+                        selectionAnimal(tuile, ListeEnclos[0]);
+                    }
+
+                }
+
+                //Enclos 2
+                else if (tuile.X > 17 && tuile.X < 29 && tuile.Y > 5 && tuile.Y < 14)
+                {
+
+                    //Verifier s'il n'y a pas deja un type d'animal dans l'enclos
+                    if (ListeEnclos[1].Espece == Animal.TypeAnimal.Licorne || ListeEnclos[1].Espece == Animal.TypeAnimal.Mouton)
+                    {
+                        ajouterAnimal(ListeEnclos[1], ListeEnclos[1].prixEspece, tuile, ListeEnclos[1].Espece);
+                    }
+                    else
+                    {
+                        selectionAnimal(tuile, ListeEnclos[1]);
+                    }
+
+                }
+
+                //Enclos 3
+                else if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 15 && tuile.Y < 24)
+                {
+                    ajouterAnimal(ListeEnclos[2], Animal.PRIX_LION, tuile, Animal.TypeAnimal.Lion);
+                }
+
+                //Enclos 4
+                else if (tuile.X > 17 && tuile.X < 29 && tuile.Y > 15 && tuile.Y < 24)
+                {
+                    ajouterAnimal(ListeEnclos[3], Animal.PRIX_GRIZZLY, tuile, Animal.TypeAnimal.Grizzly);
+                }
+
+                //Concierge
+                else if (verifierAdjacent(tuile))
+                {
+                    new Concierge();
                 }
             }
         }
