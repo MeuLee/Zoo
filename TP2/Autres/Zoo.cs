@@ -625,22 +625,22 @@ namespace TP2.LeReste
                             case Animal.TypeAnimal.Mouton:
                                 Heros.Argent -= 1;
                                 animal.DerniereFoisNourri = DateTime.Now;
-                                PlayMoutonSound();
+                                playMoutonSound();
                                 break;
                             case Animal.TypeAnimal.Licorne:
                                 Heros.Argent -= 1;
                                 animal.DerniereFoisNourri = DateTime.Now;
-                                PlayLicorneSound();
+                                playLicorneSound();
                                 break;
                             case Animal.TypeAnimal.Lion:
                                 Heros.Argent -= 1;
                                 animal.DerniereFoisNourri = DateTime.Now;
-                                PlayLionSound();
+                                playLionSound();
                                 break;
                             case Animal.TypeAnimal.Grizzly:
                                 Heros.Argent -= 1;
                                 animal.DerniereFoisNourri = DateTime.Now;
-                                PlayGrizzlySound();
+                                playGrizzlySound();
                                 break;
                         }
                     }
@@ -655,33 +655,37 @@ namespace TP2.LeReste
         /// <summary>
         /// Son du lion
         /// </summary>
-        private void PlayLionSound()
+        private void playLionSound()
         {
-            new SoundPlayer(Properties.Resources.lion).Play();
+            SoundPlayer simpleSound = new SoundPlayer(@"lion.wav");
+            simpleSound.Play();
         }
 
         /// <summary>
         /// Son du grizzly
         /// </summary>
-        private void PlayGrizzlySound()
+        private void playGrizzlySound()
         {
-            new SoundPlayer(Properties.Resources.ours).Play();
+            SoundPlayer simpleSound = new SoundPlayer(@"ours.wav");
+            simpleSound.Play();
         }
 
         /// <summary>
         /// Son de la licorne
         /// </summary>
-        private void PlayLicorneSound()
+        private void playLicorneSound()
         {
-            new SoundPlayer(Properties.Resources.licorne).Play();
+            SoundPlayer simpleSound = new SoundPlayer(@"licorne.wav");
+            simpleSound.Play();
         }
 
         /// <summary>
         /// Son du mouton
         /// </summary>
-        private void PlayMoutonSound()
+        private void playMoutonSound()
         {
-            new SoundPlayer(Properties.Resources.mouton).Play();
+            SoundPlayer simpleSound = new SoundPlayer(@"mouton.wav");
+            simpleSound.Play();
         }
 
 
