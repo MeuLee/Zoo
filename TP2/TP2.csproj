@@ -142,5 +142,17 @@
   <ItemGroup>
     <None Include="Resources\haut3.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\licorne.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lion.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mouton.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ours.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

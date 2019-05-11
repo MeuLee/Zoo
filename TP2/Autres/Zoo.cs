@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -576,8 +577,9 @@ namespace TP2.LeReste
             if (partieCommence)
             {
                 TuileZoo tuile = Terrain[e.X / 32, e.Y / 32];
+                nourrirAnimal(tuile);
 
-                //Enclos 1
+                //Enclos 1              
                 if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 5 && tuile.Y < 14)
                 {
                     //Verifier s'il n'y a pas deja un type d'animal dans l'enclos
@@ -595,6 +597,7 @@ namespace TP2.LeReste
                 //Enclos 2
                 else if (tuile.X > 17 && tuile.X < 29 && tuile.Y > 5 && tuile.Y < 14)
                 {
+
                     //Verifier s'il n'y a pas deja un type d'animal dans l'enclos
                     if (ListeEnclos[1].Espece == Animal.TypeAnimal.Licorne || ListeEnclos[1].Espece == Animal.TypeAnimal.Mouton)
                     {
@@ -638,12 +641,114 @@ namespace TP2.LeReste
         /// <param name="type"></param>
         private void ajouterAnimal(Enclos enclos, double prixAnimal, TuileZoo tuile, Animal.TypeAnimal type)
         {
-            if (verifierAdjacent(tuile) && verifierPrixAnimal(prixAnimal))
+            if (!(verifierTuile(tuile)))
             {
-                enclos.Espece = type;
-                enclos.prixEspece = prixAnimal;
-                enclos.AnimauxPresents.Add(new Animal(tuile, type));
+                if (verifierAdjacent(tuile) && verifierPrixAnimal(prixAnimal))
+                {
+                    enclos.Espece = type;
+                    enclos.prixEspece = prixAnimal;
+                    enclos.AnimauxPresents.Add(new Animal(tuile, type));
+                }
             }
+        }
+
+        /// <summary>
+        /// Verifier si la tuile contient deja un animal, car si cest le cas, on ne pourrait pas ajouter un animal a cette position
+        /// </summary>
+        /// <param name="tuile"></param>
+        /// <returns></returns>
+        private bool verifierTuile(TuileZoo tuile)
+        {
+            bool tuileOccupe = false;
+
+            for (int i = 0; i < ListeEntites.Count(); i++)
+            {
+                if (ListeEntites[i].Position == tuile)
+                {
+                    tuileOccupe = true;
+                }
+            }
+
+            return tuileOccupe;
+        }
+
+        private void nourrirAnimal(TuileZoo tuile)
+        {
+            if (verifierAdjacent(tuile))
+            {
+                Animal animal;
+                foreach (Entite e in ListeEntites.OfType<Animal>())
+                {
+                    animal = e as Animal;
+
+                    if (verifierPrixAnimal(animal.Prix))
+                    {
+                        switch (animal.Type)
+                        {
+                            case Animal.TypeAnimal.Mouton:
+                                Heros.Argent -= 1;
+                                animal.DerniereFoisNourri = DateTime.Now;
+                                playMoutonSound();
+                                break;
+                            case Animal.TypeAnimal.Licorne:
+                                Heros.Argent -= 1;
+                                animal.DerniereFoisNourri = DateTime.Now;
+                                playLicorneSound();
+                                break;
+                            case Animal.TypeAnimal.Lion:
+                                Heros.Argent -= 1;
+                                animal.DerniereFoisNourri = DateTime.Now;
+                                playLionSound();
+                                break;
+                            case Animal.TypeAnimal.Grizzly:
+                                Heros.Argent -= 1;
+                                animal.DerniereFoisNourri = DateTime.Now;
+                                playGrizzlySound();
+                                break;
+                        }
+                    }
+
+                }
+
+
+            }
+
+        }
+
+        /// <summary>
+        /// Son du lion
+        /// </summary>
+        private void playLionSound()
+        {
+            SoundPlayer simpleSound = new SoundPlayer(@"lion.wav");
+            simpleSound.Play();
+        }
+
+        /// <summary>
+        /// Son du grizzly
+        /// </summary>
+        private void playGrizzlySound()
+        {
+            SoundPlayer simpleSound = new SoundPlayer(@"ours.wav");
+            simpleSound.Play();
+        }
+
+        /// <summary>
+        /// Son de la licorne
+        /// </summary>
+        private void playLicorneSound()
+        {
+            SoundPlayer simpleSound = new SoundPlayer(@"licorne.wav");
+            simpleSound.Play();
+        }
+
+        /// <summary>
+        /// Son du mouton
+        /// </summary>
+        private void playMoutonSound()
+        {
+            SoundPlayer simpleSound = new SoundPlayer(@"mouton.wav");
+            simpleSound.Play();
         }
 
 
@@ -693,18 +798,20 @@ namespace TP2.LeReste
         /// <param name="enclos"></param>
         private void selectionAnimal(TuileZoo tuile, Enclos enclos)
         {
-            ChoixAnimal choix = new ChoixAnimal();
-            choix.ShowDialog();
-
-            if (choix.selection.Equals("Licorne"))
+            if (verifierAdjacent(tuile))
             {
-                ajouterAnimal(enclos, Animal.PRIX_LICORNE, tuile, Animal.TypeAnimal.Licorne);
-            }
-            else if (choix.selection.Equals("Mouton"))
-            {
-                ajouterAnimal(enclos, Animal.PRIX_MOUTON, tuile, Animal.TypeAnimal.Mouton);
-            }
+                ChoixAnimal choix = new ChoixAnimal();
+                choix.ShowDialog();
 
+                if (choix.selection.Equals("Licorne"))
+                {
+                    ajouterAnimal(enclos, Animal.PRIX_LICORNE, tuile, Animal.TypeAnimal.Licorne);
+                }
+                else if (choix.selection.Equals("Mouton"))
+                {
+                    ajouterAnimal(enclos, Animal.PRIX_MOUTON, tuile, Animal.TypeAnimal.Mouton);
+                }
+            }
         }
     }
 }

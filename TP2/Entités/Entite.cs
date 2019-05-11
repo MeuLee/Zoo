@@ -12,6 +12,7 @@ namespace TP2.Entités
     {
         public TuileZoo Position { get; set; }
         public Bitmap Image { get; set; }
+        
 
         protected static Random _r = new Random();
 
