@@ -618,7 +618,7 @@ namespace TP2.LeReste
                 {
                     animal = e as Animal;
 
-                    if (verifierPrixAnimal(1))
+                    if (verifierPrixAnimal(animal.Prix))
                     {
                         switch (animal.Type)
                         {

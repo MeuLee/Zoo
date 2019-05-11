@@ -58,12 +58,6 @@
     <Compile Include="Entités\Entite.cs" />
     <Compile Include="Entités\Heros.cs" />
     <Compile Include="Entités\Visiteur.cs" />
-    <Compile Include="FormInfos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormInfos.Designer.cs">
-      <DependentUpon>FormInfos.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmZoo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,9 +76,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ChoixAnimal.resx">
       <DependentUpon>ChoixAnimal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormInfos.resx">
-      <DependentUpon>FormInfos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmZoo.resx">
       <DependentUpon>FrmZoo.cs</DependentUpon>
