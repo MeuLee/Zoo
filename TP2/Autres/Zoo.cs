@@ -32,11 +32,13 @@ namespace TP2.LeReste
         public static List<Entite> ListeEntites { get; set; } = new List<Entite>();
         public static Enclos[] ListeEnclos { get; set; } = new Enclos[4];
 
+        public static bool partieCommence = false;
         public static Heros Heros { get; set; }
 
         private static Random _r = new Random();
         private const int MILLISEC_SLEEP = 822;
         private const int DECHET_SPAWN_RATE = 100;
+
 
         #region OnPaint
         protected override void OnPaint(PaintEventArgs pe)
@@ -58,6 +60,10 @@ namespace TP2.LeReste
                 g.DrawImage(e.Image, e.Position.X * 32, e.Position.Y * 32);
         }
 
+        /// <summary>
+        /// Dessine les clotures des enclos
+        /// </summary>
+        /// <param name="g"></param>
         private void DessinerClotureEnclos(Graphics g)
         {
 
@@ -103,6 +109,10 @@ namespace TP2.LeReste
 
         }
 
+        /// <summary>
+        /// Dessine l'interieur des enclos
+        /// </summary>
+        /// <param name="g"></param>
         private void DessinerInterieurEnclos(Graphics g)
         {
             //Enclos 1
@@ -247,6 +257,10 @@ namespace TP2.LeReste
 
         }
 
+        /// <summary>
+        /// Dessine les allees
+        /// </summary>
+        /// <param name="g"></param>
         private void DessinerAllee(Graphics g)
         {
             for (int i = 1; i < 31; i++)
@@ -262,6 +276,10 @@ namespace TP2.LeReste
             }
         }
 
+        /// <summary>
+        /// Dessine la grande cloture du zoo
+        /// </summary>
+        /// <param name="g"></param>
         private void DessinerClotureZoo(Graphics g)
         {
 
@@ -297,6 +315,10 @@ namespace TP2.LeReste
             }
         }
 
+        /// <summary>
+        /// Dessine le gazon dans les endroits appropries
+        /// </summary>
+        /// <param name="g"></param>
         private void DessinerGazon(Graphics g)
         {
             for (int i = 0; i < 32; i++)
@@ -316,12 +338,20 @@ namespace TP2.LeReste
             }
         }
 
+        /// <summary>
+        /// Dessine la porte d'entree et de sortie
+        /// </summary>
+        /// <param name="g"></param>
         private void DessinerEntreeSortie(Graphics g)
         {
             DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.ENTREE), 3, 0, TuileZoo.TypeTuile.Interdit);
             DessinerUneImageEtInitialiserTerrain(g, TileSetGenerator.GetTile(TileSetGenerator.SORTIE), 24, 0, TuileZoo.TypeTuile.Interdit);
         }
 
+        /// <summary>
+        /// Dessine le mot zoo en haut de la map (ecrit avec des roches)
+        /// </summary>
+        /// <param name="g"></param>
         private void DessinerMotZoo(Graphics g)
         {
             for (int i = 9; i < 23; i++)
@@ -338,6 +368,14 @@ namespace TP2.LeReste
             }
         }
 
+        /// <summary>
+        /// Pour chaque tuile, la methode la dessine et l'ajoute dans le tableau de tuile Terrain
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="image"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="typeTuile"></param>
         private void DessinerUneImageEtInitialiserTerrain(Graphics g, Bitmap image, int x, int y, TuileZoo.TypeTuile typeTuile)
         {
             if (image == TileSetGenerator.GetTile(TileSetGenerator.TB_CLOTURE_ENCLOS))
@@ -362,9 +400,6 @@ namespace TP2.LeReste
         public void InitializeComponent()
         {
             this.SuspendLayout();
-            // 
-            // Zoo
-            // 
             this.Size = new System.Drawing.Size(1024, 832);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Zoo_MouseClick);
             this.ResumeLayout(false);
@@ -384,9 +419,15 @@ namespace TP2.LeReste
         private void CreerEnclos()
         {
             ListeEnclos[0] = new Enclos(3, 6);
+            ListeEnclos[0].Espece = Animal.TypeAnimal.Inexistant;
+            ListeEnclos[0].AnimauxPresents = new List<Animal>();
             ListeEnclos[1] = new Enclos(18, 6);
+            ListeEnclos[1].Espece = Animal.TypeAnimal.Inexistant;
+            ListeEnclos[1].AnimauxPresents = new List<Animal>();
             ListeEnclos[2] = new Enclos(3, 16);
+            ListeEnclos[2].AnimauxPresents = new List<Animal>();
             ListeEnclos[3] = new Enclos(18, 16);
+            ListeEnclos[2].AnimauxPresents = new List<Animal>();
         }
 
         #region Thread
@@ -523,81 +564,94 @@ namespace TP2.LeReste
         }
         #endregion
 
+
+        /// <summary>
+        /// Methode pour le click gauche, selon la position du clique on peut nourrir un animal, ajouter un animal ou un concierge.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Zoo_MouseClick(object sender, MouseEventArgs e)
         {
-            TuileZoo tuile = Terrain[e.X / 32, e.Y / 32];
-            double prixAnimalChoisi = 0;
-
-            //Enclos 1
-            if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 5 && tuile.Y < 14)
+            //Avec l'endroit du clique, on peut savoir quel enclos a ete clique
+            if (partieCommence)
             {
-                if (verifierAdjacent(tuile))
-                {
-                    prixAnimalChoisi = selectionAnimal(tuile);
+                TuileZoo tuile = Terrain[e.X / 32, e.Y / 32];
 
-                    if (verifierPrixAnimal(prixAnimalChoisi))
+                //Enclos 1
+                if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 5 && tuile.Y < 14)
+                {
+                    //Verifier s'il n'y a pas deja un type d'animal dans l'enclos
+                    if (ListeEnclos[0].Espece == Animal.TypeAnimal.Licorne || ListeEnclos[0].Espece == Animal.TypeAnimal.Mouton)
                     {
-                        if (prixAnimalChoisi == Animal.PRIX_MOUTON)
-                        {
-                            new Animal(tuile, Animal.TypeAnimal.Mouton);
-                        }
-                        else if (prixAnimalChoisi == Animal.PRIX_LICORNE)
-                        {
-                            new Animal(tuile, Animal.TypeAnimal.Licorne);
-                        }
+                        ajouterAnimal(ListeEnclos[0], ListeEnclos[0].prixEspece, tuile, ListeEnclos[0].Espece);
                     }
-                }
-            }
-
-            //Enclos 2
-            else if (tuile.X > 17 && tuile.X < 29 && tuile.Y > 5 && tuile.Y < 14)
-            {
-                if (verifierAdjacent(tuile))
-                {
-                    prixAnimalChoisi = selectionAnimal(tuile);
-
-                    if (verifierPrixAnimal(prixAnimalChoisi))
+                    else
                     {
-                        if (prixAnimalChoisi == Animal.PRIX_MOUTON)
-                        {
-                            new Animal(tuile, Animal.TypeAnimal.Mouton);
-                        }
-                        else if (prixAnimalChoisi == Animal.PRIX_LICORNE)
-                        {
-                            new Animal(tuile, Animal.TypeAnimal.Licorne);
-                        }
+                        selectionAnimal(tuile, ListeEnclos[0]);
                     }
+
                 }
-            }
 
-
-            //Enclos 3
-            else if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 15 && tuile.Y < 24)
-            {
-                if (verifierAdjacent(tuile) && verifierPrixAnimal(Animal.PRIX_LION))
+                //Enclos 2
+                else if (tuile.X > 17 && tuile.X < 29 && tuile.Y > 5 && tuile.Y < 14)
                 {
-                    new Animal(tuile, Animal.TypeAnimal.Lion);
+                    //Verifier s'il n'y a pas deja un type d'animal dans l'enclos
+                    if (ListeEnclos[1].Espece == Animal.TypeAnimal.Licorne || ListeEnclos[1].Espece == Animal.TypeAnimal.Mouton)
+                    {
+                        ajouterAnimal(ListeEnclos[1], ListeEnclos[1].prixEspece, tuile, ListeEnclos[1].Espece);
+                    }
+                    else
+                    {
+                        selectionAnimal(tuile, ListeEnclos[1]);
+                    }
+
                 }
-            }
 
-
-            //Enclos 4
-            else if (tuile.X > 17 && tuile.X < 29 && tuile.Y > 15 && tuile.Y < 24)
-            {
-                if (verifierAdjacent(tuile) && verifierPrixAnimal(Animal.PRIX_GRIZZLY))
+                //Enclos 3
+                else if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 15 && tuile.Y < 24)
                 {
-                    new Animal(tuile, Animal.TypeAnimal.Grizzly);
+                    ajouterAnimal(ListeEnclos[2], Animal.PRIX_LION, tuile, Animal.TypeAnimal.Lion);
                 }
-            }
+
+                //Enclos 4
+                else if (tuile.X > 17 && tuile.X < 29 && tuile.Y > 15 && tuile.Y < 24)
+                {
+                    ajouterAnimal(ListeEnclos[3], Animal.PRIX_GRIZZLY, tuile, Animal.TypeAnimal.Grizzly);
+                }
+
+                //Concierge
+                else if (verifierAdjacent(tuile))
+                {
+                    new Concierge();
+                }
 
 
-            //Concierge
-            else if (verifierAdjacent(tuile))
-            {
-                new Concierge();
             }
         }
 
+        /// <summary>
+        /// Methode pour ajouter (acheter) un animal dans un enclos
+        /// </summary>
+        /// <param name="enclos"></param>
+        /// <param name="prixAnimal"></param>
+        /// <param name="tuile"></param>
+        /// <param name="type"></param>
+        private void ajouterAnimal(Enclos enclos, double prixAnimal, TuileZoo tuile, Animal.TypeAnimal type)
+        {
+            if (verifierAdjacent(tuile) && verifierPrixAnimal(prixAnimal))
+            {
+                enclos.Espece = type;
+                enclos.prixEspece = prixAnimal;
+                enclos.AnimauxPresents.Add(new Animal(tuile, type));
+            }
+        }
+
+
+        /// <summary>
+        /// Methode pour verifier si le clique est adjacent au heros
+        /// </summary>
+        /// <param name="tuile"></param>
+        /// <returns></returns>
         private bool verifierAdjacent(TuileZoo tuile)
         {
             if (Terrain[tuile.X - 1, tuile.Y - 1] == Heros.Position || Terrain[tuile.X, tuile.Y + 1] == Heros.Position || Terrain[tuile.X + 1, tuile.Y + 1] == Heros.Position
@@ -612,11 +666,17 @@ namespace TP2.LeReste
             }
         }
 
+
+        /// <summary>
+        /// Methode pour verifier le prix d'un animal ou le prix pour le nourrir
+        /// </summary>
+        /// <param name="prix"></param>
+        /// <returns></returns>
         private bool verifierPrixAnimal(double prix)
         {
             if (Heros.Argent - prix < 0)
             {
-                MessageBox.Show("Vous n'avez pas assez d'argent pour acheter cet animal !");
+                MessageBox.Show("Fonds insuffisants !");
                 return false;
             }
             else
@@ -625,25 +685,26 @@ namespace TP2.LeReste
             }
         }
 
-        private double selectionAnimal(TuileZoo tuile)
+
+        /// <summary>
+        /// Methode pour la selection d'animal (licorne ou mouton)
+        /// </summary>
+        /// <param name="tuile"></param>
+        /// <param name="enclos"></param>
+        private void selectionAnimal(TuileZoo tuile, Enclos enclos)
         {
             ChoixAnimal choix = new ChoixAnimal();
             choix.ShowDialog();
 
             if (choix.selection.Equals("Licorne"))
             {
-                return Animal.PRIX_LICORNE;
+                ajouterAnimal(enclos, Animal.PRIX_LICORNE, tuile, Animal.TypeAnimal.Licorne);
             }
             else if (choix.selection.Equals("Mouton"))
             {
+                ajouterAnimal(enclos, Animal.PRIX_MOUTON, tuile, Animal.TypeAnimal.Mouton);
+            }
 
-                return Animal.PRIX_MOUTON;
-            }
-            else
-            {
-                //Par défaut
-                return 0;
-            }
         }
     }
 }

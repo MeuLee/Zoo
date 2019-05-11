@@ -31,11 +31,15 @@ namespace TP2
         /// </summary>
         private void FrmZoo_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.W || e.KeyCode == Keys.A || e.KeyCode == Keys.S || e.KeyCode == Keys.D)
+            if (Zoo.partieCommence)
+            {
+                if (e.KeyCode == Keys.W || e.KeyCode == Keys.A || e.KeyCode == Keys.S || e.KeyCode == Keys.D)
             {
                 Zoo.Heros.DeplacerEtModifierImage(e.KeyCode);
                 zoo1.Refresh();
             }
+
+            } 
         }
 
         /// <summary>
@@ -43,7 +47,9 @@ namespace TP2
         /// </summary>
         private void MnuNouvellePartie_Click(object sender, EventArgs e)
         {
+            Zoo.partieCommence = true;
             new Partie(zoo1, this);
+            this.MnuNouvellePartie.Enabled = false;
         }
 
         /// <summary>

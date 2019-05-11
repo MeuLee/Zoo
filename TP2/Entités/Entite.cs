@@ -14,6 +14,7 @@ namespace TP2.Entités
         public Bitmap Image { get; set; }
 
         protected static Random _r = new Random();
+
         public enum SexeEntite
         {
             M,

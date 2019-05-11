@@ -240,12 +240,13 @@ namespace TP2
             this.Controls.Add(this.zoo1);
             this.Controls.Add(this.MnuStrip);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.KeyPreview = true;
             this.MainMenuStrip = this.MnuStrip;
             this.MaximizeBox = false;
             this.Name = "FrmZoo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "le zoo";
+            this.Text = "ZOO";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmZoo_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmZoo_KeyDown);
             this.MnuStrip.ResumeLayout(false);

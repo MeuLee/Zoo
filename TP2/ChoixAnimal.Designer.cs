@@ -77,10 +77,15 @@
             this.BackColor = System.Drawing.Color.Moccasin;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(285, 194);
+            this.ControlBox = false;
             this.Controls.Add(this.BtnMouton);
             this.Controls.Add(this.LblMessage);
             this.Controls.Add(this.BtnLicorne);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ChoixAnimal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Choix Animal";
             this.ResumeLayout(false);
 

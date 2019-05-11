@@ -33,7 +33,8 @@ namespace TP2.Entités
             Mouton,
             Grizzly,
             Lion,
-            Licorne
+            Licorne,
+            Inexistant
         }
 
         public enum AgeAnimal
@@ -42,6 +43,13 @@ namespace TP2.Entités
             Adulte
         }
 
+        /// <summary>
+        /// Creation de l'animal, selon le type en parametre
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="type"></param>
+        /// <param name="enclos"></param>
+        /// <param name="age"></param>
         public Animal(TuileZoo position, TypeAnimal type, Enclos enclos = null, AgeAnimal age = AgeAnimal.Adulte)
         {
             Type = type;
