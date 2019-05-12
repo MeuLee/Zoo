@@ -836,6 +836,9 @@ namespace TP2.LeReste
                 {
                     new Concierge();
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 3535391... Heros ramasse dechet
+=======
 >>>>>>> parent of 3535391... Heros ramasse dechet
 =======
 >>>>>>> parent of 3535391... Heros ramasse dechet
