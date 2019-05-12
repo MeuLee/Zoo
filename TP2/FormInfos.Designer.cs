@@ -55,7 +55,6 @@
             this.LblType.Name = "LblType";
             this.LblType.Size = new System.Drawing.Size(118, 35);
             this.LblType.TabIndex = 10;
-            this.LblType.Text = "Rien";
             this.LblType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LblGenre
@@ -67,7 +66,6 @@
             this.LblGenre.Name = "LblGenre";
             this.LblGenre.Size = new System.Drawing.Size(118, 35);
             this.LblGenre.TabIndex = 11;
-            this.LblGenre.Text = "Rien";
             this.LblGenre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LblAge
@@ -79,7 +77,6 @@
             this.LblAge.Name = "LblAge";
             this.LblAge.Size = new System.Drawing.Size(118, 35);
             this.LblAge.TabIndex = 12;
-            this.LblAge.Text = "Rien";
             this.LblAge.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LblFaim
@@ -91,7 +88,6 @@
             this.LblFaim.Name = "LblFaim";
             this.LblFaim.Size = new System.Drawing.Size(118, 35);
             this.LblFaim.TabIndex = 13;
-            this.LblFaim.Text = "Rien";
             this.LblFaim.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LblEnceinte
@@ -103,7 +99,6 @@
             this.LblEnceinte.Name = "LblEnceinte";
             this.LblEnceinte.Size = new System.Drawing.Size(118, 35);
             this.LblEnceinte.TabIndex = 14;
-            this.LblEnceinte.Text = "Rien";
             this.LblEnceinte.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // button1
