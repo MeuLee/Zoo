@@ -795,29 +795,6 @@ namespace TP2.LeReste
                         new Concierge();
                     }
                 }
-<<<<<<< HEAD
-            }
-
-
-            private void herosRamasseDechet(TuileZoo tuile)
-            {
-                Dechet dechetEntite = null;
-                if (verifierAdjacent(tuile))
-                {
-
-                    foreach (Entite entite in ListeEntites.OfType<Dechet>())
-                    {
-                        dechetEntite = entite as Dechet;
-                        if (dechetEntite.Position == tuile)
-                        {
-                            break;
-                        }
-
-                    }
-
-                    ListeEntites.Remove(dechetEntite);
-
-=======
 
                 //Enclos 3
                 else if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 15 && tuile.Y < 24)
@@ -835,18 +812,35 @@ namespace TP2.LeReste
                 else if (verifierAdjacent(tuile))
                 {
                     new Concierge();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of 3535391... Heros ramasse dechet
-=======
->>>>>>> parent of 3535391... Heros ramasse dechet
-=======
->>>>>>> parent of 3535391... Heros ramasse dechet
-=======
->>>>>>> parent of 3535391... Heros ramasse dechet
+
                 }
             }
         }
+
+
+ 
+    }
+
+
+    private void herosRamasseDechet(TuileZoo tuile)
+    {
+        Dechet dechetEntite = null;
+        if (verifierAdjacent(tuile))
+        {
+
+            foreach (Entite entite in ListeEntites.OfType<Dechet>())
+            {
+                dechetEntite = entite as Dechet;
+                if (dechetEntite.Position == tuile)
+                {
+                    break;
+                }
+
+            }
+
+            ListeEntites.Remove(dechetEntite);
+
+        }
+
     }
 }
