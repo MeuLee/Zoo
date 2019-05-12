@@ -714,7 +714,7 @@ namespace TP2.LeReste
         {
             if (Heros.Argent - prix < 0)
             {
-                MessageBox.Show("Fonds insuffisants !");
+                MessageBox.Show("Fonds insuffisants !", "Avertissement");
                 return false;
             }
             else
@@ -766,11 +766,16 @@ namespace TP2.LeReste
             }
         }
 
+
+        /// <summary>
+        /// Clique droit sur une entite (visiteur, animal) pour afficher ses informations
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cliqueDroit(object sender, MouseEventArgs e)
         {
             FormInfos infos = new FormInfos();
             TuileZoo tuile = Terrain[e.X / 32, e.Y / 32];
-            nourrirAnimal(tuile);
             Animal animal;
             Visiteur visiteur;
 
@@ -783,7 +788,11 @@ namespace TP2.LeReste
                     infos.LblType.Text = "Animal";
                     infos.LblGenre.Text = animal.Sexe.ToString();
                     infos.LblAge.Text = animal.Age.ToString();
+
+
                     infos.LblEnceinte.Text = animal.JoursGestation.ToString();
+
+
                     infos.PicImage.Image = animal.Image;
                     infos.Show();
                 }
@@ -820,6 +829,7 @@ namespace TP2.LeReste
             {
                 TuileZoo tuile = Terrain[e.X / 32, e.Y / 32];
                 nourrirAnimal(tuile);
+                herosRamasseDechet(tuile);
 
                 //Enclos 1              
                 if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 5 && tuile.Y < 14)
@@ -865,10 +875,32 @@ namespace TP2.LeReste
                 }
 
                 //Concierge
-                else if (verifierAdjacent(tuile))
+                //else if (verifierAdjacent(tuile))
+                //{
+                //    new Concierge();
+                //}
+            }
+        }
+
+
+        private void herosRamasseDechet(TuileZoo tuile)
+        {
+            Dechet dechetEntite = null;
+            if (verifierAdjacent(tuile))
+            {
+                
+                foreach (Entite entite in ListeEntites.OfType<Dechet>())
                 {
-                    new Concierge();
+                    dechetEntite = entite as Dechet;
+                    if (dechetEntite.Position == tuile)
+                    {
+                        break;
+                    }
+
                 }
+
+                ListeEntites.Remove(dechetEntite);
+
             }
         }
     }
