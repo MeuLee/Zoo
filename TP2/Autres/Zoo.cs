@@ -667,7 +667,6 @@ namespace TP2.LeReste
         {
             FormInfos infos = new FormInfos();
             TuileZoo tuile = Terrain[e.X / 32, e.Y / 32];
-            NourrirAnimal(tuile);
 
             foreach (Entite entite in ListeEntites.Where(entite => entite.Position == tuile))
             {
@@ -691,6 +690,17 @@ namespace TP2.LeReste
                     infos.LblEnceinte.Text = "";
                     infos.LblFaim.Text = "";
                 }
+                else if (entite is Concierge)
+                {
+                    Concierge c = entite as Concierge;
+                    infos.LblType.Text = "Concierge";
+                    infos.LblGenre.Text = "";
+                    infos.LblAge.Text = "";
+                    infos.PicImage.Image = c.Image;
+                    infos.LblEnceinte.Text = "";
+                    infos.LblFaim.Text = "";
+                }
+
                 infos.Show();
                 break;
             }
@@ -707,6 +717,7 @@ namespace TP2.LeReste
         {
             TuileZoo tuile = Terrain[e.X / 32, e.Y / 32];
             NourrirAnimal(tuile);
+            HerosRamasseDechet(tuile);
 
             //Enclos 1
             if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 5 && tuile.Y < 14)
@@ -758,6 +769,10 @@ namespace TP2.LeReste
         }
 
 
+        /// <summary>
+        /// Methode pour que le hero puisse ramasser les dechets adjacent a lui
+        /// </summary>
+        /// <param name="tuile"></param>
         private void HerosRamasseDechet(TuileZoo tuile)
         {
             Dechet dechetEntite = null;

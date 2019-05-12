@@ -152,7 +152,7 @@ namespace TP2.Entités
         internal bool AAssezDArgent(double prix)
         {
             if (Argent < prix)
-                MessageBox.Show("Fonds insuffisants !");
+                MessageBox.Show("Fonds insuffisants !", "Avertissement");
 
             return Argent >= prix;
         }
