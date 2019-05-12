@@ -721,7 +721,7 @@ namespace TP2.LeReste
             {
                 if (entite is Animal)
                 {
-                    Animal a = entite as Animal;
+                    animal = entite as Animal;
                     infos.LblType.Text = "Animal";
                     infos.LblGenre.Text = animal.Sexe.ToString();
                     infos.LblAge.Text = animal.Age.ToString();
@@ -770,62 +770,63 @@ namespace TP2.LeReste
                 nourrirAnimal(tuile);
                 herosRamasseDechet(tuile);
 
-            //Enclos 1
-            if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 5 && tuile.Y < 14)
-            {
-                //Verifier s'il n'y a pas deja un type d'animal dans l'enclos
-                if (ListeEnclos[0].Espece == Animal.TypeAnimal.Licorne || ListeEnclos[0].Espece == Animal.TypeAnimal.Mouton)
+                //Enclos 1
+                if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 5 && tuile.Y < 14)
                 {
-                    AjouterAnimal(ListeEnclos[0], ListeEnclos[0].PrixEspece, tuile, ListeEnclos[0].Espece);
-                }
-                else
-                {
-                    SelectionAnimal(tuile, ListeEnclos[0]);
-                }
-
-            }
-
-            //Enclos 2
-            else if (tuile.X > 17 && tuile.X < 29 && tuile.Y > 5 && tuile.Y < 14)
-            {
-
-                //Verifier s'il n'y a pas deja un type d'animal dans l'enclos
-                if (ListeEnclos[1].Espece == Animal.TypeAnimal.Licorne || ListeEnclos[1].Espece == Animal.TypeAnimal.Mouton)
-                {
-                    AjouterAnimal(ListeEnclos[1], ListeEnclos[1].PrixEspece, tuile, ListeEnclos[1].Espece);
-                }
-                else
-                {
-                    SelectionAnimal(tuile, ListeEnclos[1]);
-                }
-
-                //Concierge
-                //else if (verifierAdjacent(tuile))
-                //{
-                //    new Concierge();
-                //}
-            }
-        }
-
-
-        private void herosRamasseDechet(TuileZoo tuile)
-        {
-            Dechet dechetEntite = null;
-            if (verifierAdjacent(tuile))
-            {
-
-                foreach (Entite entite in ListeEntites.OfType<Dechet>())
-                {
-                    dechetEntite = entite as Dechet;
-                    if (dechetEntite.Position == tuile)
+                    //Verifier s'il n'y a pas deja un type d'animal dans l'enclos
+                    if (ListeEnclos[0].Espece == Animal.TypeAnimal.Licorne || ListeEnclos[0].Espece == Animal.TypeAnimal.Mouton)
                     {
-                        break;
+                        AjouterAnimal(ListeEnclos[0], ListeEnclos[0].PrixEspece, tuile, ListeEnclos[0].Espece);
+                    }
+                    else
+                    {
+                        SelectionAnimal(tuile, ListeEnclos[0]);
                     }
 
                 }
 
-                ListeEntites.Remove(dechetEntite);
+                //Enclos 2
+                else if (tuile.X > 17 && tuile.X < 29 && tuile.Y > 5 && tuile.Y < 14)
+                {
 
+                    //Verifier s'il n'y a pas deja un type d'animal dans l'enclos
+                    if (ListeEnclos[1].Espece == Animal.TypeAnimal.Licorne || ListeEnclos[1].Espece == Animal.TypeAnimal.Mouton)
+                    {
+                        AjouterAnimal(ListeEnclos[1], ListeEnclos[1].PrixEspece, tuile, ListeEnclos[1].Espece);
+                    }
+                    else
+                    {
+                        SelectionAnimal(tuile, ListeEnclos[1]);
+                    }
+
+                    //Concierge
+                    else if (verifierAdjacent(tuile))
+                    {
+                        new Concierge();
+                    }
+                }
+            }
+
+
+            private void herosRamasseDechet(TuileZoo tuile)
+            {
+                Dechet dechetEntite = null;
+                if (verifierAdjacent(tuile))
+                {
+
+                    foreach (Entite entite in ListeEntites.OfType<Dechet>())
+                    {
+                        dechetEntite = entite as Dechet;
+                        if (dechetEntite.Position == tuile)
+                        {
+                            break;
+                        }
+
+                    }
+
+                    ListeEntites.Remove(dechetEntite);
+
+                }
             }
         }
     }
