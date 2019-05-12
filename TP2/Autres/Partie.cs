@@ -15,7 +15,7 @@ namespace TP2.LeReste
         {
             Zoo.ListeEntites.Add(new Heros());
             zoo.CreerEtLancerThreadAnimaux();
-            instanceForm.TmrTemps.Start();
+            instanceForm.TmrJour.Start();
             instanceForm.TmrMinute.Start();
         }
     }

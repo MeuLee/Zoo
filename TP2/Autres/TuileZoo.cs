@@ -59,10 +59,7 @@ namespace TP2.LeReste
         /// <returns></returns>
         internal bool ContientDechet()
         {
-            foreach (Dechet d in Zoo.ListeEntites.OfType<Dechet>())
-                if (d.Position == this)
-                    return true;
-            return false;
+            return Zoo.ListeEntites.OfType<Dechet>().Where(d => d.Position == this).Count() > 0;
         }
 
         /// <summary>
@@ -71,14 +68,7 @@ namespace TP2.LeReste
         /// <returns></returns>
         internal bool ContientAnimal()
         {
-            foreach (Entite e in Zoo.ListeEntites.OfType<Animal>())
-            {
-                if (e.Position == Zoo.Terrain[X, Y])
-                {
-                    return true;
-                }
-            }
-            return false;
+            return Zoo.ListeEntites.OfType<Animal>().Where(e => e.Position == Zoo.Terrain[X, Y]).Count() > 0;
         }
 
         /// <summary>

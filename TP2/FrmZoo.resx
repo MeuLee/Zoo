@@ -1094,7 +1094,7 @@
         AAAAAAAAvEpv3vwfqgvEfHNqCD8AAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="TmrTemps.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="TmrJour.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>132, 3</value>
   </metadata>
   <metadata name="TmrMinute.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

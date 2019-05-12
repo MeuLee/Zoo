@@ -46,7 +46,7 @@ namespace TP2
             this.PnlArgent = new System.Windows.Forms.Panel();
             this.PnlAnimaux = new System.Windows.Forms.Panel();
             this.PnlPoubelle = new System.Windows.Forms.Panel();
-            this.TmrTemps = new System.Windows.Forms.Timer(this.components);
+            this.TmrJour = new System.Windows.Forms.Timer(this.components);
             this.TmrMinute = new System.Windows.Forms.Timer(this.components);
             this.zoo1 = new TP2.LeReste.Zoo();
             this.MnuStrip.SuspendLayout();
@@ -203,11 +203,11 @@ namespace TP2
             this.PnlPoubelle.Size = new System.Drawing.Size(259, 151);
             this.PnlPoubelle.TabIndex = 14;
             // 
-            // TmrTemps
+            // TmrJour
             // 
-            this.TmrTemps.Enabled = true;
-            this.TmrTemps.Interval = 822;
-            this.TmrTemps.Tick += new System.EventHandler(this.TmrTemps_Tick);
+            this.TmrJour.Enabled = true;
+            this.TmrJour.Interval = 821;
+            this.TmrJour.Tick += new System.EventHandler(this.TmrJours_Tick);
             // 
             // TmrMinute
             // 
@@ -278,7 +278,7 @@ namespace TP2
         private System.Windows.Forms.Panel PnlArgent;
         private System.Windows.Forms.Panel PnlAnimaux;
         private System.Windows.Forms.Panel PnlPoubelle;
-        public System.Windows.Forms.Timer TmrTemps;
+        public System.Windows.Forms.Timer TmrJour;
         public System.Windows.Forms.Timer TmrMinute;
     }
 }

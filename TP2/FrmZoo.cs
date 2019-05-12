@@ -20,7 +20,7 @@ namespace TP2
         public FrmZoo()
         {
             InitializeComponent();
-            TmrTemps.Stop();
+            TmrJour.Stop();
             TmrMinute.Stop();
             _date = DateTime.Now;
         }
@@ -72,11 +72,13 @@ namespace TP2
         /// <summary>
         /// Modifie les labels de la form
         /// </summary>
-        private void TmrTemps_Tick(object sender, EventArgs e)
+        private void TmrJours_Tick(object sender, EventArgs e)
         {
             AjusterLblDate();
             AjusterLblArgentHeros();
             AjusterLblDechets();
+            Zoo.GestationnerAnimaux();
+            Zoo.ViellirEnfants();
         }
 
         /// <summary>

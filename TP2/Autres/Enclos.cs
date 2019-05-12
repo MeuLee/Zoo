@@ -27,5 +27,25 @@ namespace TP2.LeReste
             Y = y;
             Espece = espece;
         }
+
+        public Animal ContientDeuxSexesAdultes()
+        {
+            bool ContientM = false;
+            Animal femelle = null;
+            foreach (Animal a in AnimauxPresents.Where(a => !a.Enceinte && a.Age == Animal.AgeAnimal.Adulte))
+            {
+                switch (a.Sexe)
+                {
+                    case Entite.SexeEntite.M:
+                        ContientM = true;
+                        break;
+                    case Entite.SexeEntite.F:
+                        if (femelle == null)
+                            femelle = a;
+                        break;
+                }
+            }
+            return ContientM ? femelle : null;
+        }
     }
 }

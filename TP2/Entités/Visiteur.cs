@@ -100,9 +100,8 @@ namespace TP2.Entités
         /// <returns>Si la case est libre ou non</returns>
         protected override bool PeutSeDeplacer(TuileZoo possibilite)
         {
-            foreach (Entite e in Zoo.ListeEntites)
-                if ((e is Humain || e is Dechet) && e.Position == possibilite)
-                    return false;
+            if (Zoo.ListeEntites.Where(e => (e is Humain || e is Dechet) && e.Position == possibilite).Count() > 0)
+                return false;
 
             return possibilite.Tuile == TuileZoo.TypeTuile.Allee;
         }

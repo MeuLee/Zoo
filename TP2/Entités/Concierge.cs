@@ -43,12 +43,9 @@ namespace TP2.Entités
         /// <returns>La prochaine case du concierge</returns>
         private KeyValuePair<TuileZoo, Direction> DeterminerProchaineTuileSelonDechetsProches(List<KeyValuePair<TuileZoo, Direction>> casesDisponibles)
         {
-            foreach (KeyValuePair<TuileZoo, Direction> tuile in casesDisponibles)
+            foreach (KeyValuePair<TuileZoo, Direction> tuile in casesDisponibles.Where(t => t.Key.ContientDechet()))
             {
-                if (tuile.Key.ContientDechet())
-                {
-                    return tuile;
-                }
+                return tuile;
             }
             return casesDisponibles[_r.Next(0, casesDisponibles.Count)];
         }
@@ -61,9 +58,8 @@ namespace TP2.Entités
         /// <returns></returns>
         protected override bool PeutSeDeplacer(TuileZoo possibilite)
         {
-            foreach (Entite e in Zoo.ListeEntites.OfType<Humain>())
-                if (e.Position == possibilite)
-                    return false;
+            if (Zoo.ListeEntites.OfType<Humain>().Where(e => e.Position == possibilite).Count() > 0)
+                return false;
 
             return possibilite.Tuile == TuileZoo.TypeTuile.Allee;
         }

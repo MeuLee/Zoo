@@ -37,7 +37,7 @@ namespace TP2.LeReste
         public static FrmZoo InstanceForm { get; internal set; }
 
         private static Random _r = new Random();
-        private const int MILLISEC_SLEEP = 822;
+        private readonly int MILLISEC_SLEEP = Convert.ToInt32(Math.Round((float)(1000 * 300 / 365)));
         private const int DECHET_SPAWN_RATE = 100;
 
 
@@ -469,12 +469,63 @@ namespace TP2.LeReste
                 RamasserDechets();
                 DeplacerAnimaux();
                 KickVisiteur();
-                //breed
+                AccouplerAnimaux();
 
                 Invoke((MethodInvoker)delegate ()
                 {
                     Refresh();
                 });
+            }
+        }
+
+        internal static void ViellirEnfants()
+        {
+            foreach (Entite e in ListeEntites.OfType<Animal>().Where(a => a.Age == Animal.AgeAnimal.Bebe))
+            {
+                Animal a = e as Animal;
+                switch (a.JoursJusquaAdulte)
+                {
+                    case 0:
+                        a.Age = Animal.AgeAnimal.Adulte;
+                        break;
+                    default:
+                        a.JoursJusquaAdulte--;
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Pour chaque animal enceinte, réduit le nombre de jours requis pour donner naissance de 1 ou si égal à 0, donne naissance.
+        /// </summary>
+        internal static void GestationnerAnimaux()
+        {
+            List<Animal> animauxDonnentNaissance = new List<Animal>();
+            foreach (Entite e in ListeEntites.OfType<Animal>().Where(a => a.Enceinte))
+            {
+                Animal a = e as Animal;
+                switch (a.JoursAvantNaissance)
+                {
+                    case 0:
+                        animauxDonnentNaissance.Add(a);
+                        break;
+                    default:
+                        a.JoursAvantNaissance--;
+                        break;
+                }
+            }
+
+            foreach (Animal a in animauxDonnentNaissance)
+                a.DonnerNaissance();
+        }
+
+        private void AccouplerAnimaux()
+        {
+            foreach (Enclos en in ListeEnclos)
+            {
+                Animal femelle = en.ContientDeuxSexesAdultes();
+                if (femelle != null)
+                    femelle.Enceinte = true;
             }
         }
 
@@ -512,9 +563,8 @@ namespace TP2.LeReste
             List<Dechet> dechetsAEnlever = new List<Dechet>();
 
             foreach (Entite e in ListeEntites.OfType<Concierge>())
-                foreach (Entite f in ListeEntites.OfType<Dechet>())
-                    if (e.Position == f.Position)
-                        dechetsAEnlever.Add(f as Dechet);
+                foreach (Entite f in ListeEntites.OfType<Dechet>().Where(f => f.Position == e.Position))
+                    dechetsAEnlever.Add(f as Dechet);
 
             foreach (Dechet d in dechetsAEnlever)
                 ListeEntites.Remove(d);
@@ -542,9 +592,9 @@ namespace TP2.LeReste
         private List<TuileZoo> DeplacerVisiteursEtCreerDechets()
         {
             List<TuileZoo> emplacementsDechet = new List<TuileZoo>();
-            foreach (Entite e in ListeEntites.OfType<Visiteur>())
+            foreach (Entite e in ListeEntites.OfType<Visiteur>().Where(e => !e.Position.ContientDechet()))
             {
-                if (_r.Next(0, DECHET_SPAWN_RATE) == 0 && !e.Position.ContientDechet())
+                if (_r.Next(0, DECHET_SPAWN_RATE) == 0)
                     emplacementsDechet.Add(e.Position);
                 (e as Visiteur).DeplacerEtModifierImage();
             }
@@ -559,8 +609,7 @@ namespace TP2.LeReste
             foreach (Entite e in ListeEntites.OfType<Animal>())
                 (e as Animal).Deplacer();
         }
-        #endregion
-
+        #endregion        
 
         /// <summary>
         /// Methode pour ajouter (acheter) un animal dans un enclos
@@ -595,30 +644,6 @@ namespace TP2.LeReste
                     a.EmettreSon();
                 }
             }
-        }
-
-        /// <summary>
-        /// Son du grizzly
-        /// </summary>
-        private void PlayGrizzlySound()
-        {
-            new SoundPlayer(Properties.Resources.ours).Play();
-        }
-
-        /// <summary>
-        /// Son de la licorne
-        /// </summary>
-        private void PlayLicorneSound()
-        {
-            new SoundPlayer(Properties.Resources.licorne).Play();
-        }
-
-        /// <summary>
-        /// Son du mouton
-        /// </summary>
-        private void PlayMoutonSound()
-        {
-            new SoundPlayer(Properties.Resources.mouton).Play();
         }
 
         /// <summary>

@@ -12,9 +12,19 @@ namespace TP2.Entités
     public class Animal : Entite
     {
         public TypeAnimal Type { get; set; }
-        public int JoursGestation { get; set; }
+
+        /// <summary>
+        /// Constant, représente le nombre de jours que l'animal doit gestationner avant de donner naissance
+        /// </summary>
+        public int JoursGestation { get; }
+
+        /// <summary>
+        /// Pas constant, agit comme compteur qui est décrémenté à chaque jour 
+        /// jusqu'à 0 puis remis == à JoursGestation lors de la naissance
+        /// </summary>
+        public int JoursAvantNaissance { get; set; }
         public int JoursJusquaAdulte { get; set; }
-        public int MinutesPourNourrir { get; set; }//en temps reel, ou on peut changer ca pour des jours (*60)
+        public int MinutesPourNourrir { get; set; }
         public DateTime DerniereFoisNourri { get; set; }
         public AgeAnimal Age { get; set; }
         public bool Enceinte { get; set; }
@@ -59,6 +69,7 @@ namespace TP2.Entités
                 case TypeAnimal.Grizzly:
                     JoursGestation = 220;
                     JoursJusquaAdulte = 220;
+                    JoursAvantNaissance = 220;
                     MinutesPourNourrir = 2;
                     Prix = PRIX_GRIZZLY;
                     Zoo.Heros.Argent -= PRIX_GRIZZLY;
@@ -68,6 +79,7 @@ namespace TP2.Entités
                 case TypeAnimal.Lion:
                     JoursGestation = 110;
                     JoursJusquaAdulte = 110;
+                    JoursAvantNaissance = 110;
                     MinutesPourNourrir = 2;
                     Prix = PRIX_LION;
                     Zoo.Heros.Argent -= PRIX_LION;
@@ -77,6 +89,7 @@ namespace TP2.Entités
                 case TypeAnimal.Mouton:
                     JoursGestation = 150;
                     JoursJusquaAdulte = 150;
+                    JoursAvantNaissance = 150;
                     MinutesPourNourrir = 2;
                     Prix = PRIX_MOUTON;
                     Zoo.Heros.Argent -= PRIX_MOUTON;
@@ -86,6 +99,7 @@ namespace TP2.Entités
                 case TypeAnimal.Licorne:
                     JoursGestation = 360;
                     JoursJusquaAdulte = 360;
+                    JoursAvantNaissance = 360;
                     MinutesPourNourrir = 3;
                     Prix = PRIX_LICORNE;
                     Zoo.Heros.Argent -= PRIX_LICORNE;
@@ -152,9 +166,8 @@ namespace TP2.Entités
         /// <returns>Si la case est libre ou non</returns>
         protected override bool PeutSeDeplacer(TuileZoo possibilite)
         {
-            foreach (Entite e in Zoo.ListeEntites)
-                if (e.Position == possibilite)
-                    return false;
+            if (Zoo.ListeEntites.Where(e => e.Position == possibilite).Count() > 0)
+                return false;
 
             return (possibilite.Tuile == TuileZoo.TypeTuile.Enclos ||
                    possibilite.Tuile == TuileZoo.TypeTuile.Glace ||
@@ -223,5 +236,14 @@ namespace TP2.Entités
         }
         #endregion
 
+        /// <summary>
+        /// Crée un nouvel animal et réinitalise les properties JoursAvantNaissance et Enceinte
+        /// </summary>
+        public void DonnerNaissance()
+        {
+            new Animal(Position, Type, Enclos, AgeAnimal.Bebe);
+            JoursAvantNaissance = JoursGestation;
+            Enceinte = false;
+        }
     }
 }
