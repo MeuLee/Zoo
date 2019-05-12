@@ -43,7 +43,6 @@ namespace TP2
         /// </summary>
         private void MnuNouvellePartie_Click(object sender, EventArgs e)
         {
-            Zoo.partieCommence = true;
             new Partie(zoo1, this);
             this.MnuNouvellePartie.Enabled = false;
             Zoo.InstanceForm = this;
