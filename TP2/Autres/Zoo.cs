@@ -652,7 +652,7 @@ namespace TP2.LeReste
         {
             if (Heros.Argent - prix < 0)
             {
-                MessageBox.Show("Fonds insuffisants !", "Avertissement");
+                MessageBox.Show("Fonds insuffisants !");
                 return false;
             }
             else
@@ -704,16 +704,11 @@ namespace TP2.LeReste
             }
         }
 
-
-        /// <summary>
-        /// Clique droit sur une entite (visiteur, animal) pour afficher ses informations
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void cliqueDroit(object sender, MouseEventArgs e)
         {
             FormInfos infos = new FormInfos();
             TuileZoo tuile = Terrain[e.X / 32, e.Y / 32];
+            nourrirAnimal(tuile);
             Animal animal;
             Visiteur visiteur;
 
@@ -725,11 +720,7 @@ namespace TP2.LeReste
                     infos.LblType.Text = "Animal";
                     infos.LblGenre.Text = animal.Sexe.ToString();
                     infos.LblAge.Text = animal.Age.ToString();
-
-
                     infos.LblEnceinte.Text = animal.JoursGestation.ToString();
-
-
                     infos.PicImage.Image = animal.Image;
                     infos.Show();
                 }
@@ -768,7 +759,6 @@ namespace TP2.LeReste
             {
                 TuileZoo tuile = Terrain[e.X / 32, e.Y / 32];
                 nourrirAnimal(tuile);
-                herosRamasseDechet(tuile);
 
                 //Enclos 1
                 if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 5 && tuile.Y < 14)
@@ -805,6 +795,7 @@ namespace TP2.LeReste
                         new Concierge();
                     }
                 }
+<<<<<<< HEAD
             }
 
 
@@ -826,6 +817,25 @@ namespace TP2.LeReste
 
                     ListeEntites.Remove(dechetEntite);
 
+=======
+
+                //Enclos 3
+                else if (tuile.X > 2 && tuile.X < 14 && tuile.Y > 15 && tuile.Y < 24)
+                {
+                    ajouterAnimal(ListeEnclos[2], Animal.PRIX_LION, tuile, Animal.TypeAnimal.Lion);
+                }
+
+                //Enclos 4
+                else if (tuile.X > 17 && tuile.X < 29 && tuile.Y > 15 && tuile.Y < 24)
+                {
+                    ajouterAnimal(ListeEnclos[3], Animal.PRIX_GRIZZLY, tuile, Animal.TypeAnimal.Grizzly);
+                }
+
+                //Concierge
+                else if (verifierAdjacent(tuile))
+                {
+                    new Concierge();
+>>>>>>> parent of 3535391... Heros ramasse dechet
                 }
             }
         }
