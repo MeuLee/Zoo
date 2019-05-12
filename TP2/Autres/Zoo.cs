@@ -835,6 +835,9 @@ namespace TP2.LeReste
                 else if (verifierAdjacent(tuile))
                 {
                     new Concierge();
+<<<<<<< HEAD
+>>>>>>> parent of 3535391... Heros ramasse dechet
+=======
 >>>>>>> parent of 3535391... Heros ramasse dechet
                 }
             }
