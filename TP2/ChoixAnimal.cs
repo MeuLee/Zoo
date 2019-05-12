@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TP2.Entités;
 
 namespace TP2
 {
     public partial class ChoixAnimal : Form
     {
-        public string selection;
+        public Animal.TypeAnimal Selection;
 
         public ChoixAnimal()
         {
@@ -21,13 +22,13 @@ namespace TP2
 
         private void BtnLicorne_Click(object sender, EventArgs e)
         {
-            selection = "Licorne";
+            Selection = Animal.TypeAnimal.Licorne;
             this.Close();
         }
 
         private void BtnMouton_Click(object sender, EventArgs e)
         {
-            selection = "Mouton";
+            Selection = Animal.TypeAnimal.Mouton;
             this.Close();
         }
     }

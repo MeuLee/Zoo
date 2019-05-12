@@ -143,5 +143,18 @@ namespace TP2.Entités
         {
             Argent -= 2 * Zoo.ListeEntites.OfType<Concierge>().Count();
         }
+
+        /// <summary>
+        /// Indique si le héros a assez d'argent pour acheter quelque chose.
+        /// </summary>
+        /// <param name="prix">Le prix du quelque chose</param>
+        /// <returns></returns>
+        internal bool AAssezDArgent(double prix)
+        {
+            if (Argent < prix)
+                MessageBox.Show("Fonds insuffisants !");
+
+            return Argent >= prix;
+        }
     }
 }

@@ -64,5 +64,47 @@ namespace TP2.LeReste
                     return true;
             return false;
         }
+
+        /// <summary>
+        /// Indique si une TuileZoo contient un animal ou non.
+        /// </summary>
+        /// <returns></returns>
+        internal bool ContientAnimal()
+        {
+            foreach (Entite e in Zoo.ListeEntites.OfType<Animal>())
+            {
+                if (e.Position == Zoo.Terrain[X, Y])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Indique si une TuileZoo est à côté du Héros ou non (dans un rayon de 1).
+        /// </summary>
+        /// <returns></returns>
+        internal bool EstACoteDuHeros()
+        {
+            TuileZoo[,] terrain = Zoo.Terrain;
+            Heros heros = Zoo.Heros;
+            if (heros != null)
+                try
+                {
+                    return terrain[X - 1, Y - 1] == heros.Position
+                        || terrain[X, Y + 1] == heros.Position
+                        || terrain[X + 1, Y + 1] == heros.Position
+                        || terrain[X + 1, Y] == heros.Position
+                        || terrain[X + 1, Y - 1] == heros.Position
+                        || terrain[X, Y - 1] == heros.Position
+                        || terrain[X - 1, Y - 1] == heros.Position
+                        || terrain[X - 1, Y] == heros.Position;
+                } catch (IndexOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            return false;
+        }
     }
 }

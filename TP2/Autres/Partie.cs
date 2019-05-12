@@ -18,7 +18,5 @@ namespace TP2.LeReste
             instanceForm.TmrTemps.Start();
             instanceForm.TmrMinute.Start();
         }
-
-        
     }
 }
