@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using TP2.LeReste;
@@ -17,7 +18,7 @@ namespace TP2.Entités
         public DateTime DerniereFoisNourri { get; set; }
         public AgeAnimal Age { get; set; }
         public bool Enceinte { get; set; }
-        public Enclos Enclos { get; set; }
+        public Enclos Enclos { get; set; }//sert à rien?
         public bool AFaim { get; set; }
         public SexeEntite Sexe { get; set; }
 
@@ -44,12 +45,12 @@ namespace TP2.Entités
         }
 
         /// <summary>
-        /// Creation de l'animal, selon le type en parametre
+        /// Création de l'animal, selon le type en paramètre. Un sexe est assigné au hasard
         /// </summary>
-        /// <param name="position"></param>
-        /// <param name="type"></param>
+        /// <param name="position">La position où l'animal débutera</param>
+        /// <param name="type">Le type de l'animal (enum, soit Licorne, Lion, Mouton ou Grizzly</param>
         /// <param name="enclos"></param>
-        /// <param name="age"></param>
+        /// <param name="age">Enum, soit Bebe ou Adulte</param>
         public Animal(TuileZoo position, TypeAnimal type, Enclos enclos = null, AgeAnimal age = AgeAnimal.Adulte)
         {
             Type = type;
@@ -92,7 +93,6 @@ namespace TP2.Entités
                     Enclos = enclos;
                     break;
             }
-
             DerniereFoisNourri = DateTime.Now;
             AFaim = false;
             Age = age;
@@ -100,6 +100,7 @@ namespace TP2.Entités
             Sexe = (SexeEntite)_r.Next(0, 2);
             Position = position;
             Zoo.ListeEntites.Add(this);
+            Zoo.InstanceForm.AjusterLblAnimaux();
         }
 
         #region Déplacement
@@ -110,10 +111,7 @@ namespace TP2.Entités
         {
             List<TuileZoo> casesDisponibles = DeterminerCasesDisponibles();
             if (casesDisponibles.Count != 0)
-            {
-                var actuelle = casesDisponibles[_r.Next(0, casesDisponibles.Count)];
-                Position = actuelle;
-            }
+                Position = casesDisponibles[_r.Next(0, casesDisponibles.Count)];
         }
 
         /// <summary>
@@ -130,7 +128,10 @@ namespace TP2.Entités
                 AjouterCaseAListe(Zoo.Terrain[Position.X + 1, Position.Y], casesDisponibles);
                 AjouterCaseAListe(Zoo.Terrain[Position.X, Position.Y + 1], casesDisponibles);
             }
-            catch (IndexOutOfRangeException e) { }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
             return casesDisponibles;
         }
 
@@ -163,6 +164,62 @@ namespace TP2.Entités
                    possibilite.Tuile == TuileZoo.TypeTuile.Decoration ||
                    possibilite.Tuile == TuileZoo.TypeTuile.Gazon) &&
                    possibilite.Tuile != TuileZoo.TypeTuile.Interdit;
+        }
+        #endregion
+
+        #region Son des animaux
+
+        /// <summary>
+        /// Selon le type de l'animal, fait jouer le son approprié
+        /// </summary>
+        internal void EmettreSon()
+        {
+            switch (Type)
+            {
+                case TypeAnimal.Mouton:
+                    PlayMoutonSound();
+                    break;
+                case TypeAnimal.Licorne:
+                    PlayLicorneSound();
+                    break;
+                case TypeAnimal.Lion:
+                    PlayLionSound();
+                    break;
+                case TypeAnimal.Grizzly:
+                    PlayGrizzlySound();
+                    break;
+            }
+        }
+        /// <summary>
+        /// Son du lion
+        /// </summary>
+        private void PlayLionSound()
+        {
+            new SoundPlayer(Properties.Resources.lion).Play();
+        }
+
+        /// <summary>
+        /// Son du grizzly
+        /// </summary>
+        private void PlayGrizzlySound()
+        {
+            new SoundPlayer(Properties.Resources.ours).Play();
+        }
+
+        /// <summary>
+        /// Son de la licorne
+        /// </summary>
+        private void PlayLicorneSound()
+        {
+            new SoundPlayer(Properties.Resources.licorne).Play();
+        }
+
+        /// <summary>
+        /// Son du mouton
+        /// </summary>
+        private void PlayMoutonSound()
+        {
+            new SoundPlayer(Properties.Resources.mouton).Play();
         }
         #endregion
 

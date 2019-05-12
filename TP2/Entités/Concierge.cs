@@ -18,6 +18,12 @@ namespace TP2.Entités
             TileSetSprite = 75;
         }
 
+        /// <summary>
+        /// Crée une liste de cases où le concierge peut aller. Sa prochaine case est déterminée selon:
+        /// Si elle contient un déchet;
+        /// Sinon, un random est effectué sur la liste et le concierge prend la nouvelle position.
+        /// La direction sert à donner une image au concierge.
+        /// </summary>
         internal new void DeplacerEtModifierImage()
         {
             List<KeyValuePair<TuileZoo, Direction>> casesDisponibles = DeterminerCasesDisponibles();
@@ -59,7 +65,7 @@ namespace TP2.Entités
                 if (e.Position == possibilite)
                     return false;
 
-            return /*!possibilite.ContientHumain &&*/ possibilite.Tuile == TuileZoo.TypeTuile.Allee;
+            return possibilite.Tuile == TuileZoo.TypeTuile.Allee;
         }
     }
 }

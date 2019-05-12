@@ -14,16 +14,18 @@ namespace TP2.LeReste
     {
         public List<Animal> AnimauxPresents { get; set; }
         public Animal.TypeAnimal Espece { get; set; }
-        public double prixEspece { get; set; }
+        public double PrixEspece { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
         public int Width { get { return 11; } }
         public int Height { get { return 8; } }
 
-        public Enclos(int x, int y)
+        public Enclos(int x, int y, Animal.TypeAnimal espece)
         {
+            AnimauxPresents = new List<Animal>();
             X = x;
             Y = y;
+            Espece = espece;
         }
     }
 }

@@ -31,15 +31,11 @@ namespace TP2
         /// </summary>
         private void FrmZoo_KeyDown(object sender, KeyEventArgs e)
         {
-            if (Zoo.partieCommence)
-            {
-                if (e.KeyCode == Keys.W || e.KeyCode == Keys.A || e.KeyCode == Keys.S || e.KeyCode == Keys.D)
+            if (Zoo.Heros != null && (e.KeyCode == Keys.W || e.KeyCode == Keys.A || e.KeyCode == Keys.S || e.KeyCode == Keys.D))
             {
                 Zoo.Heros.DeplacerEtModifierImage(e.KeyCode);
                 zoo1.Refresh();
             }
-
-            } 
         }
 
         /// <summary>
@@ -50,6 +46,7 @@ namespace TP2
             Zoo.partieCommence = true;
             new Partie(zoo1, this);
             this.MnuNouvellePartie.Enabled = false;
+            Zoo.InstanceForm = this;
         }
 
         /// <summary>
@@ -79,9 +76,16 @@ namespace TP2
         private void TmrTemps_Tick(object sender, EventArgs e)
         {
             AjusterLblDate();
-            LblArgent.Text = Zoo.Heros.Argent.ToString() + "$";
-            AjusterLblAnimaux();
+            AjusterLblArgentHeros();
             AjusterLblDechets();
+        }
+
+        /// <summary>
+        /// Modifie LblArgent selon l'argent du héros
+        /// </summary>
+        private void AjusterLblArgentHeros()
+        {
+            LblArgent.Text = Zoo.Heros.Argent.ToString() + "$";
         }
 
         /// <summary>
@@ -107,7 +111,7 @@ namespace TP2
         /// <summary>
         /// Modifie LblAnimaux selon le nombre d'animaux présents
         /// </summary>
-        private void AjusterLblAnimaux()
+        public void AjusterLblAnimaux()
         {
             int nbAnimaux = Zoo.ListeEntites.OfType<Animal>().Count();
             switch (nbAnimaux)
