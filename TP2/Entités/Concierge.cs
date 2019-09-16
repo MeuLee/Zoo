@@ -10,9 +10,9 @@ namespace TP2.Entités
 {
     public class Concierge : Humain
     {
-        public Concierge()
+        public Concierge(TuileZoo position)
         {
-            Position = Zoo.Heros.Position;
+            Position = position;
             Image = TileSetGenerator.GetTile(TileSetGenerator.C_DOWN_IDLE);
             Zoo.ListeEntites.Add(this);
             TileSetSprite = 75;

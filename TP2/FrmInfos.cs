@@ -10,16 +10,17 @@ using System.Windows.Forms;
 
 namespace TP2
 {
-    public partial class FormInfos : Form
+    public partial class FrmInfos : Form
     {
-        public FormInfos()
+        public FrmInfos()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
+
         }
     }
 }

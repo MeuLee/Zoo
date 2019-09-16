@@ -68,7 +68,7 @@ namespace TP2.LeReste
         /// <returns></returns>
         internal bool ContientAnimal()
         {
-            return Zoo.ListeEntites.OfType<Animal>().Where(e => e.Position == Zoo.Terrain[X, Y]).Count() > 0;
+            return Zoo.ListeEntites.OfType<Animal>().Where(e => e.Position == this).Count() > 0;
         }
 
         /// <summary>
@@ -95,6 +95,38 @@ namespace TP2.LeReste
                     Console.WriteLine(e.Message);
                 }
             return false;
+        }
+
+        /// <summary>
+        /// Indique si la tuile spécifiée contient une entité ou non.
+        /// </summary>
+        /// <returns></returns>
+        internal bool ContientEntite()
+        {
+            return Zoo.ListeEntites.Where(e => e.Position == this).Count() > 0;
+        }
+
+        internal int? EstDansQuelEnclos()
+        {
+            for (int i = 0; i < Zoo.ListeEnclos.Length; i++)
+            {
+                Enclos enclos = Zoo.ListeEnclos[i];
+                if (EstDansEnclos(i))
+                    return i;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Indique si la tuile est dans l'enclos spécifié
+        /// </summary>
+        /// <param name="numEnclos">L'index de l'enclos</param>
+        /// <returns>True si la tuile y est, false sinon</returns>
+        private bool EstDansEnclos(int numEnclos)
+        {
+            Enclos enclos = Zoo.ListeEnclos[numEnclos];
+            return X >= enclos.X && X <= enclos.X + enclos.Width &&
+                   Y >= enclos.Y && Y <= enclos.Y + enclos.Height;
         }
     }
 }

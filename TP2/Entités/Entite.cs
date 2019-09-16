@@ -22,6 +22,9 @@ namespace TP2.Entités
             F
         }
 
+        /// <summary>
+        /// Utilisé pour donner une image aux déplacements AI
+        /// </summary>
         public enum Direction
         {
             Left,

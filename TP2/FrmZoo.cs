@@ -57,7 +57,7 @@ namespace TP2
         }
 
         /// <summary>
-        /// Affiche l'argent du Héros et ferme l'application (même si le code ne raconte pas ça)
+        /// Affiche l'argent du Héros et ferme l'application (dans cet ordre)
         /// </summary>
         private void FrmZoo_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -70,7 +70,7 @@ namespace TP2
 
         #region Timer 822
         /// <summary>
-        /// Modifie les labels de la form
+        /// Modifie les labels de la form, fait vieillir les animaux bébés et la gestation des animaux
         /// </summary>
         private void TmrJours_Tick(object sender, EventArgs e)
         {
@@ -115,6 +115,7 @@ namespace TP2
         public void AjusterLblAnimaux()
         {
             int nbAnimaux = Zoo.ListeEntites.OfType<Animal>().Count();
+
             switch (nbAnimaux)
             {
                 case 0:

@@ -17,8 +17,8 @@ namespace TP2.LeReste
         public double PrixEspece { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
-        public int Width { get { return 11; } }
-        public int Height { get { return 8; } }
+        public int Width { get { return 10; } }
+        public int Height { get { return 7; } }
 
         public Enclos(int x, int y, Animal.TypeAnimal espece)
         {
@@ -28,6 +28,11 @@ namespace TP2.LeReste
             Espece = espece;
         }
 
+        /// <summary>
+        /// Indique si un enclos a un adulte mâle et une adulte femelle.
+        /// La valeur de retour est utilisée un peu comme booléen, sauf que null = false et la référence de l'animal = true.
+        /// </summary>
+        /// <returns>Null si l'enclos ne contient pas les deux, la référence de la femelle si l'enclos contient les deux.</returns>
         public Animal ContientDeuxSexesAdultes()
         {
             bool ContientM = false;

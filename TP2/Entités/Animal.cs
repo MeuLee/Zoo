@@ -181,7 +181,6 @@ namespace TP2.Entités
         #endregion
 
         #region Son des animaux
-
         /// <summary>
         /// Selon le type de l'animal, fait jouer le son approprié
         /// </summary>

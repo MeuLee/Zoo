@@ -87,6 +87,10 @@ namespace TP2.Entités
             }
         }
 
+        /// <summary>
+        /// Effectue une rotation entre les images de l'humain
+        /// </summary>
+        /// <param name="spriteInt">La classe TileSetGenerator contient des int qui sont dans un certain ordre. Ce paramètre représente la première image de la séquence</param>
         private void ModifierImageHautBas(int spriteInt)
         {
             Image = Image == TileSetGenerator.GetTile(spriteInt) 
@@ -94,6 +98,10 @@ namespace TP2.Entités
                     : TileSetGenerator.GetTile(spriteInt);
         }
 
+        /// <summary>
+        /// Effectue une rotation entre les images de l'humain
+        /// </summary>
+        /// <param name="spriteInt">La classe TileSetGenerator contient des int qui sont dans un certain ordre. Ce paramètre représente la première image de la séquence</param>
         private void ModifierImageCote(int spriteInt)
         {
             Image = Image == TileSetGenerator.GetTile(spriteInt)
